@@ -1,0 +1,17 @@
+{
+  "name": "root",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm run -F gui-chat dev",
+    "build": "pnpm run -F gui-chat build",
+    "watch": "pnpm run -F light-at watch",
+    "both": "pnpm run build && pnpm run watch",
+    "package": "pnpm run -F light-at package"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.7.0"
+}

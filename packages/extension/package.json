@@ -1,0 +1,63 @@
+{
+  "name": "light-at",
+  "displayName": "Light At",
+  "publisher": "himeditator",
+  "icon": "media/light-at.png",
+  "description": "Light At is an open-source lightweight chat assistant for VS Code.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "light-at",
+          "title": "Light At",
+          "icon": "media/light-at-sidebar.png"
+        }
+      ]
+    },
+    "views": {
+      "light-at": [
+        {
+          "type": "webview",
+          "id": "light-at.main",
+          "name": "Light At",
+          "icon": "media/light-at-sidebar.png"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test",
+    "package": "pnpm vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.10.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "eslint": "^9.13.0",
+    "typescript": "^5.6.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
