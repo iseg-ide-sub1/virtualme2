@@ -1,17 +1,30 @@
 <template>
   <div class="model-dialog">
     <div class="model-info">
-      <div class="model-head">M</div>
-      <div class="model-name">{{ dialog.title }}</div>
+      <div class="model-head">
+        <FontAwesomeIcon :icon="getHeadIcon()" />
+      </div>
+      <div class="model-name">{{ dialog.name }}</div>
     </div>
-    <div class="model-content">{{ dialog.content }}</div>
+    <div class="model-content">
+      <MarkdownContent :content="dialog.content" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-import type { ModelDialogItem } from '@/types';
-defineProps<{ dialog: ModelDialogItem }>();
+import { defineProps } from 'vue'
+import MarkdownContent from './MarkdownContent.vue'
+import type { ModelDialogItem } from '@/types'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faHexagonNodes, faCircleNodes } from '@fortawesome/free-solid-svg-icons'
+const props = defineProps<{ dialog: ModelDialogItem }>()
+function getHeadIcon() {
+  if (props.dialog.type === 'ollama') {
+    return faCircleNodes
+  }
+  return faHexagonNodes
+}
 </script>
 
 <style scoped>

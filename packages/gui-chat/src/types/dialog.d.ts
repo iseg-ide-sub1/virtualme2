@@ -6,8 +6,8 @@ export interface UserDialogItem {
 export interface ModelDialogItem {
     id: string;
     content: string;
-    model: string;
-    title: string;
+    type: 'ollama' | 'openai';
+    name: string;
 }
 
 export type DialogItem = UserDialogItem | ModelDialogItem;

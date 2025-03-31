@@ -11,7 +11,7 @@
     "package": "pnpm run -F light-at package"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "himeditator",
+  "license": "MIT",
   "packageManager": "pnpm@10.7.0"
 }

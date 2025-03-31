@@ -1,10 +1,22 @@
 <template>
   <div class="input-box">
-    <textarea rows="1" placeholder="Ask something..."></textarea>
+    <InputUpper />
+    <textarea rows="1" placeholder="Ask something..." ref="taInput"></textarea>
+    <InputLower />
   </div>
 </template>
 
 <script setup lang="ts">
+import InputUpper from './input/InputUpper.vue'
+import InputLower from './input/InputLower.vue'
+import autosize from 'autosize'
+import { ref, onMounted } from 'vue'
+const taInput = ref<HTMLTextAreaElement>()
+onMounted(() => {
+  if(taInput.value){
+    autosize(taInput.value);
+  }
+})
 </script>
 
 <style scoped>
@@ -22,13 +34,14 @@
 
 textarea {
   width: 100%;
-  max-height: 500px;
+  max-height: 40vh;
+  font-size: 13px;
   line-height: 1.5em;
+  overflow-x: auto !important;
   scrollbar-width: thin;
   padding: 5px;
   box-sizing: border-box;
   color: var(--vscode-input-foreground, #616161);
-  background-color: var(--vscode-input-background, #ffffff);
   resize: none;
   border: none;
 }

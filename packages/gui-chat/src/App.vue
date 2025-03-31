@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import DialogBox from '@/components/dialog/DialogBox.vue';
-import InputBox from '@/components/input/InputBox.vue'; 
+import DialogBox from './components/DialogBox.vue'
+import InputBox from './components/InputBox.vue'
 </script>
 
 <style scoped>
@@ -25,8 +25,7 @@ import InputBox from '@/components/input/InputBox.vue';
 }
 
 .sep-line {
-  height: 1px;
-  background-color: rgba(128, 128, 128, 0.2);
+  border-top: 1px solid rgba(128, 128, 128, 0.4);
 }
 
 .input-box {

@@ -1,11 +1,12 @@
 <template>
   <div ref="renderNode">
+    {{ content }}
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-defineProps<{ content: string }>();
+import { defineProps } from 'vue'
+const props = defineProps<{ content: string }>()
 
 </script>
 

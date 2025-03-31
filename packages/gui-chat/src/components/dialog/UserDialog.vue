@@ -1,7 +1,9 @@
 <template>
   <div class="user-dialog">
     <div class="user-info">
-      <div class="user-head">U</div>
+      <div class="user-head">
+        <FontAwesomeIcon :icon="faUser" />
+      </div>
       <div class="user-name">User</div>
     </div>
     <div class="user-content">{{ dialog.content }}</div>
@@ -11,6 +13,8 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import type { UserDialogItem } from '@/types';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 defineProps<{ dialog: UserDialogItem }>();
 </script>
 
