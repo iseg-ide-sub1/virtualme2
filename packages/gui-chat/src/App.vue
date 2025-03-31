@@ -1,57 +1,35 @@
 <template>
-  <div>
-    <input type="text" v-model="textMessage" />
-    <button @click="sendMessage">发送消息</button>
-    <div class="info-container">
-      <p>接收的消息：</p>
-      <ul>
-        <li v-for="(message, index) in messages" :key="index">
-          {{ message }}
-        </li>
-      </ul>
-    </div>
+  <div class="chat-container">
+    <DialogBox />
+    <div class="sep-line"></div>
+    <InputBox />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
-import { useVsCodeApiStore } from '@/stores/vsCodeApi';
-const textMessage = ref('');
-const vscode = useVsCodeApiStore().vscode;
-const messages: any = reactive([]);
-function sendMessage() {
-  if (vscode) {
-    vscode.postMessage({
-      command: 'hello',
-      data: textMessage.value
-    });
-  }
-  textMessage.value = '';
-}
-window.addEventListener('message', event => {
-  const message = event.data;
-  switch (message.command) {
-    case 'hello':
-      messages.push(message.data);
-      break;
-  }
-});
+import DialogBox from '@/components/dialog/DialogBox.vue';
+import InputBox from '@/components/input/InputBox.vue'; 
 </script>
 
 <style scoped>
-div {
-  background-color: antiquewhite;
-  overflow: hidden;
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
-input,
-button {
-  margin: 10px;
+.dialog-box {
+  flex: 1;
+  overflow: auto;
+  scrollbar-width: thin;
 }
 
-.info-container {
-  border: 1px solid black;
-  padding: 10px;
-  margin: 10px;
+.sep-line {
+  height: 1px;
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+.input-box {
+  flex-shrink: 0;
 }
 </style>

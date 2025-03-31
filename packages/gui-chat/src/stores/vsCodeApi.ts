@@ -5,6 +5,6 @@ declare const acquireVsCodeApi: () => {
 };
 
 export const useVsCodeApiStore = defineStore('vsCodeApi', () => {
-    const vscode = (typeof acquireVsCodeApi === 'function')? acquireVsCodeApi() : undefined;
+    const vscode = (typeof acquireVsCodeApi === 'function') ? acquireVsCodeApi() : undefined;
     return { vscode };
 })

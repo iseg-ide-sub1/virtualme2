@@ -1,3 +1,4 @@
+import "@vscode-elements/elements/dist/vscode-button/index.js";
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
