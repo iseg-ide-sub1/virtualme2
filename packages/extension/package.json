@@ -3,28 +3,47 @@
   "displayName": "Light At",
   "publisher": "himeditator",
   "icon": "media/light-at.png",
-  "description": "Light At is an open-source lightweight chat assistant for VS Code.",
+  "description": "Light At is an open-source chat assistant for VS Code.",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HiMeditator/light-at/tree/main/packages/extension"
+  },
+  "homepage": "https://github.com/HiMeditator/light-at",
+  "bugs": {
+    "url": "https://github.com/HiMeditator/light-at/issues"
+  },
+  "qna": "https://github.com/HiMeditator/light-at/issues",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.90.0"
   },
+  "galleryBanner": {
+    "color": "#1A1A1A",
+    "theme": "dark"
+  },
   "categories": [
-    "Other"
+    "AI",
+    "Chat",
+    "Education",
+    "Machine Learning"
+  ],
+  "keywords": [
+    "copilot",
+    "openai",
+    "ollama",
+    "chat",
+    "LLM"
   ],
   "activationEvents": [],
   "main": "./out/extension/extension.js",
+  "l10n": "./l10n",
   "contributes": {
-    "commands": [
-      {
-        "command": "extension.helloWorld",
-        "title": "Hello World"
-      }
-    ],
     "viewsContainers": {
       "activitybar": [
         {
           "id": "light-at",
-          "title": "Light At",
+          "title": "%plugin.name%",
           "icon": "media/light-at-sidebar.png"
         }
       ]
@@ -34,10 +53,111 @@
         {
           "type": "webview",
           "id": "light-at.main",
-          "name": "Light At",
+          "name": "%plugin.name%",
           "icon": "media/light-at-sidebar.png"
         }
       ]
+    },
+    "commands": [
+      {
+        "command": "light-at.goto.settings",
+        "title": "%cmd.goto.settings%",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "light-at.goto.config",
+        "title": "%cmd.goto.config%",
+        "icon": "$(json)"
+      },
+      {
+        "command": "light-at.load.sessions",
+        "title": "%cmd.load.sessions%",
+        "icon": "$(history)"
+      },
+      {
+        "command": "light-at.chat.new",
+        "title": "%cmd.chat.new%",
+        "icon": "$(plus)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "light-at.goto.settings",
+          "when": "view == light-at.main",
+          "group": "navigation@4"
+        },
+        {
+          "command": "light-at.goto.config",
+          "when": "view == light-at.main",
+          "group": "navigation@3"
+        },
+        {
+          "command": "light-at.load.sessions",
+          "when": "view == light-at.main",
+          "group": "navigation@2"
+        },
+        {
+          "command": "light-at.chat.new",
+          "when": "view == light-at.main",
+          "group": "navigation@1"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "%plugin.name%",
+      "properties": {
+        "lightAt.loadLastChatSession": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "%desc.loadLastChatSession%",
+          "order": 0
+        },
+        "lightAt.continuousChat": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "%desc.continuousChat%",
+          "order": 1
+        },
+        "lightAt.displayInfoMessage": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "%desc.displayInfoMessage%",
+          "order": 2
+        },
+        "lightAt.maxChatHistory": {
+          "type": "number",
+          "default": 128,
+          "minimum": -1,
+          "maximum": 255,
+          "markdownDescription": "%desc.maxChatHistory%",
+          "order": 3
+        },
+        "lightAt.sendRequestShortcut": {
+          "type": "string",
+          "enum": [
+            "Ctrl+Enter",
+            "Enter"
+          ],
+          "default": "Ctrl+Enter",
+          "markdownDescription": "%desc.sendRequestShortcut%",
+          "order": 4
+        },
+        "lightAt.codeHighlightTheme": {
+          "type": "string",
+          "enum": [
+            "arduino-light",
+            "github",
+            "qtcreator-light",
+            "androidstudio",
+            "github-dark",
+            "github-dark-dimmed"
+          ],
+          "default": "github",
+          "markdownDescription": "%desc.codeHighlightTheme%",
+          "order": 5
+        }
+      }
     }
   },
   "scripts": {
