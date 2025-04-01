@@ -1,9 +1,11 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+import { MessageSender} from '../utils/MessageSender';
+import { RequestHandler } from '../utils/RequestHandler';
 
-export class MainViewProvider implements vscode.WebviewViewProvider {
-    public static readonly viewType = 'light-at.main';
+export class ChatViewProvider implements vscode.WebviewViewProvider {
+    public static readonly viewType = 'light-at.chat';
     private _view?: vscode.WebviewView;
     constructor(
         private readonly _extensionUri: vscode.Uri
@@ -21,18 +23,12 @@ export class MainViewProvider implements vscode.WebviewViewProvider {
         };
         webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
-        webviewView.webview.onDidReceiveMessage(message => {
-            console.log(JSON.stringify(message));
-            switch (message.command) {
-                case 'hello':
-                    vscode.window.showInformationMessage(`${message.data}`);
-                    this._view?.webview.postMessage({
-                        command: 'hello',
-                        data: `webview 收到了 "${message.data}"，回传`
-                    });
-                    break;
-            }
-        });
+        MessageSender.view = webviewView;
+        RequestHandler.view = webviewView;
+
+        webviewView.webview.onDidReceiveMessage(
+            RequestHandler.handleRequest
+        );
     }
 
     private _getHtmlForWebview(webview: vscode.Webview) {

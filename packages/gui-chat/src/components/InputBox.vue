@@ -2,18 +2,61 @@
   <div class="input-box">
     <InputUpper />
     <textarea rows="1" placeholder="Ask something..." ref="taInput"></textarea>
-    <InputLower />
+    <InputLower 
+      :models="models"
+      :modelID = "modelID"
+      :modelName = "modelName"
+      :changeModelID = "changeModelID"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import autosize from 'autosize'
+import { ref, computed, onMounted } from 'vue'
+import type { Model } from '@/types'
+import { useVsCodeApiStore } from '@/stores/vsCodeApi'
 import InputUpper from './input/InputUpper.vue'
 import InputLower from './input/InputLower.vue'
-import autosize from 'autosize'
-import { ref, onMounted } from 'vue'
+
+const models = ref<Model[]>([])
+const modelID = ref<string>('')
+const modelName = computed(() => {
+  const findModel = models.value.find(model => model.id === modelID.value)
+  if (findModel) {
+    return findModel.name
+  } else {
+    return 'Select Model'
+  }
+})
 const taInput = ref<HTMLTextAreaElement>()
+const vscode = useVsCodeApiStore().vscode
+
+window.addEventListener('message', event => {
+  const message = event.data;
+  console.log(JSON.stringify(message))
+  switch (message.command) {
+    case 'models.update':
+      models.value = JSON.parse(message.models);
+      modelID.value = message.modelID;
+      break;
+    case 'modelID.updated':
+      modelID.value = message.modelID;
+      console.log(modelID.value)
+      break;
+  }
+});
+
+function changeModelID(newID: string) {
+  if(newID === modelID.value) return
+  vscode?.postMessage({
+    command: 'modelID.update',
+    modelID: newID
+  });
+}
+
 onMounted(() => {
-  if(taInput.value){
+  if (taInput.value) {
     autosize(taInput.value);
   }
 })

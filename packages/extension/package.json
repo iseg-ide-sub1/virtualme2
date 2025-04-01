@@ -52,7 +52,7 @@
       "light-at": [
         {
           "type": "webview",
-          "id": "light-at.main",
+          "id": "light-at.chat",
           "name": "%plugin.name%",
           "icon": "media/light-at-sidebar.png"
         }
@@ -84,22 +84,22 @@
       "view/title": [
         {
           "command": "light-at.goto.settings",
-          "when": "view == light-at.main",
+          "when": "view == light-at.chat",
           "group": "navigation@4"
         },
         {
           "command": "light-at.goto.config",
-          "when": "view == light-at.main",
+          "when": "view == light-at.chat",
           "group": "navigation@3"
         },
         {
           "command": "light-at.load.sessions",
-          "when": "view == light-at.main",
+          "when": "view == light-at.chat",
           "group": "navigation@2"
         },
         {
           "command": "light-at.chat.new",
-          "when": "view == light-at.main",
+          "when": "view == light-at.chat",
           "group": "navigation@1"
         }
       ]

@@ -4,10 +4,10 @@
       <div class="dropup-option">
         <ul class="dropup-list">
           <li
-            v-for="model in modelList"
+            v-for="model in models"
             :key="model.id"
-            :class="{selected: model.id === selectedModelID}"
-            @click="selectedModelID = model.id"
+            :class="{selected: model.id === modelID}"
+            @click="changeModelID(model.id)"
           >
             <FontAwesomeIcon :icon="getSvgIcon(model.type)" />
             <span>{{ model.name }}</span>
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div>
-        <span>Slect Model</span>
+        <span>{{ modelName }}</span>
         <FontAwesomeIcon :icon="faChevronDown" />
       </div>
     </div>
@@ -35,19 +35,21 @@
 </template>
 
 <script setup lang="ts">
+import { defineProps } from 'vue'
+import type { Model } from '@/types'
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faHexagonNodes, faCircleNodes } from '@fortawesome/free-solid-svg-icons'
 import { faPlus, faRotateRight } from '@fortawesome/free-solid-svg-icons'
 import { faChevronDown, faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { ref, reactive } from 'vue'
-import type { Model } from '@/types'
-const selectedModelID = ref('')
-const modelList = reactive<Model[]>([
-  {id: 'm-01', name: 'gpt-3.5-turbo', type: 'openai'},
-  {id: 'm-02', name: 'gpt-4', type: 'openai'},
-  {id: 'm-03', name: 'qwen-max', type: 'openai'},
-  {id: 'm-04', name: 'qwen2.5', type: 'ollama'}
-]);
+
+defineProps<{
+  models: Model[],
+  modelID: string,
+  modelName: string,
+  changeModelID: (newID: string) => void
+}>()
+
 function getSvgIcon(modelType: string){
   if(modelType === 'ollama'){
     return faCircleNodes;

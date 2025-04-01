@@ -1,3 +1,12 @@
 {
-
+    "ts.deleteSession": "删除会话",
+    "ts.fetchingModelInfo": "正在获取模型回复，请稍后再试。",
+    "ts.loadChatSessionError": "载入对话记录错误：",
+    "ts.createdConfig": "已创建配置文件：",
+    "ts.parsingConfigError": "配置文件解析错误：",
+    "ts.modelNameError": "模型名称太长，请保证模型名小于128个字符。",
+    "ts.modelTitleError": "模型标题太长，请保证模型名小于128个字符。",
+    "ts.modelNotSelected": "尚未选择模型，请先选择模型。",
+    "ts.unexpectedModelError": "错误：不存在的模型类型。请检查配置文件。",
+    "ts.requestFailed": "请求失败："
 }
