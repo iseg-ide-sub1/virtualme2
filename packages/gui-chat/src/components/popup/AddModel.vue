@@ -69,7 +69,6 @@ import { faHexagonNodes, faCircleNodes } from '@fortawesome/free-solid-svg-icons
 
 const props = defineProps<{popupAddModel: () => void}>()
 const modelForm = ref<HTMLFormElement>()
-const vscode = useVsCodeApiStore().vscode
 
 const modelConfig = ref<ModelConfig>({
   type: 'openai',
@@ -93,7 +92,7 @@ function submit() {
   if(rawModelConfig.system?.trim() === ''){
     delete rawModelConfig.system
   }
-  vscode?.postMessage({
+  useVsCodeApiStore().vscode?.postMessage({
     command: 'model.add',
     model: JSON.stringify(rawModelConfig)
   })

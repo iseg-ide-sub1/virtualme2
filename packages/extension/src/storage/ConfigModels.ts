@@ -2,8 +2,9 @@ import * as vscode from 'vscode';
 import { l10n } from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
-import type { ModelConfig } from '../types/modelTypes';
+import type { Config } from '../types/ConfigTypes';
 import { MessageSender } from '../utils/MessageSender';
+import { log } from 'console';
 
 let nanoid: () => string;
 (async () => {
@@ -27,36 +28,33 @@ export class ConfigModels {
         }
     }
     
-    public getConfigContent(): string {
+    public getConfigObject(): Config {
         try{
-            return fs.readFileSync(this.configUri.fsPath, 'utf8');
+            const configContent = fs.readFileSync(this.configUri.fsPath, 'utf8');
+            const config: Config = JSON.parse(configContent);
+            return config;
         }
         catch (error) {
-            return `{\n  "models": []\n}`;
+            vscode.window.showErrorMessage(`Not A Vaild Config File`);
+            return { models: [] };
         }
     }
 
     public updateModelsFromConfig(){
-        const configContent = this.getConfigContent();
-        try{
-            const modelList = JSON.parse(configContent).models;
-            this.modelList = modelList;
-            const models = modelList.map( (model: any) => {
-                return {
-                    id: model.id,
-                    type: model.type,
-                    name: model.title?  model.title : model.model,
-                };
-            });
-            const modelID = this.context.globalState.get<string>('modelID');
-            MessageSender.modelsUpdate(
-                JSON.stringify(models),
-                modelID ? modelID : ''
-            );
-        }
-        catch (error) {
-            vscode.window.showErrorMessage(`${l10n.t('ts.parsingConfigError')} ${error}`);
-        }
+        const modelList = this.getConfigObject().models;
+        this.modelList = modelList;
+        const models = modelList.map( (model: any) => {
+            return {
+                id: model.id,
+                type: model.type,
+                name: model.title?  model.title : model.model,
+            };
+        });
+        const modelID = this.context.globalState.get<string>('modelID');
+        MessageSender.modelsUpdate(
+            JSON.stringify(models),
+            modelID ? modelID : ''
+        );
     }
 
     public addModelToConfig(modelData: string) {
@@ -65,13 +63,11 @@ export class ConfigModels {
             return;
         }
         try{
-            let configContent = this.getConfigContent();
-            let configObj = JSON.parse(configContent);
+            let configObj: Config = this.getConfigObject();
             let modelDataObj = JSON.parse(modelData);
             modelDataObj['id'] = nanoid();
-            configObj['models'].push(modelDataObj);
+            configObj.models.push(modelDataObj);
             fs.writeFileSync(this.configUri.fsPath, JSON.stringify(configObj, null, 2));
-        
         } catch (error) {
             vscode.window.showErrorMessage(`${l10n.t('ts.parsingConfigError')} ${error}`);
         }
@@ -79,11 +75,12 @@ export class ConfigModels {
     }
 
     public deleteModelFromConfig(modelID: string) {
-        let configContent = this.getConfigContent();
-        let configObj = JSON.parse(configContent);
+        let configObj = this.getConfigObject();
+        console.log(JSON.stringify(configObj));
         configObj['models'] = configObj['models'].filter( (model: any) => {
-            model.id !== modelID;
+            return model.id !== modelID;
         });
+        console.log(JSON.stringify(configObj));
         fs.writeFileSync(this.configUri.fsPath, JSON.stringify(configObj, null, 2));
         this.updateModelsFromConfig();
     }

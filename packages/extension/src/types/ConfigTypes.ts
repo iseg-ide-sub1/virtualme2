@@ -1,4 +1,4 @@
-export interface ModelConfig {
+export interface Model {
     id: string;
     type: 'openai' | 'ollama';
     model: string;
@@ -6,4 +6,8 @@ export interface ModelConfig {
     baseURL?: string;
     apiKey?: string;
     system?: string;
+}
+
+export interface Config {
+    models: Model[];
 }

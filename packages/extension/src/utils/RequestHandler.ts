@@ -20,6 +20,9 @@ export class RequestHandler {
             case 'model.add':
                 RequestHandler.addModel(message.model);
                 break;
+            case 'model.delete':
+                RequestHandler.deleteModel(message.modelID);
+                break;
         }
     }
 
@@ -38,5 +41,9 @@ export class RequestHandler {
 
     private static addModel(model: string){
        RequestHandler.configModels?.addModelToConfig(model);
+    }
+
+    private static deleteModel(modelID: string){
+        RequestHandler.configModels?.deleteModelFromConfig(modelID);
     }
 }

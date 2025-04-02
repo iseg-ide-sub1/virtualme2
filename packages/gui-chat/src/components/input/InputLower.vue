@@ -11,6 +11,7 @@
           >
             <FontAwesomeIcon :icon="getSvgIcon(model.type)" />
             <span>{{ model.name }}</span>
+            <FontAwesomeIcon :icon="faXmark" @click="popupDeleteModel(model)" />
           </li>
         </ul>
         <div class="extra-option" @click="popupAddModel">
@@ -33,7 +34,17 @@
     </div>
   </div>
   <Teleport to="body">
-    <AddModel v-if="addModelPopup" :popupAddModel="popupAddModel" />
+    <AddModel
+      v-if="addModelPopup"
+      :popupAddModel="popupAddModel"
+    />
+  </Teleport>
+  <Teleport to="body">
+    <DeleteModel
+      v-if="deleteModelPopup"
+      :deleteModel="deleteModel"
+      :popupDeleteModel="popupDeleteModel"
+    />
   </Teleport>
 </template>
 
@@ -41,12 +52,13 @@
 import { ref, defineProps } from 'vue'
 import type { Model } from '@/types'
 import { useVsCodeApiStore } from '@/stores/vsCodeApi'
-import AddModel from '../popup//AddModel.vue'
+import AddModel from '../popup/AddModel.vue'
+import DeleteModel from '../popup/DeleteModel.vue' 
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faHexagonNodes, faCircleNodes } from '@fortawesome/free-solid-svg-icons'
 import { faPlus, faRotateRight } from '@fortawesome/free-solid-svg-icons'
-import { faChevronDown, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown, faArrowRight, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 const props = defineProps<{
   models: Model[],
@@ -56,8 +68,17 @@ const props = defineProps<{
 
 const vscode = useVsCodeApiStore().vscode
 const addModelPopup = ref(false)
+const deleteModelPopup = ref(false)
+const deleteModel = ref<Model>()
+
 function popupAddModel(){
   addModelPopup.value = !addModelPopup.value
+}
+function popupDeleteModel(model?: Model){
+  deleteModelPopup.value = !deleteModelPopup.value
+  if(model){
+    deleteModel.value = model 
+  }
 }
 
 function changeModelID(newID: string) {
@@ -95,6 +116,19 @@ function getSvgIcon(modelType: string){
 
 li svg {
   margin-right: 2px;
+}
+
+li svg:last-child {
+  display: none;
+  margin-left: auto;
+}
+
+li:hover svg:last-child {
+  display: inline-block;
+}
+
+li:hover svg:last-child:hover {
+  background-color: rgba(128, 128, 128, 0.2);
 }
 
 span+svg {
