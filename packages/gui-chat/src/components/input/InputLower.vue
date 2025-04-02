@@ -13,16 +13,16 @@
             <span>{{ model.name }}</span>
           </li>
         </ul>
-        <div class="extra-option">
+        <div class="extra-option" @click="popupAddModel">
           <FontAwesomeIcon :icon="faPlus" />
           <span>Add Model</span>
         </div>
-        <div class="extra-option">
+        <div class="extra-option" @click="updateConfig">
           <FontAwesomeIcon :icon="faRotateRight" />
-          <span>Load Config</span>
+          <span>Update Config</span>
         </div>
       </div>
-      <div>
+      <div class="model-name">
         <span>{{ modelName }}</span>
         <FontAwesomeIcon :icon="faChevronDown" />
       </div>
@@ -32,23 +32,46 @@
       <FontAwesomeIcon :icon="faArrowRight" />
     </div>
   </div>
+  <Teleport to="body">
+    <AddModel v-if="addModelPopup" :popupAddModel="popupAddModel" />
+  </Teleport>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { ref, defineProps } from 'vue'
 import type { Model } from '@/types'
+import { useVsCodeApiStore } from '@/stores/vsCodeApi'
+import AddModel from '../popup//AddModel.vue'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faHexagonNodes, faCircleNodes } from '@fortawesome/free-solid-svg-icons'
 import { faPlus, faRotateRight } from '@fortawesome/free-solid-svg-icons'
 import { faChevronDown, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
-defineProps<{
+const props = defineProps<{
   models: Model[],
   modelID: string,
-  modelName: string,
-  changeModelID: (newID: string) => void
+  modelName: string
 }>()
+
+const vscode = useVsCodeApiStore().vscode
+const addModelPopup = ref(false)
+function popupAddModel(){
+  addModelPopup.value = !addModelPopup.value
+}
+
+function changeModelID(newID: string) {
+  if(newID === props.modelID) return
+  vscode?.postMessage({
+    command: 'modelID.update',
+    modelID: newID
+  });
+}
+function updateConfig() {
+  vscode?.postMessage({
+    command: 'config.update'
+  });
+}
 
 function getSvgIcon(modelType: string){
   if(modelType === 'ollama'){
@@ -59,7 +82,7 @@ function getSvgIcon(modelType: string){
 </script>
 
 <style scoped>
-@import '../../assets/dropup.css';
+@import '../../assets/css/dropup.css';
 
 .input-lower {
   display: flex;
@@ -92,9 +115,21 @@ span+svg {
   background-color: rgba(128, 128, 128, 0.15);
 }
 
+.model-name {
+  display: inline-block;
+  max-width: 60vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .send-prompt {
   user-select: none;
   cursor: pointer;
+  max-width: 30vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .send-prompt:hover {

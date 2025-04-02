@@ -14,6 +14,12 @@ export class RequestHandler {
             case 'modelID.update':
                 RequestHandler.updateModelID(message.modelID);
                 break;
+            case 'config.update':
+                RequestHandler.updateConfig();
+                break;
+            case 'model.add':
+                RequestHandler.addModel(message.model);
+                break;
         }
     }
 
@@ -23,5 +29,14 @@ export class RequestHandler {
 
     private static updateModelID(modelID: string){
         RequestHandler.configModels?.updatemodelID(modelID);
+    }
+
+    private static updateConfig(){
+        RequestHandler.configModels?.updateModelsFromConfig();
+        vscode.commands.executeCommand('light-at.goto.config');
+    }
+
+    private static addModel(model: string){
+       RequestHandler.configModels?.addModelToConfig(model);
     }
 }

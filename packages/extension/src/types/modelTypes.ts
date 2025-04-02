@@ -1,10 +1,5 @@
-export interface Model {
-    id: string;
-    type: 'openai' | 'ollama';
-    name: string;
-}
-
 export interface ModelConfig {
+    id: string;
     type: 'openai' | 'ollama';
     model: string;
     title?: string;

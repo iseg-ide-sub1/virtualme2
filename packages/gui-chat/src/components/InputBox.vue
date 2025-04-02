@@ -6,7 +6,6 @@
       :models="models"
       :modelID = "modelID"
       :modelName = "modelName"
-      :changeModelID = "changeModelID"
     />
   </div>
 </template>
@@ -29,6 +28,7 @@ const modelName = computed(() => {
     return 'Select Model'
   }
 })
+
 const taInput = ref<HTMLTextAreaElement>()
 const vscode = useVsCodeApiStore().vscode
 
@@ -46,14 +46,6 @@ window.addEventListener('message', event => {
       break;
   }
 });
-
-function changeModelID(newID: string) {
-  if(newID === modelID.value) return
-  vscode?.postMessage({
-    command: 'modelID.update',
-    modelID: newID
-  });
-}
 
 onMounted(() => {
   if (taInput.value) {

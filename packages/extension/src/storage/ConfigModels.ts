@@ -2,7 +2,14 @@ import * as vscode from 'vscode';
 import { l10n } from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import type { ModelConfig } from '../types/modelTypes';
 import { MessageSender } from '../utils/MessageSender';
+
+let nanoid: () => string;
+(async () => {
+    const nanoidModule = await import('nanoid');
+    nanoid = nanoidModule.nanoid;
+})();
 
 export class ConfigModels {
     public modelList: any = [];
@@ -53,12 +60,21 @@ export class ConfigModels {
     }
 
     public addModelToConfig(modelData: string) {
-        // TODO update
-        let configContent = this.getConfigContent();
-        let configObj = JSON.parse(configContent);
-        let modelDataObj = JSON.parse(modelData);
-        configObj['models'].push(modelDataObj);
-        fs.writeFileSync(this.configUri.fsPath, JSON.stringify(configObj, null, 2));
+        if(!nanoid) {
+            vscode.window.showErrorMessage('nanoid is not loaded.');
+            return;
+        }
+        try{
+            let configContent = this.getConfigContent();
+            let configObj = JSON.parse(configContent);
+            let modelDataObj = JSON.parse(modelData);
+            modelDataObj['id'] = nanoid();
+            configObj['models'].push(modelDataObj);
+            fs.writeFileSync(this.configUri.fsPath, JSON.stringify(configObj, null, 2));
+        
+        } catch (error) {
+            vscode.window.showErrorMessage(`${l10n.t('ts.parsingConfigError')} ${error}`);
+        }
         this.updateModelsFromConfig();
     }
 
