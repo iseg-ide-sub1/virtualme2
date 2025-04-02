@@ -76,11 +76,9 @@ export class ConfigModels {
 
     public deleteModelFromConfig(modelID: string) {
         let configObj = this.getConfigObject();
-        console.log(JSON.stringify(configObj));
         configObj['models'] = configObj['models'].filter( (model: any) => {
             return model.id !== modelID;
         });
-        console.log(JSON.stringify(configObj));
         fs.writeFileSync(this.configUri.fsPath, JSON.stringify(configObj, null, 2));
         this.updateModelsFromConfig();
     }

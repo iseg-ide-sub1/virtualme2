@@ -42,7 +42,6 @@ window.addEventListener('message', event => {
       break;
     case 'modelID.updated':
       modelID.value = message.modelID;
-      console.log(modelID.value)
       break;
   }
 });

@@ -70,7 +70,5 @@ function getHeadIcon() {
 .model-content {
   line-height: 1.6em;
   margin: 5px;
-  overflow-x: auto;
-  scrollbar-width: thin;
 }
 </style>

@@ -1,32 +1,46 @@
 <template>
-  <div ref="renderNode">
-    {{ content }}
+  <div class="markdown-block" ref="renderNode">
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { ref, onMounted, defineProps, nextTick } from 'vue'
+import { renderMarkdownContent } from "@/utils/renderMarkdownContent";
 const props = defineProps<{ content: string }>()
+let renderNode = ref<HTMLElement>()
+
+onMounted(() => {
+  if(renderNode.value){
+    renderMarkdownContent(renderNode.value, props.content)
+    nextTick()
+  }
+})
 
 </script>
 
 <style scoped>
-pre {
+:deep(pre) {
   position: relative;
 }
 
-code {
-  font-size: 12px;
+:deep(code) {
+  font-size: 13px;
   overflow-y: auto;
-  scrollbar-width: thin;
+  border-radius: 5px;
 }
 
-.code-info-div svg {
+:deep(svg) {
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
+}
+
+:deep(.code-info-div svg) {
   margin: auto 4px;
   cursor: pointer;
 }
 
-.code-info-div {
+:deep(.code-info-div) {
   display: none;
   position: absolute;
   top: -10px;
@@ -36,12 +50,11 @@ code {
   border-radius: 5px;
 }
 
-pre:hover .code-info-div {
+:deep(pre:hover .code-info-div) {
   display: block;
 }
 
-#div-dialog ul,
-#div-dialog ol {
+:deep(ul, ol) {
   padding-left: 20px;
 }
 </style>

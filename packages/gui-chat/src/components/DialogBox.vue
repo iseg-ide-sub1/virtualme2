@@ -19,7 +19,7 @@ const dialogs = reactive<DialogItem[]>([
   },
   {
     id: 'm-01',
-    content: 'I am Qwen, a large language model developed by Alibaba Cloud. I can help with a wide range of tasks, from answering questions and providing information to helping with writing and more. How can I assist you today?',
+    content: '### 数学公式\n泰勒级数展开用于近似 \\(e^x\\) 在 \\(x=1\\) 时的形式为:\n\\[ e = \\sum_{n=0}^{\\infty} \\frac{1}{n!} = 1 + \\frac{1}{1!} + \\frac{1}{2!} + \\frac{1}{3!} + \\cdots \\]\n\n这里的 \\(n!\\) 表示阶乘，即 \\(n! = n \\times (n-1) \\times \\ldots \\times 1\\), 并且 \\(0! = 1\\)。\n\n### Python 代码实现\n下面是一段Python代码，用来计算上述泰勒级数直到第 `N` 项为止的和，从而得到 \\(e\\) 的近似值。\n\n```python\ndef factorial(n):\n    \"\"\"计算并返回n的阶乘\"\"\"\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n - 1)\n\ndef estimate_e(N):\n    \"\"\"使用前N项泰勒级数估计e的值\"\"\"\n    e_approx = 0.0\n    for i in range(N + 1):\n        e_approx += 1 / factorial(i)\n    return e_approx\n\n# 设置项数 N\nN = 100  # 可以根据需要调整此数值\napprox_e = estimate_e(N)\nprint(f\"Estimation of e using the first {N} terms: {approx_e}\")\n```\n\n这段代码首先定义了一个递归函数 `factorial` 来计算任意正整数的阶乘。接着定义了 `estimate_e` 函数，它利用泰勒级数的前 `N` 项来估算 \\(e\\) 的值。最后，我们设定了 `N` 的值（这里是100），调用 `estimate_e` 函数，并打印出结果。\n\n你可以改变 `N` 的值来看看不同数量级下 \\(e\\) 的估计精度变化。随着 `N` 增大，\\(e\\) 的估计值会更加接近真实的 \\(e\\) 值。',
     type: 'ollama',
     name: 'qwen-2.5'
   },
@@ -29,7 +29,7 @@ const dialogs = reactive<DialogItem[]>([
   },
   {
     id: 'm-02',
-    content: 'I am qwen-max, a large language model developed by Alibaba Cloud. I can help with a wide range of tasks, from answering questions and providing information to helping with writing and more. How can I assist you today?',
+    content: '```c\nfor (int i = 0; i < n; i++) {\n    sum += i;\n}\n```',
     type: 'openai',
     name: 'qwen-max'
   },
@@ -39,7 +39,7 @@ const dialogs = reactive<DialogItem[]>([
   },
   {
     id: 'm-03',
-    content: 'I am qwen, a large language model developed by Alibaba Cloud. I can help with a wide range of tasks, from answering questions and providing information to helping with writing and more. How can I assist you today?',
+    content: '```vue\n<template>\n  <div>Hello World</div>\n</template>\n```',
     type: 'ollama',
     name: 'qwen-2.5'
   },
@@ -49,7 +49,7 @@ const dialogs = reactive<DialogItem[]>([
   },
   {
     id: 'm-04',
-    content: 'I am QwQ, a large language model developed by Alibaba Cloud. I can help with a wide range of tasks, from answering questions and providing information to helping with writing and more. How can I assist you today?',
+    content: '```\nprint("hello")\n```',
     type: 'openai',
     name: 'qwq-32b'
   }
