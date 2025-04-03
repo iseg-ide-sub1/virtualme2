@@ -62,7 +62,7 @@
 <script setup lang="ts">
 import { ref, toRaw, defineProps } from 'vue'
 import type { ModelConfig } from '@/types'
-import { useVsCodeApiStore } from '@/stores/vsCodeApi'
+import { useSenderStore } from '@/stores/sender'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faHexagonNodes, faCircleNodes } from '@fortawesome/free-solid-svg-icons'
@@ -92,10 +92,7 @@ function submit() {
   if(rawModelConfig.system?.trim() === ''){
     delete rawModelConfig.system
   }
-  useVsCodeApiStore().vscode?.postMessage({
-    command: 'model.add',
-    model: JSON.stringify(rawModelConfig)
-  })
+  useSenderStore().modelAdd(JSON.stringify(rawModelConfig))
   modelForm.value?.reset()
   props.popupAddModel()
 }

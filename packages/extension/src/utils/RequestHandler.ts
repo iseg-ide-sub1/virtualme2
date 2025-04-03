@@ -1,9 +1,11 @@
 import * as vscode from 'vscode';
 import { ConfigModels } from '../storage/ConfigModels';
+import { RequestModel } from '../chat/RequestModel';
 
 export class RequestHandler {
     public static view: vscode.WebviewView | undefined;
     public static configModels: ConfigModels | undefined;
+    public static requestModel: RequestModel | undefined;
 
     public static handleRequest(message: any) {
         console.log(JSON.stringify(message));
@@ -22,6 +24,9 @@ export class RequestHandler {
                 break;
             case 'model.delete':
                 RequestHandler.deleteModel(message.modelID);
+                break;
+            case 'request.send':
+                RequestHandler.handelRequest(message.request);
                 break;
         }
     }
@@ -45,5 +50,9 @@ export class RequestHandler {
 
     private static deleteModel(modelID: string){
         RequestHandler.configModels?.deleteModelFromConfig(modelID);
+    }
+
+    private static handelRequest(request: string){
+        RequestHandler.requestModel?.handleRequest(request);
     }
 }

@@ -2,9 +2,8 @@ import * as vscode from 'vscode';
 import { l10n } from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
-import type { Config } from '../types/ConfigTypes';
+import type { Config, Model } from '../types/ConfigTypes';
 import { MessageSender } from '../utils/MessageSender';
-import { log } from 'console';
 
 let nanoid: () => string;
 (async () => {
@@ -13,7 +12,7 @@ let nanoid: () => string;
 })();
 
 export class ConfigModels {
-    public modelList: any = [];
+    public modelList: Model[] = [];
     constructor(
         public configUri: vscode.Uri,
         public context: vscode.ExtensionContext
@@ -28,6 +27,13 @@ export class ConfigModels {
         }
     }
     
+    public getModel(): Model | undefined {
+        const modelID = this.context.globalState.get<string>('modelID');
+        return this.modelList.find( (model: Model) => {
+            return model.id === modelID;
+        });
+    }
+
     public getConfigObject(): Config {
         try{
             const configContent = fs.readFileSync(this.configUri.fsPath, 'utf8');
@@ -43,7 +49,7 @@ export class ConfigModels {
     public updateModelsFromConfig(){
         const modelList = this.getConfigObject().models;
         this.modelList = modelList;
-        const models = modelList.map( (model: any) => {
+        const models = modelList.map( (model: Model) => {
             return {
                 id: model.id,
                 type: model.type,

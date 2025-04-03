@@ -6,6 +6,7 @@ import { faInfo, faClipboard, faCheck } from '@fortawesome/free-solid-svg-icons'
 const supportLanguges = hljs.listLanguages();
 
 export async function renderMarkdownContent(htmlNode: HTMLElement, content: string) {
+    if(!content) return;
     const contentKaTeX = renderMathFormulas(content);
     const contentHTML = await marked.parse(contentKaTeX);
     htmlNode.innerHTML = contentHTML;
@@ -56,6 +57,7 @@ export async function renderMarkdownContent(htmlNode: HTMLElement, content: stri
 }
 
 function renderMathFormulas(markdownText: string) {
+    if(!markdownText) return '';
     const regexCodeBlock = /```[\s\S]*?```|`[^`]*`/g;
 
     const regexInlineDollar = /\$(.*?)\$/g;

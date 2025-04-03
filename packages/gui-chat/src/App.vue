@@ -9,14 +9,11 @@
 <script setup lang="ts">
 import DialogBox from './components/DialogBox.vue'
 import InputBox from './components/InputBox.vue'
-import { useVsCodeApiStore } from './stores/vsCodeApi'
+import { useSenderStore } from './stores/sender'
 import { onMounted } from 'vue'
-const vscode = useVsCodeApiStore().vscode
 
 onMounted(() => {
-  vscode?.postMessage({
-    command: 'init.ready'
-  })
+  useSenderStore().initReady()
 })
 </script>
 

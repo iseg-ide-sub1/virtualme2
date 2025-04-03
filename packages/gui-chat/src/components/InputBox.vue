@@ -1,50 +1,39 @@
 <template>
   <div class="input-box">
     <InputUpper />
-    <textarea rows="1" placeholder="Ask something..." ref="taInput"></textarea>
-    <InputLower 
-      :models="models"
-      :modelID = "modelID"
-      :modelName = "modelName"
+    <textarea
+      :disabled = "sendDisable"
+      rows="1" placeholder="Ask something..."
+      ref="taInput" @keydown.enter.prevent="sendRequest"
+    ></textarea>
+    <InputLower
+      :sendRequest = "sendRequest"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import autosize from 'autosize'
-import { ref, computed, onMounted } from 'vue'
-import type { Model } from '@/types'
-import { useVsCodeApiStore } from '@/stores/vsCodeApi'
+import { ref, onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useListenerStore } from '@/stores/listener'
+import { useSenderStore } from '@/stores/sender'
 import InputUpper from './input/InputUpper.vue'
 import InputLower from './input/InputLower.vue'
 
-const models = ref<Model[]>([])
-const modelID = ref<string>('')
-const modelName = computed(() => {
-  const findModel = models.value.find(model => model.id === modelID.value)
-  if (findModel) {
-    return findModel.name
-  } else {
-    return 'Select Model'
-  }
-})
-
+const listenerStore = useListenerStore()
+const { sendDisable } = storeToRefs(listenerStore)
 const taInput = ref<HTMLTextAreaElement>()
-const vscode = useVsCodeApiStore().vscode
 
-window.addEventListener('message', event => {
-  const message = event.data;
-  console.log(JSON.stringify(message))
-  switch (message.command) {
-    case 'models.update':
-      models.value = JSON.parse(message.models);
-      modelID.value = message.modelID;
-      break;
-    case 'modelID.updated':
-      modelID.value = message.modelID;
-      break;
+function sendRequest() {
+  if(!sendDisable.value && taInput.value) {
+    const request = taInput.value.value;
+    if (request) {
+      useSenderStore().requestSend(taInput.value.value)
+      taInput.value.value = '';
+    }
   }
-});
+}
 
 onMounted(() => {
   if (taInput.value) {
@@ -76,6 +65,7 @@ textarea {
   padding: 5px;
   box-sizing: border-box;
   color: var(--vscode-input-foreground, #616161);
+  background-color: var(--vscode-input-background, #ffffff);
   resize: none;
   border: none;
 }

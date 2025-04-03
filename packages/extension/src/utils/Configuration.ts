@@ -5,9 +5,9 @@ export class Configuration {
 
     public static readonly sectionID = 'lightAt';
 
-    public static get(key: string): any {
+    public static get<T>(key: string): T | undefined {
         const configuration = vscode.workspace.getConfiguration(Configuration.sectionID);
-        return configuration.get(key);
+        return configuration.get<T>(key);
     }
 
     public static changeHandler(event: vscode.ConfigurationChangeEvent) {

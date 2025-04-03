@@ -1,3 +1,4 @@
+import { request } from 'http';
 import * as vscode from 'vscode';
 
 export class MessageSender{
@@ -15,6 +16,44 @@ export class MessageSender{
         MessageSender.view?.webview.postMessage({
             command:'modelID.updated',
             modelID: modelID
+        });
+    }
+
+    public static requestLoad(requestID: string, content: string){
+        MessageSender.view?.webview.postMessage({
+            command:'request.load',
+            requestID: requestID,
+            content: content
+        });
+    }
+
+    public static responseNew(requestID: string, type: string, name: string){
+        MessageSender.view?.webview.postMessage({
+            command:'response.new',
+            requestID: requestID,
+            type: type,
+            name: name
+        });
+    }
+
+    public static responseStream(content: string, requestID: string){
+        MessageSender.view?.webview.postMessage({
+            command:'response.stream',
+            data: content,
+            requestID: requestID
+        });
+    }
+
+    public static responseEnd(requestID: string){
+        MessageSender.view?.webview.postMessage({
+            command:'response.end',
+            requestID: requestID
+        });
+    }
+
+    public static chatNew(){
+        MessageSender.view?.webview.postMessage({
+            command:'chat.new'
         });
     }
 }

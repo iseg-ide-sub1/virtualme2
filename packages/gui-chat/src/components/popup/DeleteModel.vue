@@ -16,8 +16,8 @@
 
 <script setup lang="ts">
 import type { Model } from '@/types'
-import { ref, toRaw, defineProps } from 'vue'
-import { useVsCodeApiStore } from '@/stores/vsCodeApi'
+import { defineProps } from 'vue'
+import { useSenderStore } from '@/stores/sender'
 
 const props = defineProps<{
   deleteModel: Model | undefined,
@@ -26,10 +26,7 @@ const props = defineProps<{
 
 function confirm() {
   const modelID = props.deleteModel?.id || '';
-  useVsCodeApiStore().vscode?.postMessage({
-    command: 'model.delete',
-    modelID: modelID
-  })
+  useSenderStore().modelDelete(modelID)
   props.popupDeleteModel()
 }
 

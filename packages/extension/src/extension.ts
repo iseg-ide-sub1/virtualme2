@@ -6,19 +6,22 @@ import * as os from 'os';
 import { Configuration } from './utils/Configuration';
 import { RequestHandler } from './utils/RequestHandler';
 import { ConfigModels } from './storage/ConfigModels';
+import { RequestModel } from './chat/RequestModel';
 import { ChatViewProvider } from './views/ChatViewProvider';
 
 let configModels: ConfigModels;
+let requestModel: RequestModel;
 
 export function activate(context: vscode.ExtensionContext) {
-    
     const localDir = vscode.Uri.joinPath(vscode.Uri.file(os.homedir()),'/.light-at');
     const configUri = vscode.Uri.joinPath(localDir, 'config.json');
     const chatDir = vscode.Uri.joinPath(localDir, 'chat');
 
     configModels = new ConfigModels(configUri, context);
-    
+    requestModel = new RequestModel(chatDir, configModels);
+
     RequestHandler.configModels = configModels;
+    RequestHandler.requestModel = requestModel;
 
     const chatViewProvider = new ChatViewProvider(context.extensionUri);
     context.subscriptions.push(

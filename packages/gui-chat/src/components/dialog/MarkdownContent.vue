@@ -4,18 +4,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, defineProps, nextTick } from 'vue'
+import { ref, defineProps, watch } from 'vue'
 import { renderMarkdownContent } from "@/utils/renderMarkdownContent";
 const props = defineProps<{ content: string }>()
 let renderNode = ref<HTMLElement>()
 
-onMounted(() => {
+watch(() => props.content, (newValue, oldValue) => {
   if(renderNode.value){
+    console.log(props.content)
     renderMarkdownContent(renderNode.value, props.content)
-    nextTick()
   }
 })
-
 </script>
 
 <style scoped>

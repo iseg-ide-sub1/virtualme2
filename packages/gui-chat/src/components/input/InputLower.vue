@@ -28,8 +28,8 @@
         <FontAwesomeIcon :icon="faChevronDown" />
       </div>
     </div>
-    <div class="send-prompt">
-      <span>Ctrl+Enter</span>
+    <div class="send-prompt" @click="sendRequest">
+      <span>Enter</span>
       <FontAwesomeIcon :icon="faArrowRight" />
     </div>
   </div>
@@ -49,9 +49,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
+import { ref, computed, defineProps } from 'vue'
 import type { Model } from '@/types'
-import { useVsCodeApiStore } from '@/stores/vsCodeApi'
+import { storeToRefs } from 'pinia'
+import { useListenerStore } from '@/stores/listener'
 import AddModel from '../popup/AddModel.vue'
 import DeleteModel from '../popup/DeleteModel.vue' 
 
@@ -59,14 +60,23 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faHexagonNodes, faCircleNodes } from '@fortawesome/free-solid-svg-icons'
 import { faPlus, faRotateRight } from '@fortawesome/free-solid-svg-icons'
 import { faChevronDown, faArrowRight, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { useSenderStore } from '@/stores/sender'
+
+const listenerStore = useListenerStore()
+const { models, modelID } = storeToRefs(listenerStore)
+const modelName = computed(() => {
+  const findModel = models.value.find(model => model.id === modelID.value)
+  if (findModel) {
+    return findModel.name
+  } else {
+    return 'Select Model'
+  }
+})
 
 const props = defineProps<{
-  models: Model[],
-  modelID: string,
-  modelName: string
+  sendRequest: () => void
 }>()
 
-const vscode = useVsCodeApiStore().vscode
 const addModelPopup = ref(false)
 const deleteModelPopup = ref(false)
 const deleteModel = ref<Model>()
@@ -82,16 +92,11 @@ function popupDeleteModel(model?: Model){
 }
 
 function changeModelID(newID: string) {
-  if(newID === props.modelID) return
-  vscode?.postMessage({
-    command: 'modelID.update',
-    modelID: newID
-  });
+  if(newID === modelID.value) return
+  useSenderStore().modelIDUpdate(newID)
 }
 function updateConfig() {
-  vscode?.postMessage({
-    command: 'config.update'
-  });
+  useSenderStore().configUpdate()
 }
 
 function getSvgIcon(modelType: string){
