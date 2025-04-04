@@ -19,5 +19,12 @@ export default defineConfig({
   build: {
     outDir: '../extension/out/gui-chat',
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          hljs: ['highlight.js']
+        }
+      }
+    }
   },
 })
