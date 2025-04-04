@@ -1,6 +1,5 @@
 {
-    "language": "ja",
-    "plugin.name": "ライトアッと",
+    "plugin.name": "ライトアット",
     
     "cmd.goto.settings": "設定",
     "cmd.goto.config": "コンフィグファイル",

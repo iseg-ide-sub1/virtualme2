@@ -1,10 +1,10 @@
 <template>
   <div class="popup-background" @click="popupAddModel"></div>
   <div class="div-popup">
-    <div class="popup-title">Add Model</div>
+    <div class="popup-title">{{ $t('popup.addModel') }}</div>
     <div class="popup-info">
-      <p v-show="modelConfig.type === 'openai'">The model you provided needs to be compatible with the OpenAI API.</p>
-      <p v-show="modelConfig.type === 'ollama'">Please confirm that you have installed Ollama locally and configured the corresponding model.</p>
+      <p v-show="modelConfig.type === 'openai'" v-html="openaiNote"></p>
+      <p v-show="modelConfig.type === 'ollama'" v-html="ollamaNote"></p>
     </div>
     <form ref="modelForm">
       <div class="form-radio">
@@ -53,14 +53,15 @@
           v-model="modelConfig.system"
         ></textarea>
       </div>
-      <button @click="submit">Submit</button>
-      <button @click="cancel">Cancel</button>
+      <button @click.prevent="submit">{{ $t('popup.submit') }}</button>
+      <button @click.prevent="cancel">{{ $t('popup.cancel') }}</button>
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, toRaw, defineProps } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { ModelConfig } from '@/types'
 import { useSenderStore } from '@/stores/sender'
 
@@ -78,6 +79,20 @@ const modelConfig = ref<ModelConfig>({
   apiKey: '',
   system: ''
 })
+
+const { t } = useI18n()
+const openaiNote = ref(
+  t('popup.openaiNote', {
+    a: '<a href="https://github.com/openai/openai-node">',
+    _a: '</a>'
+  })
+)
+const ollamaNote = ref(
+  t('popup.ollamaNote', {
+    a: '<a href="https://ollama.com/">',
+    _a: '</a>'
+  })
+)
 
 function submit() {
   if(!modelForm.value?.checkValidity()) return

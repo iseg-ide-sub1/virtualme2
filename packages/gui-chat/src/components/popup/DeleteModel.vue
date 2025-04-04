@@ -4,13 +4,13 @@
     <div class="popup-title">Delete Model</div>
     <div class="popup-info">
       <p>
-        Are you sure you want to delete this model?
+        {{ $t('popup.deleteNote') }}
         <b>{{ deleteModel?.name }}</b>
       </p>
     </div>
     <div class="div-sep"></div>
-    <button @click="confirm">Yes</button>
-    <button @click="cnacel">No</button>
+    <button @click="confirm">{{ $t('popup.yes') }}</button>
+    <button @click="cnacel">{{ $t('popup.no') }}</button>
   </div>
 </template>
 

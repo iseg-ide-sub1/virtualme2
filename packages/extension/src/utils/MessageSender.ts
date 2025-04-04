@@ -4,6 +4,12 @@ import * as vscode from 'vscode';
 export class MessageSender{
     public static view: vscode.WebviewView | undefined;
 
+    public static languageSet(){
+        MessageSender.view?.webview.postMessage({
+            command:'language.set',
+            lang: vscode.env.language
+        });
+    }
     public static modelsUpdate(models: string, modelID: string){
         MessageSender.view?.webview.postMessage({
             command:'models.update',

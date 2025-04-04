@@ -6,13 +6,16 @@
       </div>
       <div class="user-name">User</div>
     </div>
-    <div class="user-content">{{ dialog.content }}</div>
+    <div class="user-content">
+      <MarkdownContent :content="dialog.content" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import type { UserDialogItem } from '@/types';
+import MarkdownContent from './MarkdownContent.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 defineProps<{ dialog: UserDialogItem }>();

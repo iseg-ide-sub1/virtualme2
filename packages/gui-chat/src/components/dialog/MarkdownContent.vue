@@ -17,7 +17,7 @@ onMounted(() => {
 
 watch(() => props.content, () => {
   if(renderNode.value){
-    console.log(props.content)
+    // console.log('Render new content @',props.content)
     renderMarkdownContent(renderNode.value, props.content)
   }
 })

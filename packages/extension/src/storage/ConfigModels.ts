@@ -36,7 +36,7 @@ export class ConfigModels {
             return config;
         }
         catch (error) {
-            vscode.window.showErrorMessage(`Not A Vaild Config File`);
+            vscode.window.showErrorMessage(`${l10n.t('ts.parsingConfigError')} ${error}`);
             return { models: [] };
         }
     }

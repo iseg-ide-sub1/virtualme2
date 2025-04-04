@@ -3,7 +3,7 @@
     <InputUpper />
     <textarea
       :disabled = "sendDisable"
-      rows="1" placeholder="Ask something..."
+      rows="1" :placeholder="$t('input.textarea')"
       ref="taInput" @keydown.enter.prevent="sendRequest"
     ></textarea>
     <InputLower

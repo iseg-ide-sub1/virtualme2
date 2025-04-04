@@ -4,9 +4,6 @@
     "ts.loadChatSessionError": "Error loading chat session:",
     "ts.createdConfig": "Config file created:",
     "ts.parsingConfigError": "Error parsing config file:",
-    "ts.modelNameError": "Model name is too long! Please make sure it is less than 128 characters.",
-    "ts.modelTitleError": "Model title is too long! Please make sure it is less than 128 characters.",
     "ts.modelNotSelected": "No model selected, please select a model first.",
-    "ts.unexpectedModelError": "Error: unexpected model type. Check your config file.",
     "ts.requestFailed": "Request failed:"
 }

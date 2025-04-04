@@ -16,11 +16,11 @@
         </ul>
         <div class="extra-option" @click="popupAddModel">
           <FontAwesomeIcon :icon="faPlus" />
-          <span>Add Model</span>
+          <span>{{ $t('input.addModel') }}</span>
         </div>
         <div class="extra-option" @click="updateConfig">
           <FontAwesomeIcon :icon="faRotateRight" />
-          <span>Update Config</span>
+          <span>{{ $t('input.loadConfig') }}</span>
         </div>
       </div>
       <div class="model-name">
@@ -50,6 +50,7 @@
 
 <script setup lang="ts">
 import { ref, computed, defineProps } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { Model } from '@/types'
 import { storeToRefs } from 'pinia'
 import { useListenerStore } from '@/stores/listener'
@@ -69,7 +70,7 @@ const modelName = computed(() => {
   if (findModel) {
     return findModel.name
   } else {
-    return 'Select Model'
+    return useI18n().t('input.selectModel')
   }
 })
 
@@ -119,7 +120,7 @@ function getSvgIcon(modelType: string){
   /* border: 1px solid black; */
 }
 
-li svg {
+li svg, .extra-option svg {
   margin-right: 2px;
 }
 

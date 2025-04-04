@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { MessageSender } from '../utils/MessageSender';
 import { Configuration } from '../utils/Configuration';
 import { ConfigModels } from '../storage/ConfigModels';
 import { RequestModel } from '../chat/RequestModel';
@@ -35,7 +36,7 @@ export class RequestHandler {
     }
 
     private static prepareInit(){
-        console.log('init.ready', Configuration.get<boolean>('loadLastChatSession'));
+        MessageSender.languageSet();
         if(Configuration.get<boolean>('loadLastChatSession')){
             RequestHandler.sessionManifest?.loadLastChatSession();
         }

@@ -7,23 +7,47 @@
       <div class="model-name">{{ dialog.name }}</div>
     </div>
     <div class="model-content">
-      <MarkdownContent :content="dialog.content" />
+      <div class="reasoning-content">
+        <MarkdownContent :content="reasoning" />
+      </div>
+      <MarkdownContent :content="content" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
 import MarkdownContent from './MarkdownContent.vue'
 import type { ModelDialogItem } from '@/types'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faHexagonNodes, faCircleNodes } from '@fortawesome/free-solid-svg-icons'
+import { faHexagonNodes, faCircleNodes, faLightbulb } from '@fortawesome/free-solid-svg-icons'
 const props = defineProps<{ dialog: ModelDialogItem }>()
+
+let reasoning = computed(() => {
+  if(props.dialog.content.startsWith('<think>')){
+    const pos = props.dialog.content.indexOf('</think>')
+    if(pos < 0) return props.dialog.content.substring(7);
+    else return props.dialog.content.substring(7, pos);
+  }
+  else return ''
+})
+let content = computed(() => {
+  if(props.dialog.content.startsWith('<think>')){
+    const pos = props.dialog.content.indexOf('</think>')
+    if(pos < 0) return '';
+    else return props.dialog.content.substring(pos + 8);
+  }
+  else return props.dialog.content
+})
+
 function getHeadIcon() {
   if (props.dialog.type === 'ollama') {
     return faCircleNodes
   }
-  return faHexagonNodes
+  else if (props.dialog.type === 'openai') {
+    return faHexagonNodes
+  }
+  return faLightbulb
 }
 </script>
 
@@ -70,5 +94,17 @@ function getHeadIcon() {
 .model-content {
   line-height: 1.6em;
   margin: 5px;
+}
+
+.reasoning-content {
+  margin: 10px 5px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(128, 128, 128, 0.05);
+  border-left: 5px solid rgba(128, 128, 128, 0.5);
+}
+
+.reasoning-content:hover {
+  background-color: rgba(128, 128, 128, 0.1);
 }
 </style>

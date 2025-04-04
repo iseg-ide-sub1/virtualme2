@@ -6,7 +6,7 @@ export interface UserDialogItem {
 export interface ModelDialogItem {
     id: string;
     content: string;
-    type: 'ollama' | 'openai';
+    type: 'ollama' | 'openai' | undefined;
     name: string;
 }
 

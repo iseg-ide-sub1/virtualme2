@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { l10n } from 'vscode';
 import * as fs from 'fs';
 import { getTimeStr } from '../utils/common';
 import { MainifestItem } from '../types/ChatTypes';
@@ -31,7 +32,7 @@ export class SessionManifest {
     public newChatSession(saveSesion = true){
         console.log('newChatSession');
         if(this.requestModel.isRequesting){
-            vscode.window.showInformationMessage('Requesting, please wait...');
+            vscode.window.showInformationMessage(l10n.t('ts.fetchingModelInfo'));
             return;
         }
         if(saveSesion){
@@ -127,7 +128,7 @@ export class SessionManifest {
     public loadChatSession(fileName: string, newLoad = false){
         console.log('loadChatSession');
         if(this.requestModel.isRequesting){
-            vscode.window.showInformationMessage('Requesting, please wait...');
+            vscode.window.showInformationMessage(l10n.t('ts.fetchingModelInfo'));
             return;
         }
         if(!newLoad){

@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { l10n } from 'vscode';
 import * as fs from 'fs';
 import ollama from 'ollama';
 import OpenAI from 'openai';
@@ -62,24 +63,29 @@ export class RequestModel {
 
     public loadChatSession(fileName: string){
         this.clearChatSession();
-        const loadSession: SessionItem[] = JSON.parse(fs.readFileSync(fileName, 'utf8'));
-        for(const item of loadSession){
-            this.chatMessages.push({
-                role: item.role,
-                content: item.content
-            });
-            this.chatSession.push(item);
-            if(item.role === 'user'){
-                MessageSender.requestLoad(item.id, item.content);
-            }
-            else if(item.role === 'assistant'){
-                MessageSender.responseLoad(
-                    item.id,
-                    item.type as string,
-                    item.name as string,
-                    item.content
-                );
-            }
+        try{
+            const loadSession: SessionItem[] = JSON.parse(fs.readFileSync(fileName, 'utf8'));
+            for(const item of loadSession){
+                this.chatMessages.push({
+                    role: item.role,
+                    content: item.content
+                });
+                this.chatSession.push(item);
+                if(item.role === 'user'){
+                    MessageSender.requestLoad(item.id, item.content);
+                }
+                else if(item.role === 'assistant'){
+                    MessageSender.responseLoad(
+                        item.id,
+                        item.type as string,
+                        item.name as string,
+                        item.content
+                    );
+                }
+            }     
+        }
+        catch(error) {
+            vscode.window.showErrorMessage(`${l10n.t('ts.loadChatSessionError')} ${error}`);
         }
     }
 
@@ -90,17 +96,17 @@ export class RequestModel {
 
     public async handleRequest(request: string){
         if(!nanoid) {
-            vscode.window.showErrorMessage('nanoid is not loaded.');
+            vscode.window.showErrorMessage('nanoid is not loaded');
             return;
         }
         if(this.isRequesting) { 
-            vscode.window.showErrorMessage('Requesting... Try later.');
+            vscode.window.showErrorMessage(l10n.t('ts.fetchingModelInfo'));
             this.stopSign = false;
             return;
         }
         this.model = this.configModels.getModel();
         if(!this.model){
-            vscode.window.showErrorMessage('Model Not Found');
+            vscode.window.showErrorMessage(l10n.t('ts.modelNotSelected'));
             return;
         }
         this.name = this.model.title ? this.model.title : this.model.model;
@@ -148,7 +154,7 @@ export class RequestModel {
                 }
             }
         } catch(error) {
-            vscode.window.showErrorMessage('Request Error');
+            vscode.window.showErrorMessage(`${l10n.t('ts.requestFailed')} ${error}`);
             // console.log(error);
             MessageSender.responseStream(` **${error}** `, this.messageID);
             MessageSender.responseEnd(this.messageID);
@@ -216,7 +222,7 @@ export class RequestModel {
                 }
             }
         } catch(error) {
-            vscode.window.showErrorMessage('Request Error');
+            vscode.window.showErrorMessage(`${l10n.t('ts.requestFailed')} ${error}`);
             MessageSender.responseStream(` **${error}** `, this.messageID);
             MessageSender.responseEnd(this.messageID);
             this.pushModelMessage(`${error}`, reasoning);

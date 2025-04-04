@@ -1,12 +1,12 @@
 import * as vscode from 'vscode';
-import { l10n } from 'vscode';
 import * as os from 'os';
 
+import { loadSession } from './chat/loadSession';
+import { RequestModel } from './chat/RequestModel';
 import { Configuration } from './utils/Configuration';
 import { RequestHandler } from './utils/RequestHandler';
 import { ConfigModels } from './storage/ConfigModels';
 import { SessionManifest } from './storage/SessionManifest';
-import { RequestModel } from './chat/RequestModel';
 import { ChatViewProvider } from './views/ChatViewProvider';
 
 let configModels: ConfigModels;
@@ -54,42 +54,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(gotoConfig);
 
     const sessionsLoad = vscode.commands.registerCommand('light-at.load.sessions', () => {
-        const quickPick = vscode.window.createQuickPick();
-        let sessionItems = [];
-        for (let i = sessionManifest.manifest.length - 1; i >= 0; i--){
-            const session = sessionManifest.manifest[i];
-            sessionItems.push({
-                label: session.overview,
-                description: `$(clock) ${session.update}  $(folder) ${session.workspace}`,
-                detail: session.name,
-                buttons: [{iconPath: new vscode.ThemeIcon('trash'), tooltip: l10n.t('ts.deleteSession')}]
-            });
-        }
-        quickPick.items = sessionItems;
-        quickPick.onDidChangeSelection(selection => {
-            if(selection[0]){
-                sessionManifest.loadChatSession(selection[0].detail || '');
-                quickPick.dispose();
-            }
-        });
-        quickPick.onDidTriggerItemButton((event) => {
-            if (event.button.tooltip === l10n.t('ts.deleteSession')) {
-                sessionManifest.deleteChatSession(event.item.detail || '');
-                sessionItems = [];
-                for (let i = sessionManifest.manifest.length - 1; i >= 0; i--){
-                    const session = sessionManifest.manifest[i];
-                    sessionItems.push({
-                        label: session.overview,
-                        description: `$(clock) ${session.update}  $(folder) ${session.workspace}`,
-                        detail: session.name,
-                        buttons: [{iconPath: new vscode.ThemeIcon('trash'), tooltip: l10n.t('ts.deleteSession')}]
-                    });
-                }
-                quickPick.items = sessionItems;
-            }
-        });
-        quickPick.onDidHide(() => quickPick.dispose());
-        quickPick.show();
+        loadSession(sessionManifest);
     });
     context.subscriptions.push(sessionsLoad);
 

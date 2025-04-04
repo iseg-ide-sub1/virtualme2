@@ -4,9 +4,6 @@
     "ts.loadChatSessionError": "チャットセッションの読み込みエラー：",
     "ts.createdConfig": "コンフィグファイルが作成されました：",
     "ts.parsingConfigError": "コンフィグファイルの解析エラー：",
-    "ts.modelNameError": "モデル名が長すぎます。128文字以内にしてください。",
-    "ts.modelTitleError": "モデルタイトルが長すぎます。128文字以内にしてください。",
     "ts.modelNotSelected": "モデルが選択されていません。先にモデルを選択してください。",
-    "ts.unexpectedModelError": "エラー：存在しないモデルタイプです。コンフィグファイルを確認してください。",
     "ts.requestFailed": "リクエストに失敗しました："
 }
