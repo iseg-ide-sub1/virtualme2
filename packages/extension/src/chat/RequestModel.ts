@@ -2,17 +2,12 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import ollama from 'ollama';
 import OpenAI from 'openai';
+import { nanoid } from '../utils/common';
 import { Model } from '../types/ConfigTypes';
 import { ChatMessage, SessionItem } from '../types/ChatTypes';
 import { Configuration } from '../utils/Configuration';
 import { MessageSender } from '../utils/MessageSender';
 import { ConfigModels } from '../storage/ConfigModels';
-
-let nanoid: () => string;
-(async () => {
-    const nanoidModule = await import('nanoid');
-    nanoid = nanoidModule.nanoid;
-})();
 
 export class RequestModel {
     chatMessages: ChatMessage[] = [];
@@ -23,13 +18,8 @@ export class RequestModel {
     isRequesting: boolean = false;
     stopSign: boolean = false;
     constructor(
-        public chatSessionDir: vscode.Uri,
         public configModels: ConfigModels
-    ){
-        if(!fs.existsSync(this.chatSessionDir.fsPath)){
-            fs.mkdirSync(this.chatSessionDir.fsPath, {recursive: true});
-        }
-    }
+    ) { }
 
     public pushSystemMessage(content: string){
         this.chatMessages.push({
@@ -70,13 +60,39 @@ export class RequestModel {
         });
     }
 
+    public loadChatSession(fileName: string){
+        this.clearChatSession();
+        const loadSession: SessionItem[] = JSON.parse(fs.readFileSync(fileName, 'utf8'));
+        for(const item of loadSession){
+            this.chatMessages.push({
+                role: item.role,
+                content: item.content
+            });
+            this.chatSession.push(item);
+            if(item.role === 'user'){
+                MessageSender.requestLoad(item.id, item.content);
+            }
+            else if(item.role === 'assistant'){
+                MessageSender.responseLoad(
+                    item.id,
+                    item.type as string,
+                    item.name as string,
+                    item.content
+                );
+            }
+        }
+    }
+
     public handleStop(){
         if(!this.isRequesting) { return; }
         this.stopSign = true;
     }
 
     public async handleRequest(request: string){
-        console.log('handleRequest');
+        if(!nanoid) {
+            vscode.window.showErrorMessage('nanoid is not loaded.');
+            return;
+        }
         if(this.isRequesting) { 
             vscode.window.showErrorMessage('Requesting... Try later.');
             this.stopSign = false;

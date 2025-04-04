@@ -2,12 +2,9 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { useVsCodeApiStore } from './vscode';
 import type { DialogItem, Model } from '@/types';
-declare const acquireVsCodeApi: () => {
-    postMessage: (data: any) => any;
-};
 
 export const useListenerStore = defineStore('listener', () => {
-    const vscode = useVsCodeApiStore().vscode;
+
     const models = ref<Model[]>([]);
     const modelID = ref<string>('');
     const sendDisable = ref(false);
@@ -45,6 +42,14 @@ export const useListenerStore = defineStore('listener', () => {
                 break;
             case 'response.end':
                 sendDisable.value = false;
+                break;
+            case 'response.load':
+                dialogs.value.push({
+                    id: message.requestID,
+                    content: message.content,
+                    type: message.type,
+                    name: message.name
+                });
                 break;
             case 'chat.new':
                 dialogs.value = [];

@@ -51,9 +51,25 @@ export class MessageSender{
         });
     }
 
+    public static responseLoad(requestID: string, type: string, name: string, content: string){
+        MessageSender.view?.webview.postMessage({
+            command:'response.load',
+            requestID: requestID,
+            type: type,
+            name: name,
+            content: content
+        });
+    }
+
     public static chatNew(){
         MessageSender.view?.webview.postMessage({
             command:'chat.new'
+        });
+    }
+
+    public static welcomeLoad(){
+        MessageSender.view?.webview.postMessage({
+            command:'welcome.load'
         });
     }
 }

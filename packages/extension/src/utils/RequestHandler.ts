@@ -1,11 +1,14 @@
 import * as vscode from 'vscode';
+import { Configuration } from '../utils/Configuration';
 import { ConfigModels } from '../storage/ConfigModels';
 import { RequestModel } from '../chat/RequestModel';
+import { SessionManifest } from '../storage/SessionManifest';
 
 export class RequestHandler {
     public static view: vscode.WebviewView | undefined;
     public static configModels: ConfigModels | undefined;
     public static requestModel: RequestModel | undefined;
+    public static sessionManifest: SessionManifest | undefined;
 
     public static handleRequest(message: any) {
         console.log(JSON.stringify(message));
@@ -32,6 +35,10 @@ export class RequestHandler {
     }
 
     private static prepareInit(){
+        console.log('init.ready', Configuration.get<boolean>('loadLastChatSession'));
+        if(Configuration.get<boolean>('loadLastChatSession')){
+            RequestHandler.sessionManifest?.loadLastChatSession();
+        }
         RequestHandler.configModels?.updateModelsFromConfig();
     }
 

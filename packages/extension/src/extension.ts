@@ -1,27 +1,31 @@
 import * as vscode from 'vscode';
-import * as fs from 'fs';
+import { l10n } from 'vscode';
 import * as os from 'os';
-
 
 import { Configuration } from './utils/Configuration';
 import { RequestHandler } from './utils/RequestHandler';
 import { ConfigModels } from './storage/ConfigModels';
+import { SessionManifest } from './storage/SessionManifest';
 import { RequestModel } from './chat/RequestModel';
 import { ChatViewProvider } from './views/ChatViewProvider';
 
 let configModels: ConfigModels;
 let requestModel: RequestModel;
+let sessionManifest: SessionManifest;
 
 export function activate(context: vscode.ExtensionContext) {
-    const localDir = vscode.Uri.joinPath(vscode.Uri.file(os.homedir()),'/.light-at');
-    const configUri = vscode.Uri.joinPath(localDir, 'config.json');
-    const chatDir = vscode.Uri.joinPath(localDir, 'chat');
+    const storageDir = vscode.Uri.joinPath(vscode.Uri.file(os.homedir()),'/.light-at');
+    const configUri = vscode.Uri.joinPath(storageDir, 'config.json');
+    const sesseionDir = vscode.Uri.joinPath(storageDir, 'chat');
+    const manifestUri = vscode.Uri.joinPath(sesseionDir, 'manifest.json');
 
     configModels = new ConfigModels(configUri, context);
-    requestModel = new RequestModel(chatDir, configModels);
+    requestModel = new RequestModel(configModels);
+    sessionManifest = new SessionManifest(sesseionDir, manifestUri, requestModel);
 
     RequestHandler.configModels = configModels;
     RequestHandler.requestModel = requestModel;
+    RequestHandler.sessionManifest = sessionManifest;
 
     const chatViewProvider = new ChatViewProvider(context.extensionUri);
     context.subscriptions.push(
@@ -50,14 +54,53 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(gotoConfig);
 
     const sessionsLoad = vscode.commands.registerCommand('light-at.load.sessions', () => {
-       vscode.window.showErrorMessage('Not implemented yet.');
+        const quickPick = vscode.window.createQuickPick();
+        let sessionItems = [];
+        for (let i = sessionManifest.manifest.length - 1; i >= 0; i--){
+            const session = sessionManifest.manifest[i];
+            sessionItems.push({
+                label: session.overview,
+                description: `$(clock) ${session.update}  $(folder) ${session.workspace}`,
+                detail: session.name,
+                buttons: [{iconPath: new vscode.ThemeIcon('trash'), tooltip: l10n.t('ts.deleteSession')}]
+            });
+        }
+        quickPick.items = sessionItems;
+        quickPick.onDidChangeSelection(selection => {
+            if(selection[0]){
+                sessionManifest.loadChatSession(selection[0].detail || '');
+                quickPick.dispose();
+            }
+        });
+        quickPick.onDidTriggerItemButton((event) => {
+            if (event.button.tooltip === l10n.t('ts.deleteSession')) {
+                sessionManifest.deleteChatSession(event.item.detail || '');
+                sessionItems = [];
+                for (let i = sessionManifest.manifest.length - 1; i >= 0; i--){
+                    const session = sessionManifest.manifest[i];
+                    sessionItems.push({
+                        label: session.overview,
+                        description: `$(clock) ${session.update}  $(folder) ${session.workspace}`,
+                        detail: session.name,
+                        buttons: [{iconPath: new vscode.ThemeIcon('trash'), tooltip: l10n.t('ts.deleteSession')}]
+                    });
+                }
+                quickPick.items = sessionItems;
+            }
+        });
+        quickPick.onDidHide(() => quickPick.dispose());
+        quickPick.show();
     });
     context.subscriptions.push(sessionsLoad);
 
     const chatNew = vscode.commands.registerCommand('light-at.chat.new', () => {
-        vscode.window.showErrorMessage('Not implemented yet.');
+        sessionManifest.newChatSession();
     });
     context.subscriptions.push(chatNew);
 }
 
-export function deactivate() {}
+export function deactivate() {
+    sessionManifest.saveChatSession();
+    sessionManifest.syncManifestWithFiles();
+    sessionManifest.saveManifest();
+}

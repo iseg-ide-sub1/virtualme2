@@ -12,3 +12,10 @@ export interface SessionItem {
     type?: 'ollama' | 'openai';
     reasoning?: string;
 }
+
+export interface MainifestItem {
+    name: string;
+    overview: string;
+    workspace: string;
+    update: string;
+}

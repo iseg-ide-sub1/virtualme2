@@ -2,14 +2,9 @@ import * as vscode from 'vscode';
 import { l10n } from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import { nanoid } from '../utils/common';
 import type { Config, Model } from '../types/ConfigTypes';
 import { MessageSender } from '../utils/MessageSender';
-
-let nanoid: () => string;
-(async () => {
-    const nanoidModule = await import('nanoid');
-    nanoid = nanoidModule.nanoid;
-})();
 
 export class ConfigModels {
     public modelList: Model[] = [];
