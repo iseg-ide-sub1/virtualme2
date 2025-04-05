@@ -4,7 +4,7 @@
     <textarea
       :disabled = "sendDisable"
       rows="1" :placeholder="$t('input.textarea')"
-      ref="taInput" @keydown.enter.prevent="sendRequest"
+      ref="taInput" @keydown="handleKeydown"
     ></textarea>
     <InputLower
       :sendRequest = "sendRequest"
@@ -22,16 +22,27 @@ import InputUpper from './input/InputUpper.vue'
 import InputLower from './input/InputLower.vue'
 
 const listenerStore = useListenerStore()
-const { sendDisable } = storeToRefs(listenerStore)
+const { sendDisable, sendShortcut } = storeToRefs(listenerStore)
 const taInput = ref<HTMLTextAreaElement>()
+
+function handleKeydown(e: KeyboardEvent) {
+  if(sendShortcut.value === 'Ctrl+Enter' && e.ctrlKey && e.key === 'Enter'){
+    sendRequest()
+  }
+  else if(sendShortcut.value === 'Enter' && !e.ctrlKey && e.key === 'Enter'){
+    sendRequest()
+    e.preventDefault()
+  }
+}
 
 function sendRequest() {
   if(!sendDisable.value && taInput.value) {
     const request = taInput.value.value;
-    if (request) {
+    if (request.trim()) {
       useSenderStore().requestSend(taInput.value.value)
       taInput.value.value = '';
-    }
+      taInput.value.style.height = 'auto';
+    } 
   }
 }
 

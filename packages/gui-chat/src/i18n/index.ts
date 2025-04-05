@@ -6,7 +6,7 @@ import ja from './lang/ja';
 
 const i18n = createI18n({
     legacy: false,
-    locale: 'en',
+    locale: 'zh_cn',
     messages: {
         zh_cn,
         en,

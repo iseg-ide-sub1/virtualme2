@@ -1,7 +1,7 @@
 <template>
   <div class="dialog-box">
     <ModelDialog
-      v-show="!dialogs.length"
+      v-show="!dialogs.length && welcomeInfo"
       :dialog="welcomeDialog"
     />
     <div v-for="dialog in dialogs" :key="dialog.id" class="dialog-item">
@@ -21,7 +21,7 @@ import UserDialog from './dialog/UserDialog.vue'
 import ModelDialog from './dialog/ModelDialog.vue'
 
 const listenerStore = useListenerStore()
-const { dialogs } = storeToRefs(listenerStore)
+const { dialogs, welcomeInfo } = storeToRefs(listenerStore)
 
 const { t, locale } = useI18n()
 const welcomeDialog = ref<ModelDialogItem>({

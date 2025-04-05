@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { l10n } from 'vscode';
 import * as fs from 'fs';
+import { Configuration } from '../utils/Configuration';
 import { getTimeStr } from '../utils/common';
 import { MainifestItem } from '../types/ChatTypes';
 import { RequestModel } from '../chat/RequestModel';
@@ -184,8 +185,7 @@ export class SessionManifest {
                 });
             }
         }
-        const config = vscode.workspace.getConfiguration('lightAssistant');
-        const maxNum = config.get<number>('maxChatHistory') || 128;
+        const maxNum = Configuration.get<number>('maxChatHistory') || 128;
         if(maxNum < 0) { return; }
         while(this.manifest.length > maxNum){
             const delPath = vscode.Uri.joinPath(this.sessionDir, this.manifest[0].name);

@@ -8,18 +8,28 @@ export const useListenerStore = defineStore('listener', () => {
     const modelID = ref<string>('');
     const sendDisable = ref(false);
     const dialogs = ref<DialogItem[]>([]);
+    const welcomeInfo = ref(true);
+    const sendShortcut = ref('Ctrl+Enter');
 
-    // i18n.global.locale.value = 'zh_cn';
+    // i18n.global.locale.value = 'en';
     window.addEventListener('message', event => {
         const message = event.data;
         console.log(JSON.stringify(message));
         switch (message.command) {
             case 'language.set':
-                if(message.lang === 'zh-cn'){
+                if(message.lang === 'zh-cn') {
                     i18n.global.locale.value = 'zh_cn';
-                }else if(message.lang === 'ja'){
+                } else if(message.lang === 'ja'){
                     i18n.global.locale.value = 'ja';
                 }
+                else {
+                    i18n.global.locale.value = 'en';
+                }
+                break;
+            case 'settings.update':
+                const settings = JSON.parse(message.settings);
+                welcomeInfo.value = settings.welcomeInfo;
+                sendShortcut.value = settings.sendShortcut;
                 break;
             case 'models.update':
                 models.value = JSON.parse(message.models);
@@ -30,7 +40,7 @@ export const useListenerStore = defineStore('listener', () => {
                 break;
             case 'request.load':
                 dialogs.value.push({
-                    id: 'r_' + message.requestID,
+                    id: 'u_' + message.requestID,
                     content: message.content
                 });
                 break
@@ -44,7 +54,11 @@ export const useListenerStore = defineStore('listener', () => {
                 });
                 break;
             case 'response.stream':
-                dialogs.value[dialogs.value.length - 1].content += message.data;
+                if(dialogs.value.length && 
+                    dialogs.value[dialogs.value.length - 1].id === message.requestID
+                ){
+                    dialogs.value[dialogs.value.length - 1].content += message.data;
+                }
                 break;
             case 'response.end':
                 sendDisable.value = false;
@@ -60,11 +74,18 @@ export const useListenerStore = defineStore('listener', () => {
             case 'chat.new':
                 dialogs.value = [];
                 break;
+            case 'dialog.deleted':
+                dialogs.value = dialogs.value.filter(item => {
+                    return item.id !== message.requestID && 
+                        item.id !== 'u_' + message.requestID;
+                });
+                break;
         }
     });
 
     return {
         models, modelID,
-        sendDisable, dialogs
+        sendDisable, dialogs,
+        welcomeInfo, sendShortcut
     };
 })

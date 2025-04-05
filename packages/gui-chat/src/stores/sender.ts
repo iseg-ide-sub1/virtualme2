@@ -41,6 +41,13 @@ export const useSenderStore = defineStore('sender', () => {
         });
     }
     
+    function dialogDelete(requestID: string){
+        vscode?.postMessage({
+            command: 'dialog.delete',
+            requestID: requestID
+        });
+    }
+
     return {
         initReady,
         modelIDUpdate,
@@ -48,5 +55,6 @@ export const useSenderStore = defineStore('sender', () => {
         modelAdd,
         modelDelete,
         requestSend,
+        dialogDelete
     }
 });

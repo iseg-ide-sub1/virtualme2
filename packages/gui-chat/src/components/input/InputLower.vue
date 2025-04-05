@@ -29,8 +29,9 @@
       </div>
     </div>
     <div class="send-prompt" @click="sendRequest">
-      <span>Enter</span>
-      <FontAwesomeIcon :icon="faArrowRight" />
+      <span>{{ sendShortcut }}</span>
+      <FontAwesomeIcon v-if="sendDisable" :icon="faSpinner" spin />
+      <FontAwesomeIcon v-else :icon="faArrowRight" />
     </div>
   </div>
   <Teleport to="body">
@@ -59,12 +60,12 @@ import DeleteModel from '../popup/DeleteModel.vue'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faHexagonNodes, faCircleNodes } from '@fortawesome/free-solid-svg-icons'
-import { faPlus, faRotateRight } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faRotateRight, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { faChevronDown, faArrowRight, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useSenderStore } from '@/stores/sender'
 
 const listenerStore = useListenerStore()
-const { models, modelID } = storeToRefs(listenerStore)
+const { models, modelID, sendDisable, sendShortcut } = storeToRefs(listenerStore)
 const modelName = computed(() => {
   const findModel = models.value.find(model => model.id === modelID.value)
   if (findModel) {
@@ -74,7 +75,7 @@ const modelName = computed(() => {
   }
 })
 
-const props = defineProps<{
+defineProps<{
   sendRequest: () => void
 }>()
 
@@ -138,7 +139,7 @@ li:hover svg:last-child:hover {
 }
 
 span+svg {
-  margin-left: 5px;
+  margin-left: 3px;
 }
 
 .extra-option {

@@ -101,9 +101,9 @@ export class RequestModel {
         }
         if(this.isRequesting) { 
             vscode.window.showErrorMessage(l10n.t('ts.fetchingModelInfo'));
-            this.stopSign = false;
             return;
         }
+        this.stopSign = false;
         this.model = this.configModels.getModel();
         if(!this.model){
             vscode.window.showErrorMessage(l10n.t('ts.modelNotSelected'));
@@ -235,30 +235,30 @@ export class RequestModel {
         this.stopSign = false;
         this.isRequesting = false;
     }
+        
+    public deleteDialog(requestID: string) {
+        if(requestID === this.messageID) {
+            this.stopSign = true;
+        }
+        for(let i= 0; i < this.chatSession.length; i++){
+            if(this.chatSession[i].id === requestID){
+                if(i+1 < this.chatSession.length && this.chatSession[i+1].id === requestID){
+                    this.chatSession.splice(i, 2);
+                    this.chatMessages.splice(i, 2);
+                }
+                else {
+                    this.chatSession.splice(i, 1);
+                    this.chatMessages.splice(i, 1);
+                }
+                break;
+            }
+        }
+        MessageSender.dialogDeleted(requestID);
+    }
 
     public clearChatSession(){
         this.chatMessages = [];
         this.chatSession = [];
         MessageSender.chatNew();
     }
-    
-    // public deleteMessageID(messageID: string, view?: vscode.WebviewView) {
-    //     for(let i = 0; i < this.chatSession.length; i++){
-    //         if(this.chatSession[i]['iso_time'] === messageID && this.chatSession[i]['role'] === 'user') {
-    //             view?.webview.postMessage({command: 'request.delete', id: messageID});
-    //             this.chatSession.splice(i, 1);
-    //             this.chatMessages.splice(i, 1);
-    //         }
-    //         if(this.chatSession[i]['iso_time'] === messageID && this.chatSession[i]['role'] === 'assistant') {
-    //             view?.webview.postMessage({command: 'response.delete', id: messageID});
-    //             this.chatSession.splice(i, 1);
-    //             this.chatMessages.splice(i, 1);
-    //             break;
-    //         }
-    //     }
-    //     if(this.chatSession.length === 1 && this.chatSession[0]['role'] === 'system'){
-    //         this.chatSession.splice(0, 1);
-    //         this.chatMessages.splice(0, 1);
-    //     }
-    // }
 }

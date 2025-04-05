@@ -5,9 +5,28 @@
         <FontAwesomeIcon :icon="getHeadIcon()" />
       </div>
       <div class="model-name">{{ dialog.name }}</div>
+      <div class="dialog-control">
+        <FontAwesomeIcon
+          v-if="hasReasoning"
+          @click="showReasoning = !showReasoning"
+          :icon="showReasoning ? faChevronUp : faChevronDown"
+          :title="$t('dialog.reasoning')"
+        />
+        <FontAwesomeIcon
+          @click="copyDialog"
+          :icon="faClipboard"
+          :title="$t('dialog.copy')"
+        />
+        <FontAwesomeIcon
+          v-if="dialog.type"
+          @click="deleteDialog"
+          :icon="faXmark"
+          :title="$t('dialog.delete')"
+        />
+      </div>
     </div>
     <div class="model-content">
-      <div class="reasoning-content">
+      <div class="reasoning-content" v-show="showReasoning">
         <MarkdownContent :content="reasoning" />
       </div>
       <MarkdownContent :content="content" />
@@ -16,28 +35,46 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
+import { ref, defineProps, watch } from 'vue'
 import MarkdownContent from './MarkdownContent.vue'
 import type { ModelDialogItem } from '@/types'
+import { useSenderStore } from '@/stores/sender'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faHexagonNodes, faCircleNodes, faLightbulb } from '@fortawesome/free-solid-svg-icons'
+import { faChevronUp, faChevronDown, faHexagonNodes, faCircleNodes, faLightbulb } from '@fortawesome/free-solid-svg-icons'
+import { faClipboard, faXmark } from '@fortawesome/free-solid-svg-icons'
 const props = defineProps<{ dialog: ModelDialogItem }>()
 
-let reasoning = computed(() => {
+const hasReasoning = ref(false)
+const showReasoning = ref(true)
+const reasoning = ref('')
+let content = ref('')
+
+function updateContent() {
   if(props.dialog.content.startsWith('<think>')){
+    hasReasoning.value = true
     const pos = props.dialog.content.indexOf('</think>')
-    if(pos < 0) return props.dialog.content.substring(7);
-    else return props.dialog.content.substring(7, pos);
+    if(pos < 0) {
+      showReasoning.value = true
+      reasoning.value = props.dialog.content.substring(7)
+      content.value = ''
+    }
+    else{
+      if(props.dialog.type) showReasoning.value = false
+      reasoning.value = props.dialog.content.substring(7, pos)
+      content.value = props.dialog.content.substring(pos + 8)
+    }
   }
-  else return ''
-})
-let content = computed(() => {
-  if(props.dialog.content.startsWith('<think>')){
-    const pos = props.dialog.content.indexOf('</think>')
-    if(pos < 0) return '';
-    else return props.dialog.content.substring(pos + 8);
+  else {
+    showReasoning.value = false
+    reasoning.value = ''
+    content.value = props.dialog.content
   }
-  else return props.dialog.content
+}
+
+updateContent()
+
+watch(() => props.dialog.content, () => {
+  updateContent()
 })
 
 function getHeadIcon() {
@@ -48,6 +85,14 @@ function getHeadIcon() {
     return faHexagonNodes
   }
   return faLightbulb
+}
+
+function copyDialog() {
+  navigator.clipboard.writeText(props.dialog.content)
+}
+
+function deleteDialog() {
+  useSenderStore().dialogDelete(props.dialog.id)
 }
 </script>
 
@@ -69,6 +114,7 @@ function getHeadIcon() {
   position: relative;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .model-head {
@@ -89,6 +135,28 @@ function getHeadIcon() {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.dialog-control {
+  display: none;
+  position: absolute;
+  padding: 5px 10px;
+  border-radius: 5px;
+  right: -5px;
+  top: 0;
+}
+
+.model-dialog:hover .dialog-control {
+  display: block;
+}
+
+.dialog-control svg{
+  margin: auto 5px;
+  cursor: pointer;
+}
+
+.dialog-control svg:active{
+  transform: scale(1.25);
 }
 
 .model-content {

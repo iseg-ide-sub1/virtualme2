@@ -32,6 +32,9 @@ export class RequestHandler {
             case 'request.send':
                 RequestHandler.handelRequest(message.request);
                 break;
+            case 'dialog.delete':
+                RequestHandler.deleteDialog(message.requestID);
+                break;
         }
     }
 
@@ -40,6 +43,7 @@ export class RequestHandler {
         if(Configuration.get<boolean>('loadLastChatSession')){
             RequestHandler.sessionManifest?.loadLastChatSession();
         }
+        Configuration.sendSettings();
         RequestHandler.configModels?.updateModelsFromConfig();
     }
 
@@ -62,5 +66,9 @@ export class RequestHandler {
 
     private static handelRequest(request: string){
         RequestHandler.requestModel?.handleRequest(request);
+    }
+
+    private static deleteDialog(requestID: string){
+        RequestHandler.requestModel?.deleteDialog(requestID);
     }
 }

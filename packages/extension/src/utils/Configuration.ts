@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { MessageSender } from '../utils/MessageSender';
 
 export class Configuration {
     private constructor() {}
@@ -10,24 +11,20 @@ export class Configuration {
         return configuration.get<T>(key);
     }
 
+    public static sendSettings() {
+        const settings = {
+            welcomeInfo: Configuration.get<boolean>('displayInfoMessage'),
+            sendShortcut: Configuration.get<string>('sendRequestShortcut') || 'Ctrl+Enter'
+        };
+        MessageSender.settingsUpdate(JSON.stringify(settings));
+    }
+
     public static changeHandler(event: vscode.ConfigurationChangeEvent) {
-        if(event.affectsConfiguration('lightAt.loadLastChatSession')){
-            
-        }
-        else if(event.affectsConfiguration('lightAt.continuousChat')){
-
-        }
-        else if(event.affectsConfiguration('lightAt.displayInfoMessage')){
-
-        }
-        else if(event.affectsConfiguration('lightAt.maxChatHistory')){
-
-        }
-        else if(event.affectsConfiguration('lightAt.sendRequestShortcut')){
-
-        }
-        else if(event.affectsConfiguration('lightAt.codeHighlightTheme')){
-
+        if(
+            event.affectsConfiguration('lightAt.displayInfoMessage') ||
+            event.affectsConfiguration('lightAt.sendRequestShortcut')
+        ) {
+            Configuration.sendSettings();
         }
     }
 }
