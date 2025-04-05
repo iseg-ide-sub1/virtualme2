@@ -146,8 +146,8 @@
         "lightAt.codeHighlightTheme": {
           "type": "string",
           "enum": [
-            "arduino-light",
             "github",
+            "arduino-light",
             "qtcreator-light",
             "androidstudio",
             "github-dark",

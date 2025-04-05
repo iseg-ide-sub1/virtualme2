@@ -10,7 +10,6 @@ export const useListenerStore = defineStore('listener', () => {
     const dialogs = ref<DialogItem[]>([]);
     const welcomeInfo = ref(true);
     const sendShortcut = ref('Ctrl+Enter');
-
     // i18n.global.locale.value = 'en';
     window.addEventListener('message', event => {
         const message = event.data;
@@ -30,6 +29,9 @@ export const useListenerStore = defineStore('listener', () => {
                 const settings = JSON.parse(message.settings);
                 welcomeInfo.value = settings.welcomeInfo;
                 sendShortcut.value = settings.sendShortcut;
+                if(settings?.codeTheme){
+                    import(`@/assets/css/highlight.js/${settings.codeTheme}.css`)
+                }
                 break;
             case 'models.update':
                 models.value = JSON.parse(message.models);

@@ -1,5 +1,7 @@
 export default {
     input: {
+        stopGeneration: "停止生成",
+        addContext: "添加上下文",
         textarea: "在此处输入内容...",
         selectModel: "选择模型",
         addModel: "添加模型",
@@ -18,7 +20,6 @@ export default {
     },
     dialog: {
         pluginName: "轻亮",
-        stopGeneration: "停止生成",
         reasoning: "推理内容",
         copy: "复制",
         delete: "删除",

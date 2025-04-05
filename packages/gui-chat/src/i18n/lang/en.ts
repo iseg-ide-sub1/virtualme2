@@ -1,5 +1,7 @@
 export default {
     input: {
+        stopGeneration: "stop generation",
+        addContext: "Add Context",
         textarea: "Enter content here...",
         selectModel: "Select Model",
         addModel: "Add Model",
@@ -18,7 +20,6 @@ export default {
     },
     dialog: {
         pluginName: "Light At",
-        stopGeneration: "stop generation",
         reasoning: "reasoning content",
         copy: "copy",
         delete: "delete",

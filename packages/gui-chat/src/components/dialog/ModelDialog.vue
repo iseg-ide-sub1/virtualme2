@@ -78,6 +78,7 @@ watch(() => props.dialog.content, () => {
 })
 
 function getHeadIcon() {
+  console.log("test",props.dialog.content,props.dialog.type)
   if (props.dialog.type === 'ollama') {
     return faCircleNodes
   }

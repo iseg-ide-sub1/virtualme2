@@ -1,7 +1,7 @@
 <template>
   <div class="popup-background" @click="popupDeleteModel"></div>
   <div class="div-popup">
-    <div class="popup-title">Delete Model</div>
+    <div class="popup-title">{{ $t('popup.deleteModel') }}</div>
     <div class="popup-info">
       <p>
         {{ $t('popup.deleteNote') }}

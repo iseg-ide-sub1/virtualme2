@@ -17,7 +17,7 @@
     position: absolute;
     bottom: 100%;
     left: 0;
-    border: 1px solid rgba(128, 128, 128, 0.2);
+    border: 1px solid rgba(128, 128, 128, 0.5);
     border-radius: 4px;
     background-color: var(--vscode-sideBar-background, #f2f2f2);
 }
@@ -53,6 +53,7 @@
 }
 
 .dropup-list li.selected {
+    color: var(--vscode-list-activeSelectionForeground, #616161);
     background-color: var(--vscode-list-activeSelectionBackground, #c4d9b1);
 }
 

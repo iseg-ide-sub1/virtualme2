@@ -48,6 +48,10 @@ export const useSenderStore = defineStore('sender', () => {
         });
     }
 
+    function responseStop(){
+        vscode?.postMessage({command: 'response.stop'});
+    }
+
     return {
         initReady,
         modelIDUpdate,
@@ -55,6 +59,7 @@ export const useSenderStore = defineStore('sender', () => {
         modelAdd,
         modelDelete,
         requestSend,
-        dialogDelete
+        dialogDelete,
+        responseStop
     }
 });

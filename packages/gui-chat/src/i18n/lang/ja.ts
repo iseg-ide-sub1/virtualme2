@@ -1,5 +1,7 @@
 export default {
     input: {
+        stopGeneration: "生成を停止",
+        addContext: "コンテキストを追加",
         textarea: "ここに入力内容を入力してください...",
         selectModel: "モデルを選択",
         addModel: "モデルを追加",
@@ -18,7 +20,6 @@ export default {
     },
     dialog: {
         pluginName: "ライトアット",
-        stopGeneration: "生成を停止",
         reasoning: "推論内容",
         copy: "コピー",
         delete: "削除する",

@@ -35,6 +35,9 @@ export class RequestHandler {
             case 'dialog.delete':
                 RequestHandler.deleteDialog(message.requestID);
                 break;
+            case 'response.stop':
+                RequestHandler.responseStop();
+                break;
         }
     }
 
@@ -70,5 +73,9 @@ export class RequestHandler {
 
     private static deleteDialog(requestID: string){
         RequestHandler.requestModel?.deleteDialog(requestID);
+    }
+
+    private static responseStop(){
+        RequestHandler.requestModel?.handleStop();
     }
 }

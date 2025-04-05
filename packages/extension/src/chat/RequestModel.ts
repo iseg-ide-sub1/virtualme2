@@ -130,7 +130,7 @@ export class RequestModel {
         let reasoning = '';
         const continuousChat = Configuration.get<boolean>('continuousChat');
         const messages = continuousChat ? this.chatMessages : [this.chatMessages[this.chatMessages.length - 1]];
-        MessageSender.responseNew(this.messageID, 'ollma', this.name);
+        MessageSender.responseNew(this.messageID, 'ollama', this.name);
         try{
             const response = await ollama.chat({
                 model: this.model?.model || '',

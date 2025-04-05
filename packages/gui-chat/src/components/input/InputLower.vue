@@ -82,7 +82,7 @@ defineProps<{
 const addModelPopup = ref(false)
 const deleteModelPopup = ref(false)
 const deleteModel = ref<Model>()
-
+const sendStore = useSenderStore()
 function popupAddModel(){
   addModelPopup.value = !addModelPopup.value
 }
@@ -98,7 +98,7 @@ function changeModelID(newID: string) {
   useSenderStore().modelIDUpdate(newID)
 }
 function updateConfig() {
-  useSenderStore().configUpdate()
+  sendStore.configUpdate()
 }
 
 function getSvgIcon(modelType: string){
