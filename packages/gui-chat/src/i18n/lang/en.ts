@@ -1,6 +1,9 @@
 export default {
     input: {
-        stopGeneration: "stop generation",
+        selected: "[Selected Content]",
+        searchConext: "Search Context",
+        noContextInfo: "No context available. Please open the required text file in the editor and try again.",
+        stopGeneration: "Stop Generation",
         addContext: "Add Context",
         textarea: "Enter content here...",
         selectModel: "Select Model",

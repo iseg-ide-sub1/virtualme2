@@ -33,11 +33,12 @@ export class MessageSender{
         });
     }
 
-    public static requestLoad(requestID: string, content: string){
+    public static requestLoad(requestID: string, content: string, context: string){
         MessageSender.view?.webview.postMessage({
             command: 'request.load',
             requestID: requestID,
-            content: content
+            content: content,
+            context: context
         });
     }
 
@@ -85,6 +86,13 @@ export class MessageSender{
         MessageSender.view?.webview.postMessage({
             command: 'dialog.deleted',
             requestID: requestID
+        });
+    }
+
+    public static contextSend(context: string){
+        MessageSender.view?.webview.postMessage({
+            command: 'context.send',
+            context: context
         });
     }
 }

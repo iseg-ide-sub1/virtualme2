@@ -31,7 +31,6 @@ export class SessionManifest {
     }
 
     public newChatSession(saveSesion = true){
-        console.log('newChatSession');
         if(this.requestModel.isRequesting){
             vscode.window.showInformationMessage(l10n.t('ts.fetchingModelInfo'));
             return;
@@ -44,7 +43,6 @@ export class SessionManifest {
     }
 
     public deleteChatSession(fileName: string){
-        console.log('deleteChatSession');
         const filePath = vscode.Uri.joinPath(this.sessionDir, fileName);
         try{
             fs.unlinkSync(filePath.fsPath);
@@ -63,7 +61,6 @@ export class SessionManifest {
     }
 
     public saveManifest(){
-        console.log('saveManifest');
         fs.writeFileSync(
             this.manifestUri.fsPath,
             JSON.stringify(this.manifest, null, 2)
@@ -71,7 +68,6 @@ export class SessionManifest {
     }
     
     public saveChatSession(){
-        console.log('saveChatSession');
         if(this.requestModel.chatMessages.length > 0) {
             const lastMessage = this.requestModel.chatMessages[this.requestModel.chatMessages.length - 1];
             if(lastMessage.role === 'user'){
@@ -119,7 +115,6 @@ export class SessionManifest {
     }
 
     public loadLastChatSession(){
-        console.log('loadLastChatSession');
         if(this.manifest.length === 0) {
             return;
         }
@@ -127,7 +122,6 @@ export class SessionManifest {
     }
 
     public loadChatSession(fileName: string, newLoad = false){
-        console.log('loadChatSession');
         if(this.requestModel.isRequesting){
             vscode.window.showInformationMessage(l10n.t('ts.fetchingModelInfo'));
             return;

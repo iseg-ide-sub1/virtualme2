@@ -1,5 +1,8 @@
 export default {
     input: {
+        selected: "『选中的内容』",
+        searchConext: "搜索上下文",
+        noContextInfo: "暂无上下文，在编辑器中打开需要的文本文件后再试",
         stopGeneration: "停止生成",
         addContext: "添加上下文",
         textarea: "在此处输入内容...",

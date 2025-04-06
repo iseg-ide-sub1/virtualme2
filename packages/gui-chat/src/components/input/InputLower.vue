@@ -157,6 +157,7 @@ span+svg {
 }
 
 .model-name {
+  user-select: none;
   display: inline-block;
   max-width: 60vw;
   white-space: nowrap;

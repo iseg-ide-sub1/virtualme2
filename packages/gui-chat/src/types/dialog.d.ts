@@ -1,6 +1,7 @@
 export interface UserDialogItem {
     id: string;
     content: string;
+    context: string[];
 }
 
 export interface ModelDialogItem {
@@ -11,3 +12,10 @@ export interface ModelDialogItem {
 }
 
 export type DialogItem = UserDialogItem | ModelDialogItem;
+
+export interface ContextMap {
+    [key: string]: {
+        name: string,
+        selected: boolean
+    }
+}

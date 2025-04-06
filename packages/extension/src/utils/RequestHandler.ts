@@ -1,18 +1,22 @@
 import * as vscode from 'vscode';
+import { l10n } from 'vscode';
+
 import { MessageSender } from '../utils/MessageSender';
 import { Configuration } from '../utils/Configuration';
 import { ConfigModels } from '../storage/ConfigModels';
+import { RepoContext } from '../chat/RepoContext';
 import { RequestModel } from '../chat/RequestModel';
 import { SessionManifest } from '../storage/SessionManifest';
 
 export class RequestHandler {
     public static view: vscode.WebviewView | undefined;
     public static configModels: ConfigModels | undefined;
+    public static repoContext: RepoContext | undefined;
     public static requestModel: RequestModel | undefined;
     public static sessionManifest: SessionManifest | undefined;
 
     public static handleRequest(message: any) {
-        console.log(JSON.stringify(message));
+        console.log('Plugin receive:', JSON.stringify(message));
         switch (message.command) {
             case 'init.ready':
                 RequestHandler.prepareInit();
@@ -30,13 +34,19 @@ export class RequestHandler {
                 RequestHandler.deleteModel(message.modelID);
                 break;
             case 'request.send':
-                RequestHandler.handelRequest(message.request);
+                RequestHandler.handelRequest(message.request, message.context);
                 break;
             case 'dialog.delete':
                 RequestHandler.deleteDialog(message.requestID);
                 break;
             case 'response.stop':
                 RequestHandler.responseStop();
+                break;
+            case 'context.get':
+                RequestHandler.contextGet();
+                break;
+            case 'context.goto':
+                RequestHandler.contextGoto(message.path);
                 break;
         }
     }
@@ -67,8 +77,8 @@ export class RequestHandler {
         RequestHandler.configModels?.deleteModelFromConfig(modelID);
     }
 
-    private static handelRequest(request: string){
-        RequestHandler.requestModel?.handleRequest(request);
+    private static handelRequest(request: string, context: string){
+        RequestHandler.requestModel?.handleRequest(request, context);
     }
 
     private static deleteDialog(requestID: string){
@@ -77,5 +87,22 @@ export class RequestHandler {
 
     private static responseStop(){
         RequestHandler.requestModel?.handleStop();
+    }
+
+    private static contextGet(){
+        const context = RequestHandler.repoContext?.getContextListAsString();
+        MessageSender.contextSend(context ?? '');
+    }
+
+    private static async contextGoto(contextPath: string){
+        if(contextPath === '[selected]') { return; }
+        try{
+            const context = vscode.Uri.file(contextPath);
+            const document = await vscode.workspace.openTextDocument(context);
+            await vscode.window.showTextDocument(document);
+        }
+        catch(error){
+            vscode.window.showErrorMessage(`${l10n.t('ts.contextGotoError')} ${contextPath}`);
+        }
     }
 }

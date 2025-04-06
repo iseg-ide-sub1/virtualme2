@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia';
-import type { ModelConfig } from '@/types'
 import { useVsCodeApiStore } from './vscode';
 
 export const useSenderStore = defineStore('sender', () => {
@@ -34,10 +33,11 @@ export const useSenderStore = defineStore('sender', () => {
         });
     }
 
-    function requestSend(request: string){
+    function requestSend(request: string, context: string){
         vscode?.postMessage({
             command: 'request.send',
-            request: request
+            request: request,
+            context: context
         });
     }
     
@@ -52,6 +52,17 @@ export const useSenderStore = defineStore('sender', () => {
         vscode?.postMessage({command: 'response.stop'});
     }
 
+    function contextGet(){
+        vscode?.postMessage({command: 'context.get'});
+    }
+
+    function contextGoto(path: string){
+        vscode?.postMessage({
+            command: 'context.goto',
+            path: path
+        });
+    }
+
     return {
         initReady,
         modelIDUpdate,
@@ -60,6 +71,8 @@ export const useSenderStore = defineStore('sender', () => {
         modelDelete,
         requestSend,
         dialogDelete,
-        responseStop
+        responseStop,
+        contextGet,
+        contextGoto
     }
 });

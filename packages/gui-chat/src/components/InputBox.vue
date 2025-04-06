@@ -22,7 +22,7 @@ import InputUpper from './input/InputUpper.vue'
 import InputLower from './input/InputLower.vue'
 
 const listenerStore = useListenerStore()
-const { sendDisable, sendShortcut } = storeToRefs(listenerStore)
+const { sendDisable, sendShortcut, contextMap } = storeToRefs(listenerStore)
 const taInput = ref<HTMLTextAreaElement>()
 
 function handleKeydown(e: KeyboardEvent) {
@@ -35,11 +35,25 @@ function handleKeydown(e: KeyboardEvent) {
   }
 }
 
+function processContext(): string {
+  const contextList = []
+  for (const [key, value] of Object.entries(contextMap.value)) {
+    if (value.selected) {
+      contextList.push(key)
+    }
+  }
+  contextMap.value = {}
+  return JSON.stringify(contextList)
+}
+
 function sendRequest() {
   if(!sendDisable.value && taInput.value) {
     const request = taInput.value.value;
     if (request.trim()) {
-      useSenderStore().requestSend(taInput.value.value)
+      useSenderStore().requestSend(
+        taInput.value.value,
+        processContext()
+      )
       taInput.value.value = '';
       taInput.value.style.height = 'auto';
     } 

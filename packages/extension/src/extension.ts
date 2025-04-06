@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as os from 'os';
 
 import { loadSession } from './chat/loadSession';
+import { RepoContext } from './chat/RepoContext';
 import { RequestModel } from './chat/RequestModel';
 import { Configuration } from './utils/Configuration';
 import { RequestHandler } from './utils/RequestHandler';
@@ -9,6 +10,7 @@ import { ConfigModels } from './storage/ConfigModels';
 import { SessionManifest } from './storage/SessionManifest';
 import { ChatViewProvider } from './views/ChatViewProvider';
 
+let repoContext: RepoContext;
 let configModels: ConfigModels;
 let requestModel: RequestModel;
 let sessionManifest: SessionManifest;
@@ -19,10 +21,12 @@ export function activate(context: vscode.ExtensionContext) {
     const sesseionDir = vscode.Uri.joinPath(storageDir, 'chat');
     const manifestUri = vscode.Uri.joinPath(sesseionDir, 'manifest.json');
 
+    repoContext = new RepoContext();
     configModels = new ConfigModels(configUri, context);
-    requestModel = new RequestModel(configModels);
+    requestModel = new RequestModel(configModels, repoContext);
     sessionManifest = new SessionManifest(sesseionDir, manifestUri, requestModel);
 
+    RequestHandler.repoContext = repoContext;
     RequestHandler.configModels = configModels;
     RequestHandler.requestModel = requestModel;
     RequestHandler.sessionManifest = sessionManifest;
@@ -33,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
             ChatViewProvider.viewType,
             chatViewProvider,
             {webviewOptions: { retainContextWhenHidden: true }}
-        ),
+        )
     );
 
     const configurationChange = vscode.workspace.onDidChangeConfiguration(event => {
@@ -42,6 +46,12 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
     context.subscriptions.push(configurationChange);
+
+    const addTextEditor = vscode.window.onDidChangeActiveTextEditor(editor => {
+        if(editor === undefined) { return; }
+        repoContext.includeTextEditors[editor.document.uri.fsPath] = editor;
+    });
+    context.subscriptions.push(addTextEditor);
 
     const gotoSettings = vscode.commands.registerCommand('light-at.goto.settings', () => {
         vscode.commands.executeCommand('workbench.action.openSettings', '@ext:himeditator.light-at');

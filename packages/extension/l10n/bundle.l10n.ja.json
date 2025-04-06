@@ -5,5 +5,6 @@
     "ts.createdConfig": "コンフィグファイルが作成されました：",
     "ts.parsingConfigError": "コンフィグファイルの解析エラー：",
     "ts.modelNotSelected": "モデルが選択されていません。先にモデルを選択してください。",
-    "ts.requestFailed": "リクエストに失敗しました："
+    "ts.requestFailed": "リクエストに失敗しました：",
+    "ts.contextGotoError": "コンテキストファイルの読み込みに失敗しました："
 }

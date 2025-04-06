@@ -8,6 +8,19 @@
     </div>
     <div class="user-content">
       <MarkdownContent :content="dialog.content" />
+      <div class="dialog-context-file" v-if="dialog.context.length">
+        <span
+          v-for="path in dialog.context"
+          :key="path"
+        >
+          <span @click="senderStore.contextGoto(path)">
+            {{
+              path === '[selected]' ? $t('input.selected') :
+                path.split('/').pop()?.split('\\').pop()
+            }}
+          </span>
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +31,8 @@ import type { UserDialogItem } from '@/types';
 import MarkdownContent from './MarkdownContent.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { useSenderStore } from '@/stores/sender';
+const senderStore = useSenderStore()
 defineProps<{ dialog: UserDialogItem }>();
 </script>
 
@@ -62,5 +77,24 @@ defineProps<{ dialog: UserDialogItem }>();
   margin: 5px;
   overflow-x: auto;
   scrollbar-width: thin;
+}
+
+.dialog-context-file{
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid rgba(128, 128, 128, 0.4);
+}
+
+.dialog-context-file>span{
+  display: inline-block;
+  padding: 2px 4px;
+  border-radius: 5px;
+  margin: 2px 5px;
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+.dialog-context-file>span:hover{
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.2);
 }
 </style>

@@ -6,6 +6,7 @@ import OpenAI from 'openai';
 import { nanoid } from '../utils/common';
 import { Model } from '../types/ConfigTypes';
 import { ChatMessage, SessionItem } from '../types/ChatTypes';
+import { RepoContext } from './RepoContext';
 import { Configuration } from '../utils/Configuration';
 import { MessageSender } from '../utils/MessageSender';
 import { ConfigModels } from '../storage/ConfigModels';
@@ -19,7 +20,8 @@ export class RequestModel {
     isRequesting: boolean = false;
     stopSign: boolean = false;
     constructor(
-        public configModels: ConfigModels
+        public configModels: ConfigModels,
+        public repoContext: RepoContext
     ) { }
 
     public pushSystemMessage(content: string){
@@ -31,19 +33,24 @@ export class RequestModel {
             role: 'system',
             id: '',
             content: content,
+            context: '',
+            contextList: '[]',
             time: new Date().toLocaleString()
         });
     }
 
-    public pushUserMessage(content: string){
+    public pushUserMessage(content: string, contextStr: string){
+        const contextPrompt = this.repoContext.getContextPrompt(contextStr);
         this.chatMessages.push({
             role: 'user',
-            content: content
+            content: content + contextPrompt
         });
         this.chatSession.push({
             role: 'user',
             id: this.messageID,
             content: content,
+            context: contextPrompt,
+            contextList: contextStr,
             time: new Date().toLocaleString()
         });
     }
@@ -68,11 +75,15 @@ export class RequestModel {
             for(const item of loadSession){
                 this.chatMessages.push({
                     role: item.role,
-                    content: item.content
+                    content: item.content + (item.context ?? '')
                 });
                 this.chatSession.push(item);
                 if(item.role === 'user'){
-                    MessageSender.requestLoad(item.id, item.content);
+                    MessageSender.requestLoad(
+                        item.id,
+                        item.content,
+                        item.contextList ?? '[]'
+                    );
                 }
                 else if(item.role === 'assistant'){
                     MessageSender.responseLoad(
@@ -94,7 +105,7 @@ export class RequestModel {
         this.stopSign = true;
     }
 
-    public async handleRequest(request: string){
+    public async handleRequest(request: string, contextStr: string){
         if(!nanoid) {
             vscode.window.showErrorMessage('nanoid is not loaded');
             return;
@@ -111,11 +122,11 @@ export class RequestModel {
         }
         this.name = this.model.title ? this.model.title : this.model.model;
         this.messageID = nanoid();
-        MessageSender.requestLoad(this.messageID, request);
+        MessageSender.requestLoad(this.messageID, request, contextStr);
         if(this.chatMessages.length === 0 && this.model.system){
             this.pushSystemMessage(this.model.system);
         }
-        this.pushUserMessage(request);
+        this.pushUserMessage(request, contextStr);
         this.isRequesting = true;
         if(this.model.type === 'ollama'){
             this.requestOllama();

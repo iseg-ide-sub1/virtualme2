@@ -7,6 +7,8 @@ export interface SessionItem {
     role: 'system' | 'user' | 'assistant';
     id: string;
     content: string;
+    context?: string;
+    contextList?: string;
     time: string;
     name?: string;
     type?: 'ollama' | 'openai';
