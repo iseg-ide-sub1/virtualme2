@@ -10,13 +10,11 @@
 
 ## 📚 User Manual
 
-- [User Manual](docs/user-manual_en.md)
-- [用户手册](docs/user-manual_zh-cn.md)
-- [ユーザーマニュアル](docs/user-manual_ja.md)
+- [User Manual](https://github.com/HiMeditator/light-at/blob/main/docs/user-manual_en.md)
+- [用户手册](https://github.com/HiMeditator/light-at/blob/main/docs/user-manual_zh-cn.md)
+- [ユーザーマニュアル](https://github.com/HiMeditator/light-at/blob/main/docs/user-manual_ja.md)
 
 ## ✨ Features
-
-![](assets/media/media-once.gif)
 
 <details open>
 <summary> 🗽<b>English</b> </summary>
@@ -47,6 +45,22 @@
 - **チャット履歴管理:** 過去のチャットを管理し、チャット内の内容を削除できます。
 
 </details>
+
+### ♾️ Mathematical Formula Rendering
+
+![](assets/media/render.gif)
+
+### 📝 Model Configuration
+
+![](assets/media/model.gif)
+
+### 📋 Chat Context Selection
+
+![](assets/media/context.gif)
+
+### 💬 Chat History Management
+
+![](assets/media/history.gif)
 
 ## 📦 Project Repository
 

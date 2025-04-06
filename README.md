@@ -4,8 +4,8 @@
     <p>轻亮是一个面向 VS Code 的智能助手插件。比起代码能力，轻亮更注重 IDE 内的大模型聊天体验。</p>
     <p>
         | <b>简体中文</b>
-        | <a href="https://github.com/HiMeditator/light-at/blob/main/docs/README_en.md">English</a>
-        | <a href="https://github.com/HiMeditator/light-assistant/blob/main/docs/README_ja.md">日本語</a> |
+        | <a href="https://github.com/HiMeditator/light-at/blob/main/README_en.md">English</a>
+        | <a href="https://github.com/HiMeditator/light-at/blob/main/README_ja.md">日本語</a> |
     </p>
 </div>
 
@@ -19,8 +19,6 @@
 
 ## ✨ 特性
 
-![](assets/media/media-once.gif)
-
 - **数学公式渲染:** 弥补了大多数智能助手没有数学公式渲染的缺点。
 
 - **方便的模型配置:** 通过表格或修改配置文件管理模型。
@@ -29,6 +27,21 @@
 
 - **聊天记录管理:** 管理历史聊天，删除聊天中的内容
 
+### ♾️ 数学公式渲染
+
+![](assets/media/render.gif)
+
+### 📝 模型配置
+
+![](assets/media/model.gif)
+
+### 📋 聊天上下文选择
+
+![](assets/media/context.gif)
+
+### 💬 聊天记录管理
+
+![](assets/media/history.gif)
 
 ## 🚀 项目运行
 

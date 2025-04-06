@@ -5,7 +5,7 @@
     <p>
         | <a href="https://github.com/HiMeditator/light-at/blob/main/README.md">简体中文</a>
         | <b>English</b>
-        | <a href="https://github.com/HiMeditator/light-assistant/blob/main/README_ja.md">日本語</a> |
+        | <a href="https://github.com/HiMeditator/light-at/blob/main/README_ja.md">日本語</a> |
     </p>
 </div>
 
@@ -19,12 +19,26 @@
 
 ## ✨ Features
 
-![](assets/media/media-once.gif)
-
 - **Math Formula Rendering:** Addresses the lack of math formula rendering in most intelligent assistants.
 - **Convenient Model Configuration:** Manage models through a table or by modifying configuration files.
 - **Select Chat Context:** Choose text files opened in the IDE as context.
 - **Chat History Management:** Manage and delete content from historical chats.
+
+### ♾️ Mathematical Formula Rendering
+
+![](assets/media/render.gif)
+
+### 📝 Model Configuration
+
+![](assets/media/model.gif)
+
+### 📋 Chat Context Selection
+
+![](assets/media/context.gif)
+
+### 💬 Chat History Management
+
+![](assets/media/history.gif)
 
 ## 🚀 Running the Project
 
