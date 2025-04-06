@@ -28,7 +28,9 @@ const welcomeDialog = ref<ModelDialogItem>({
   id: 'welcome',
   content: t('dialog.welcomeMessage', {
     think: '<think>',
-    _think: '</think>'
+    _think: '</think>',
+    manual: 'https://github.com/HiMeditator/light-at/tree/main/docs',
+    github: 'https://github.com/HiMeditator/light-at'
   }),
   type: undefined,
   name: t('dialog.pluginName')
@@ -38,11 +40,14 @@ watch(locale, () => {
     id: 'welcome',
     content: t('dialog.welcomeMessage', {
       think: '<think>',
-      _think: '</think>'
+      _think: '</think>',
+      manual: 'https://github.com/HiMeditator/light-at/tree/main/docs',
+      github: 'https://github.com/HiMeditator/light-at'
     }),
     type: undefined,
     name: t('dialog.pluginName')
   }
+  console.log(welcomeDialog.value.content)
 })
 </script>
 

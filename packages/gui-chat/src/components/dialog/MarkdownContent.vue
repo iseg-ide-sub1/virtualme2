@@ -24,6 +24,7 @@ watch(() => props.content, () => {
 </script>
 
 <style scoped>
+
 :deep(pre) {
   position: relative;
 }
@@ -59,7 +60,11 @@ watch(() => props.content, () => {
   display: block;
 }
 
-:deep(ul, ol) {
+:deep(ul) {
+  padding-left: 20px;
+}
+
+:deep(ol) {
   padding-left: 20px;
 }
 </style>

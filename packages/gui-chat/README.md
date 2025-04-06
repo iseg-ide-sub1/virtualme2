@@ -1,6 +1,10 @@
 # gui-chat
 
-This template should help get you started developing with Vue 3 in Vite.
+这是 light-at 插件的 GUI 部分，使用 Vue3 + Vite 构建。
+
+This is the GUI part of the light-at plugin, built using Vue3 + Vite.
+
+これは light-at プラグインの GUI 部分で、Vue3 + Vite を使用して構築されています。
 
 ## Recommended IDE Setup
 
@@ -14,20 +18,3 @@ TypeScript cannot handle type information for `.vue` imports by default, so we r
 
 See [Vite Configuration Reference](https://vite.dev/config/).
 
-## Project Setup
-
-```sh
-pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```

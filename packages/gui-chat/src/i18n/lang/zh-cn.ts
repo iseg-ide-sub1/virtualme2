@@ -26,6 +26,6 @@ export default {
         reasoning: "推理内容",
         copy: "复制",
         delete: "删除",
-        welcomeMessage: "{think}\n\n部分模型（比如 DeepSeek）会在回答问题之前生成推理过程内容。生成的推理内容可以点击右上角的“推理内容”选项查看或隐藏。\n\n{_think}\n\n欢迎使用 Light At（轻亮），一个专为 VS Code 设计的开源轻量级智能助手插件。作为个人开发的 IDE 智能助手，Light At 旨在为您提供简洁、个性化的开发辅助体验。\n\n- 自由配置模型\n- 聊天记录管理\n- 数学公式渲染\n\n---\n\n更多信息请参考用户手册或访问GitHub页面。\n"
+        welcomeMessage: "{think}\n\n部分模型（比如 DeepSeek）可能会在回答问题之前生成推理过程内容。生成的推理内容可以点击右上角的“推理内容”选项查看或隐藏。\n\n{_think}\n\n欢迎使用 Light At（轻亮），一个面向 VS Code 的智能助手插件。作为一个个人开发的 IDE 智能助手，Light At 旨在为您提供简洁、个性化的开发辅助体验。\n\n- 自由配置模型\n- 聊天记录管理\n- 数学公式渲染\n- 聊天上下文选择\n\n---\n\n更多信息请参考[用户手册]({manual})或访问[GitHub页面]({github})。\n"
     }
 }

@@ -26,6 +26,6 @@ export default {
         reasoning: "reasoning content",
         copy: "copy",
         delete: "delete",
-        welcomeMessage: "{think}\n\nSome models (e.g., DeepSeek) will generate reasoning content before answering questions. The generated reasoning content can be viewed or hidden by clicking the \"reasoning content\" option in the upper right corner.\n\n{_think}\n\nWelcome to Light At, an open-source lightweight intelligent assistant plugin designed specifically for VS Code. As an IDE intelligent assistant developed by one person, Light Assistant aims to provide you with a simple and personalized development assistance experience.\n\n- Flexible Model Configuration\n- Chat History Management\n- Mathematical Formula Rendering\n\n---\n\nFor more information, please refer to User Manual or visit the GitHub page.\n"
+        welcomeMessage: "{think}\n\nSome models (such as DeepSeek) may generate reasoning content before answering questions. The generated reasoning content can be viewed or hidden by clicking the \"reasoning content\" option in the upper right corner.\n\n{_think}\n\nWelcome to Light At, an intelligent assistant plugin for VS Code. As a personally developed IDE assistant, Light At aims to provide you with a simple and personalized development assistance experience.\n\n- Flexible Model Configuration\n- Chat History Management\n- Mathematical Formula Rendering\n- Chat context selection\n\n---\n\nFor more information, please refer to [User Manual]({manual}) or visit the [GitHub page]({github}).\n"
     }
 }

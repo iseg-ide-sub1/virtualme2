@@ -7,7 +7,6 @@
     "dev": "pnpm run -F gui-chat dev",
     "build": "pnpm run -F gui-chat build",
     "watch": "pnpm run -F light-at watch",
-    "both": "pnpm run build && pnpm run watch",
     "package": "pnpm run -F light-at vsce:package"
   },
   "keywords": [],
