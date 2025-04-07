@@ -11,6 +11,12 @@
 
 <hr>
 
+## 📥 Download
+
+- [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=himeditator.light-at)
+
+- [Github Release](https://github.com/HiMeditator/light-at/releases)
+
 ## 📚 User Manual
 
 - [用户手册](docs/user-manual_zh-cn.md)

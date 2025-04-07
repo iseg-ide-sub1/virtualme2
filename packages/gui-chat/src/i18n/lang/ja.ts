@@ -1,6 +1,6 @@
 export default {
     input: {
-        selected: "『選択された内容』",
+        selected: "「選択された内容」",
         searchConext: "コンテキストを検索",
         noContextInfo: "コンテキストがありません。必要なテキストファイルをエディタで開いてからお試しください。",
         stopGeneration: "生成を停止",

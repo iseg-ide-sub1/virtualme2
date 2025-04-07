@@ -93,6 +93,8 @@ Click the `Add Context` option above the input box to add the content of files w
 
 Click on a file already added to the context to deselect it.
 
+For file tags in chat messages (excluding `[Selected Content]`), you can click on the tag to quickly open the corresponding file in the editor.
+
 ### Chat Management
 
 Click the `Chat History` option in the upper right corner of the plugin interface to view the chat history files.
@@ -106,3 +108,11 @@ While the large model is generating content, you can click the `Stop Generation`
 ## ⚙️ Settings
 
 Click the `Open Settings` option in the upper right corner of the plugin interface to access the plugin settings page.
+
+- `Light At: Load Last Chat Session` Default is off. When enabled, the plugin will automatically load the last chat session each time it is opened.
+- `Light At: Continuous Chat` Default is on. When disabled, after each message sent, the model will only receive the current request content, losing its memory within the same conversation. This can reduce the number of input `tokens`.
+- `Light At: Display Info Message` Default is on. When disabled, new conversations will no longer display a welcome message.
+- `Light At: Display Tokens Usage` Default is on. When disabled, the usage of `tokens` by the online model will not be displayed.
+- `Light At: Max Chat History` Default is $128$. Sets the maximum number of chat history records to be saved. The range is from $-1$ to $255$, where $-1$ indicates no limit. Excessive chat history may slightly slow down the startup speed of the plugin.
+- `Light At: Send Request Shortcut` Default is `Ctrl+Enter`. Sets the shortcut key for sending requests. In this case, multi-line input is allowed. Choosing `Enter` will not allow line breaks, but you can paste content with line breaks.
+- `Light At: Code Highlight Theme` Default is `github`. Sets the code highlight theme in the chat. The first three are light themes, and the last three are dark themes. The change will take effect after restarting the plugin.
