@@ -16,7 +16,7 @@ export class RequestHandler {
     public static sessionManifest: SessionManifest | undefined;
 
     public static handleRequest(message: any) {
-        console.log('Plugin receive:', JSON.stringify(message));
+        // console.log('Plugin receive:', JSON.stringify(message));
         switch (message.command) {
             case 'init.ready':
                 RequestHandler.prepareInit();

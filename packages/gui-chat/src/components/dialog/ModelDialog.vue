@@ -30,6 +30,14 @@
         <MarkdownContent :content="reasoning" />
       </div>
       <MarkdownContent :content="content" />
+      <div class="div-tokens" v-if=" (dialog.prompt_tokens && dialog.completion_tokens)">
+        <span :title="$t('dialog.prompt_tokens')">
+          prompt_tokens: {{ dialog.prompt_tokens }}
+        </span>
+        <span :title="$t('dialog.completion_tokens')">
+          completion_tokens: {{ dialog.completion_tokens }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -174,5 +182,19 @@ function deleteDialog() {
 
 .reasoning-content:hover {
   background-color: rgba(128, 128, 128, 0.1);
+}
+
+.div-tokens span {
+  display: inline-block;
+  padding: 2px 5px;
+  margin-top: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+.div-tokens span:hover {
+  border: 1px solid var(--vscode-button-hoverBackground, #5a4579);
 }
 </style>

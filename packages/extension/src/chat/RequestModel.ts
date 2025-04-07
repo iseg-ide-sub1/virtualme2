@@ -189,6 +189,8 @@ export class RequestModel {
         let responseContent = '';
         let reasoning = '';
         let isReasoning = false;
+        let prompt_tokens = 0;
+        let completion_tokens = 0;
         const continuousChat = Configuration.get<boolean>('continuousChat');
         const messages = continuousChat ? this.chatMessages : [this.chatMessages[this.chatMessages.length - 1]];
         MessageSender.responseNew(this.messageID, 'openai', this.name);
@@ -200,9 +202,15 @@ export class RequestModel {
             const completion = await openai.chat.completions.create({
                 model: this.model?.model || '',
                 messages: messages,
-                stream: true
+                stream: true,
+                stream_options: {"include_usage": true}
             });
             for await (const chunk of completion) {
+                if(chunk.usage?.prompt_tokens && chunk.usage?.completion_tokens){
+                    prompt_tokens = chunk.usage.prompt_tokens;
+                    completion_tokens = chunk.usage.completion_tokens;
+                    continue;
+                }
                 let content = '';
                 const delta = chunk['choices'][0]['delta'];
                 if('reasoning_content' in delta && delta['reasoning_content']){
@@ -241,7 +249,12 @@ export class RequestModel {
             this.isRequesting = false;
             return;
         }
-        MessageSender.responseEnd(this.messageID);
+        if( Configuration.get<boolean>('displayTokensUsage')){
+            MessageSender.responseEnd(this.messageID, prompt_tokens, completion_tokens);
+        }
+        else{
+            MessageSender.responseEnd(this.messageID);
+        }
         this.pushModelMessage(responseContent, reasoning);
         this.stopSign = false;
         this.isRequesting = false;

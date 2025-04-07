@@ -47,7 +47,7 @@ watch(locale, () => {
     type: undefined,
     name: t('dialog.pluginName')
   }
-  console.log(welcomeDialog.value.content)
+  // console.log(welcomeDialog.value.content)
 })
 </script>
 

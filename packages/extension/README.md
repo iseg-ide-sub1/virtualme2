@@ -1,5 +1,4 @@
 <div align="center" >
-    <img src="assets/icons/light-at.png" width="90px" height="90px"/>
     <h1 align="center">light-at</h1>
     <p>Light-at is an intelligent assistant plugin for VS Code that focuses more on the large model chat experience within the IDE rather than coding capabilities.</p>
     <p>轻亮是一个面向 VS Code 的智能助手插件。比起代码能力，轻亮更注重 IDE 内的大模型聊天体验。</p>

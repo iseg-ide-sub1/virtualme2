@@ -9,6 +9,8 @@ export interface ModelDialogItem {
     content: string;
     type: 'ollama' | 'openai' | undefined;
     name: string;
+    prompt_tokens?: number;
+    completion_tokens?: number;
 }
 
 export type DialogItem = UserDialogItem | ModelDialogItem;

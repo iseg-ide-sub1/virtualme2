@@ -125,13 +125,19 @@
           "markdownDescription": "%desc.displayInfoMessage%",
           "order": 2
         },
+        "lightAt.displayTokensUsage": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "%desc.displayTokensUsage%",
+          "order": 3
+        },
         "lightAt.maxChatHistory": {
           "type": "number",
           "default": 128,
           "minimum": -1,
           "maximum": 255,
           "markdownDescription": "%desc.maxChatHistory%",
-          "order": 3
+          "order": 4
         },
         "lightAt.sendRequestShortcut": {
           "type": "string",
@@ -141,7 +147,7 @@
           ],
           "default": "Ctrl+Enter",
           "markdownDescription": "%desc.sendRequestShortcut%",
-          "order": 4
+          "order": 5
         },
         "lightAt.codeHighlightTheme": {
           "type": "string",
@@ -155,7 +161,7 @@
           ],
           "default": "github",
           "markdownDescription": "%desc.codeHighlightTheme%",
-          "order": 5
+          "order": 6
         }
       }
     }

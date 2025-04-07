@@ -1,4 +1,3 @@
-import { request } from 'http';
 import * as vscode from 'vscode';
 
 export class MessageSender{
@@ -59,11 +58,21 @@ export class MessageSender{
         });
     }
 
-    public static responseEnd(requestID: string){
-        MessageSender.view?.webview.postMessage({
-            command: 'response.end',
-            requestID: requestID
-        });
+    public static responseEnd(requestID: string, prompt_tokens?: number, completion_tokens?: number){
+        if(prompt_tokens && completion_tokens){
+            MessageSender.view?.webview.postMessage({
+                command: 'response.end',
+                requestID: requestID,
+                prompt_tokens: prompt_tokens,
+                completion_tokens: completion_tokens
+            });
+        }
+        else{
+            MessageSender.view?.webview.postMessage({
+                command: 'response.end',
+                requestID: requestID
+            });
+        }
     }
 
     public static responseLoad(requestID: string, type: string, name: string, content: string){
