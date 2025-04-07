@@ -16,7 +16,7 @@
 ## ✨ Features
 
 <details open>
-<summary> 🗽<b>English</b> </summary>
+<summary> <b>English</b> </summary>
 
 - **Math Formula Rendering:** Addresses the lack of math formula rendering in most intelligent assistants.
 - **Convenient Model Configuration:** Manage models through a table or by modifying configuration files.
@@ -26,7 +26,7 @@
 </details>
 
 <details close>
-<summary> 🐼<b>简体中文</b> </summary>
+<summary> <b>简体中文</b> </summary>
 
 - **数学公式渲染:** 弥补了大多数智能助手没有数学公式渲染的缺点。
 - **方便的模型配置:** 通过表格或修改配置文件管理模型。
@@ -36,7 +36,7 @@
 </details>
 
 <details close>
-<summary> 🌸<b>日本語</b> </summary>
+<summary> <b>日本語</b> </summary>
 
 - **数学公式レンダリング:** 多くのスマートアシスタントが欠いている数学公式のレンダリング機能を補完します。
 - **便利なモデル設定:** テーブルや設定ファイルの編集を通じてモデルを管理できます。
@@ -68,7 +68,3 @@
 ## 👏 Acknowledgements
 
 The plugin icon is modified from the work of [Duetone](assets/icons/credits.md).
-
-插件图标修改自 [Duetone](assets/icons/credits.md) 的作品。
-
-プラグインアイコンは [Duetone](assets/icons/credits.md) の作品を改変しています。
