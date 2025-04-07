@@ -42,6 +42,9 @@
 
 ## 🚀 Running the Project
 
+This project is a refactor based on [light-assistant](https://github.com/HiMeditator/light-assistant), with an optimized project structure and frontend rebuilt using Vue 3.
+
+
 ### Install Dependencies
 
 If your environment does not have `pnpm`, first run `npm install -g pnpm` to install it.

@@ -1,6 +1,6 @@
 # Light At ユーザーマニュアル
 
-プラグインバージョン v0.1.0 に対応
+プラグインバージョン v0.1.1 に対応
 
 - [简体中文版](user-manual_zh-cn.md)
 - [English Version](user-manual_en.md)
@@ -36,6 +36,8 @@
 - `baseURL`：`type` が `openai` の場合必須。API リクエストのベース URL で、モデル提供者によります。
 - `apiKey`：`type` が `openai` の場合必須。API キーはモデル提供者から取得してください。
 
+> **注意:** `apiKey` フィールドには、環境変数を使用できます。設定形式は次のとおりです：`env@API_KEY_NAME` ここで、`API_KEY_NAME` は環境変数に保存されている実際の API キーの名前です。今設定した環境変数はすぐに有効にならない場合があります。一般的に、コンピュータを再起動する必要があります。
+
 以下はいくつかのプロバイダーの `baseURL` です：
 - OpenAI: https://api.openai.com/v1
 - DeepSeek：https://api.deepseek.com
@@ -69,7 +71,7 @@
       "model": "gpt-4o",
       "type": "openai",
       "baseURL": "https://api.openai.com/v1",
-      "apiKey": "sk-proj-<omitted>"
+      "apiKey": "env@OPENAI_API_KEY"
     }
   ]
 }

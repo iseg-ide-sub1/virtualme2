@@ -209,6 +209,8 @@ export class RequestModel {
                 if(chunk.usage?.prompt_tokens && chunk.usage?.completion_tokens){
                     prompt_tokens = chunk.usage.prompt_tokens;
                     completion_tokens = chunk.usage.completion_tokens;
+                }
+                if(!chunk.choices[0] || !chunk.choices[0].delta){
                     continue;
                 }
                 let content = '';

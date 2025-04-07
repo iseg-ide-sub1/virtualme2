@@ -2,7 +2,6 @@
   <div class="input-box">
     <InputUpper />
     <textarea
-      :disabled = "sendDisable"
       rows="1" :placeholder="$t('input.textarea')"
       ref="taInput" @keydown="handleKeydown"
     ></textarea>
@@ -47,6 +46,9 @@ function processContext(): string {
 }
 
 function sendRequest() {
+  if(sendDisable.value){
+    return
+  }
   if(!sendDisable.value && taInput.value) {
     const request = taInput.value.value;
     if (request.trim()) {

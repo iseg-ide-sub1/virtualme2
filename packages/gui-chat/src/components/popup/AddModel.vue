@@ -43,7 +43,7 @@
       </div>
       <div class="form-entry" v-if="modelConfig.type === 'openai'">
         <label for="i-api_key">*apiKey</label>
-        <input type="text" id="i-api_key" name="api_key" required
+        <input :type="apiKeyType" id="i-api_key" name="api_key" required
           v-model="modelConfig.apiKey"
         >
       </div>
@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRaw, defineProps } from 'vue'
+import { ref, toRaw, defineProps, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { ModelConfig } from '@/types'
 import { useSenderStore } from '@/stores/sender'
@@ -93,6 +93,18 @@ const ollamaNote = ref(
     _a: '</a>'
   })
 )
+
+const prefix = ['e', 'en', 'env', 'env@']
+let apiKeyType = computed( () => {
+  let index = modelConfig.value.apiKey?.length || 1
+  index = index > 4 ? 4 : index
+  if(modelConfig.value.apiKey?.startsWith(prefix[index-1])){
+    return 'text'
+  }
+  else{
+    return 'password'
+  }
+})
 
 function submit() {
   if(!modelForm.value?.checkValidity()) return

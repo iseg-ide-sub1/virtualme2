@@ -1,6 +1,6 @@
 # Light At User Manual
 
-For plugin version v0.1.0
+For plugin version v0.1.1
 
 - [简体中文版](user-manual_zh-cn.md)
 - [日本語版](user-manual_ja.md)
@@ -36,6 +36,8 @@ The configuration format is as follows:
 - `baseURL`: Required if `type` is `openai`. The base URL for API requests, which depends on your model provider.
 - `apiKey`: Required if `type` is `openai`. The API key, obtained from your model provider.
 
+> **Note:** For the `apiKey` field, you can use environment variables. The format is: `env@API_KEY_NAME`, where `API_KEY_NAME` is the name of your actual API key as stored in the environment variables. The environment variable you just set may not take effect immediately. Generally, you need to restart your computer for it to work.
+
 Here are some `baseURL`s for various providers:
 - OpenAI: https://api.openai.com/v1
 - DeepSeek: https://api.deepseek.com
@@ -69,7 +71,7 @@ Here is a specific example:
       "model": "gpt-4o",
       "type": "openai",
       "baseURL": "https://api.openai.com/v1",
-      "apiKey": "sk-proj-<omitted>"
+      "apiKey": "env@OPENAI_API_KEY"
     }
   ]
 }

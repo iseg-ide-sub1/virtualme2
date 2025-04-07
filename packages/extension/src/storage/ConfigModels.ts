@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { l10n } from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import { env } from 'process';
 import { nanoid } from '../utils/common';
 import type { Config, Model } from '../types/ConfigTypes';
 import { MessageSender } from '../utils/MessageSender';
@@ -24,9 +25,18 @@ export class ConfigModels {
     
     public getModel(): Model | undefined {
         const modelID = this.context.globalState.get<string>('modelID');
-        return this.modelList.find( (model: Model) => {
+        const model = this.modelList.find((model: Model) => {
             return model.id === modelID;
         });
+        if (!model) { return undefined; }
+        const newModel: Model = { ...model };
+        if (newModel.apiKey?.startsWith('env@')) {
+            newModel.apiKey = process.env[newModel.apiKey.substring(4)]?.trim() || '';
+            if(newModel.apiKey === ''){
+                vscode.window.showErrorMessage(`${l10n.t('ts.envKeyNotFound')} ${model.apiKey}`);
+            }
+        }
+        return newModel;
     }
 
     public getConfigObject(): Config {

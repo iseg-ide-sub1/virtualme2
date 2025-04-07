@@ -43,6 +43,8 @@
 
 ## 🚀 プロジェクトの実行
 
+このプロジェクトは [light-assistant](https://github.com/HiMeditator/light-assistant) をベースにリファクタリングしたもので、プロジェクト構造を最適化し、フロントエンドを Vue 3 で再構築しています。
+
 ### 依存関係のインストール
 
 環境に `pnpm` がない場合は、まず `npm install -g pnpm` を実行してインストールしてください。
