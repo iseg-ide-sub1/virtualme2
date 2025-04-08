@@ -35,7 +35,7 @@ watch(() => props.content, () => {
   border-radius: 5px;
 }
 
-:deep(svg) {
+:deep(.code-info-div svg) {
   height: 1em;
   width: 1em;
   fill: currentColor;

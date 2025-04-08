@@ -53,6 +53,8 @@
 
 本项目基于 [light-assistant](https://github.com/HiMeditator/light-assistant) 重构，优化了项目结构并使用 Vue 3 重构了前端。
 
+如果想要更深入的了解项目具体结构，可参考 [技术文档](./docs/technical/)。
+
 ### 安装依赖
 
 如果环境没有 `pnpm` 先执行 `npm install -g pnpm` 安装。

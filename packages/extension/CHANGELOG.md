@@ -19,3 +19,9 @@ The project has been refactored based on [light-assistant](https://github.com/Hi
 - 增加使用环境变量作为 `apiKey` 的特性（见用户手册）。
 - 提升交互体验。
 
+## v0.1.2
+
+2025-04-08
+
+- 修复了数学公式渲染的问题。
+
