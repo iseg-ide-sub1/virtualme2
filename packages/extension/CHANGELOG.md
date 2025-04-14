@@ -25,3 +25,10 @@ The project has been refactored based on [light-assistant](https://github.com/Hi
 
 - 修复了数学公式渲染的问题。
 
+## v0.1.3
+
+2025-04-14
+
+- 增加 vscode 兼容版本（1.90.0 -> 1.80.0）。
+- 修复了一级标题显示的问题。
+- 优化历史聊天记录概览更新逻辑。

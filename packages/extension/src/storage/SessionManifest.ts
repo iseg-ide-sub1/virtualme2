@@ -91,6 +91,14 @@ export class SessionManifest {
             if(this.sessionName === this.manifest[i].name){
                 this.manifest[i].workspace = vscode.workspace.workspaceFolders?.[0].uri.fsPath || '';
                 this.manifest[i].update = new Date().toLocaleString();
+                let content = this.requestModel.chatSession[0].content;
+                if(this.requestModel.chatSession[0].role === 'system'){
+                    content = this.requestModel.chatSession[1].content;
+                }
+                if(content.length > 64){
+                    content = content.substring(0, 64) + '...';
+                }
+                this.manifest[i].overview = content;
                 inManifest = true;
                 break;
             }

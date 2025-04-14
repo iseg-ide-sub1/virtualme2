@@ -24,6 +24,13 @@ watch(() => props.content, () => {
 </script>
 
 <style scoped>
+:deep(h1) {
+	font-size: 1.6em;
+}
+
+:deep(h2) {
+	font-size: 1.4em;
+}
 
 :deep(pre) {
   position: relative;
