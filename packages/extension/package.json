@@ -42,18 +42,31 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "virtualme2",
-          "title": "%plugin.name%",
+          "id": "virtualme2-control",
+          "title": "%plugin.control%",
+          "icon": "assets/icons/sidebar1.png"
+        },
+        {
+          "id": "virtualme2-chat",
+          "title": "%plugin.chat%",
           "icon": "assets/icons/sidebar2.png"
         }
       ]
     },
     "views": {
-      "virtualme2": [
+      "virtualme2-control": [
+        {
+          "type": "webview",
+          "id": "virtualme2.control",
+          "name": "%plugin.control%",
+          "icon": "assets/icons/sidebar1.png"
+        }
+      ],      
+      "virtualme2-chat": [
         {
           "type": "webview",
           "id": "virtualme2.chat",
-          "name": "%plugin.name%",
+          "name": "%plugin.chat%",
           "icon": "assets/icons/sidebar2.png"
         }
       ]

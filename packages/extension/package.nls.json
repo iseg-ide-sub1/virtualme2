@@ -1,6 +1,8 @@
 {
     "plugin.name": "VirtualMe2",
-    
+    "plugin.chat": "VirtualMe2 Chat",
+    "plugin.control": "VirtualMe2 Control",
+
     "cmd.goto.settings": "Open Settings",
     "cmd.goto.config": "Open Config",
     "cmd.load.sessions": "Chat History",

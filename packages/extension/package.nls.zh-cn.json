@@ -1,5 +1,7 @@
 {
     "plugin.name": "VirtualMe2",
+    "plugin.chat": "VirtualMe2 Chat",
+    "plugin.control": "VirtualMe2 Control",
     
     "cmd.goto.settings": "设置",
     "cmd.goto.config": "配置文件",
