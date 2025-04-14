@@ -1,10 +1,10 @@
 # gui-chat
 
-这是 light-at 插件的 GUI 部分，使用 Vue3 + Vite 构建。
+这是 VirtualMe2 插件的聊天 GUI 部分，使用 Vue3 + Vite 构建。
 
-This is the GUI part of the light-at plugin, built using Vue3 + Vite.
+This is the chatting GUI part of the VirtualMe2 plugin, built using Vue3 + Vite.
 
-これは light-at プラグインの GUI 部分で、Vue3 + Vite を使用して構築されています。
+これは VirtualMe2 プラグインのチャット GUI 部分で、Vue3 + Vite を使用して構築されています。
 
 ## Recommended IDE Setup
 

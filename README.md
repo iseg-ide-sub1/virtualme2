@@ -1,11 +1,14 @@
 <div align="center" >
-    <img src="assets/icons/light-at.png" width="90px" height="90px"/>
-    <h1 align="center">light-at</h1>
-    <p>轻亮是一个面向 VS Code 的智能助手插件。比起代码能力，轻亮更注重 IDE 内的大模型聊天体验。</p>
+    <img src="./assets/media/banner.png" />
+    <h1 align="center">
+        <img src="./assets/icons/sidebar1.png" width="36px" height="36px"/>
+        <span>virtualme2</span>
+        <img src="./assets/icons/sidebar2.png" width="36px" height="36px"/>
+    </h1>
+    <p>VirtualMe项目2.0：基于 virtual-me 项目和 light-at 项目，整理和重构1.0项目、集成大模型聊天界面。</p>
     <p>
-        | <b>简体中文</b>
-        | <a href="https://github.com/HiMeditator/light-at/blob/main/README_en.md">English</a>
-        | <a href="https://github.com/HiMeditator/light-at/blob/main/README_ja.md">日本語</a> |
+        | <a href="https://github.com/iseg-ide-sub1/virtual-me"><b>virtual-me</b></a>
+        | <a href="https://github.com/HiMeditator/light-at"><b>light-at</b></a> |
     </p>
 </div>
 
@@ -13,45 +16,19 @@
 
 ## 📥 下载
 
-- [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=himeditator.light-at)
-
-- [Github Release](https://github.com/HiMeditator/light-at/releases)
+暂不提下载。
 
 ## 📚 用户手册
 
 - [用户手册](docs/user-manual_zh-cn.md)
-- [User Manual](docs/user-manual_en.md)
-- [ユーザーマニュアル](docs/user-manual_ja.md)
 
 ## ✨ 特性
 
-- **数学公式渲染:** 弥补了大多数智能助手没有数学公式渲染的缺点。
-
-- **方便的模型配置:** 通过表格或修改配置文件管理模型。
-
-- **选择聊天上下文:** 选择 IDE 中打开过的文本文件作为上下文
-
-- **聊天记录管理:** 管理历史聊天，删除聊天中的内容
-
-### ♾️ 数学公式渲染
-
-![](assets/media/render.gif)
-
-### 📝 模型配置
-
-![](assets/media/model.gif)
-
-### 📋 聊天上下文选择
-
-![](assets/media/context.gif)
-
-### 💬 聊天记录管理
-
-![](assets/media/history.gif)
+待添加。
 
 ## 🚀 项目运行
 
-本项目基于 [light-assistant](https://github.com/HiMeditator/light-assistant) 重构，优化了项目结构并使用 Vue 3 重构了前端。
+VirtualeMe2 项目基于 [virtual-me](https://github.com/iseg-ide-sub1/virtual-me) 和 [light-at](https://github.com/HiMeditator/light-at) 进行重构与合并。
 
 如果想要更深入的了解项目具体结构，可参考 [技术文档](./docs/technical/)。
 
@@ -90,7 +67,3 @@ pnpm build
 ```bash
 pnpm package
 ```
-
-## 👏 致谢
-
-插件图标修改自 [Duetone](assets/icons/credits.md) 的作品。

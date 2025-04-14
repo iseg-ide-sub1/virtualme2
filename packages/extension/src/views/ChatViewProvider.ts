@@ -5,7 +5,7 @@ import { MessageSender} from '../utils/MessageSender';
 import { RequestHandler } from '../utils/RequestHandler';
 
 export class ChatViewProvider implements vscode.WebviewViewProvider {
-    public static readonly viewType = 'light-at.chat';
+    public static readonly viewType = 'virtualme2.chat';
     private _view?: vscode.WebviewView;
     constructor(
         private readonly _extensionUri: vscode.Uri

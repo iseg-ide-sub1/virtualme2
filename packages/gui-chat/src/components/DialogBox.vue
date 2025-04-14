@@ -29,8 +29,8 @@ const welcomeDialog = ref<ModelDialogItem>({
   content: t('dialog.welcomeMessage', {
     think: '<think>',
     _think: '</think>',
-    manual: 'https://github.com/HiMeditator/light-at/tree/main/docs',
-    github: 'https://github.com/HiMeditator/light-at'
+    manual: 'https://github.com/iseg-ide-sub1/virtualme2/tree/main/docs',
+    github: 'https://github.com/iseg-ide-sub1/virtualme2'
   }),
   type: undefined,
   name: t('dialog.pluginName')
@@ -41,8 +41,8 @@ watch(locale, () => {
     content: t('dialog.welcomeMessage', {
       think: '<think>',
       _think: '</think>',
-      manual: 'https://github.com/HiMeditator/light-at/tree/main/docs',
-      github: 'https://github.com/HiMeditator/light-at'
+      manual: 'https://github.com/iseg-ide-sub1/virtualme2/tree/main/docs',
+      github: 'https://github.com/iseg-ide-sub1/virtualme2'
     }),
     type: undefined,
     name: t('dialog.pluginName')

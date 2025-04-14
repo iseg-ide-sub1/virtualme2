@@ -30,8 +30,8 @@ export class Configuration {
 
     public static changeHandler(event: vscode.ConfigurationChangeEvent) {
         if(
-            event.affectsConfiguration('lightAt.displayInfoMessage') ||
-            event.affectsConfiguration('lightAt.sendRequestShortcut')
+            event.affectsConfiguration('virtualMe2.displayInfoMessage') ||
+            event.affectsConfiguration('virtualMe2.sendRequestShortcut')
         ) {
             Configuration.sendSettings(true);
         }

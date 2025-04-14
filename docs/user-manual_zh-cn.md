@@ -1,11 +1,4 @@
-# Light At 用户手册
-
-适用于插件版本 v0.1.1
-
-- [English Version](user-manual_en.md)
-- [日本語版](user-manual_ja.md)
-
-![](img/01.png)
+# VirtualeMe2 用户手册
 
 ## 📝 配置模型
 

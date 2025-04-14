@@ -1,19 +1,19 @@
 {
-  "name": "light-at",
-  "displayName": "Light At",
-  "publisher": "himeditator",
-  "icon": "assets/icons/light-at.png",
-  "description": "Light At is an open-source chat assistant for VS Code, emphasizing the experience of chatting with LLMs within the IDE.",
-  "version": "0.1.3",
+  "name": "virtualme2",
+  "displayName": "VirtualMe2",
+  "publisher": "iseg-ide-sub1",
+  "icon": "assets/icons/icon.png",
+  "description": "VirtualMe Project 2.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HiMeditator/light-at"
+    "url": "https://github.com/iseg-ide-sub1/virtualme2"
   },
-  "homepage": "https://github.com/HiMeditator/light-at",
+  "homepage": "https://github.com/iseg-ide-sub1/virtualme2",
   "bugs": {
-    "url": "https://github.com/HiMeditator/light-at/issues"
+    "url": "https://github.com/iseg-ide-sub1/virtualme2/issues"
   },
-  "qna": "https://github.com/HiMeditator/light-at/issues",
+  "qna": "https://github.com/iseg-ide-sub1/virtualme2/issues",
   "license": "MIT",
   "engines": {
     "vscode": "^1.80.0"
@@ -42,40 +42,40 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "light-at",
+          "id": "virtualme2",
           "title": "%plugin.name%",
-          "icon": "assets/icons/light-at-sidebar.png"
+          "icon": "assets/icons/sidebar2.png"
         }
       ]
     },
     "views": {
-      "light-at": [
+      "virtualme2": [
         {
           "type": "webview",
-          "id": "light-at.chat",
+          "id": "virtualme2.chat",
           "name": "%plugin.name%",
-          "icon": "assets/icons/light-at-sidebar.png"
+          "icon": "assets/icons/sidebar2.png"
         }
       ]
     },
     "commands": [
       {
-        "command": "light-at.goto.settings",
+        "command": "virtualme2.goto.settings",
         "title": "%cmd.goto.settings%",
         "icon": "$(gear)"
       },
       {
-        "command": "light-at.goto.config",
+        "command": "virtualme2.goto.config",
         "title": "%cmd.goto.config%",
         "icon": "$(json)"
       },
       {
-        "command": "light-at.load.sessions",
+        "command": "virtualme2.load.sessions",
         "title": "%cmd.load.sessions%",
         "icon": "$(history)"
       },
       {
-        "command": "light-at.chat.new",
+        "command": "virtualme2.chat.new",
         "title": "%cmd.chat.new%",
         "icon": "$(plus)"
       }
@@ -83,23 +83,23 @@
     "menus": {
       "view/title": [
         {
-          "command": "light-at.goto.settings",
-          "when": "view == light-at.chat",
+          "command": "virtualme2.goto.settings",
+          "when": "view == virtualme2.chat",
           "group": "navigation@4"
         },
         {
-          "command": "light-at.goto.config",
-          "when": "view == light-at.chat",
+          "command": "virtualme2.goto.config",
+          "when": "view == virtualme2.chat",
           "group": "navigation@3"
         },
         {
-          "command": "light-at.load.sessions",
-          "when": "view == light-at.chat",
+          "command": "virtualme2.load.sessions",
+          "when": "view == virtualme2.chat",
           "group": "navigation@2"
         },
         {
-          "command": "light-at.chat.new",
-          "when": "view == light-at.chat",
+          "command": "virtualme2.chat.new",
+          "when": "view == virtualme2.chat",
           "group": "navigation@1"
         }
       ]
@@ -107,31 +107,31 @@
     "configuration": {
       "title": "%plugin.name%",
       "properties": {
-        "lightAt.loadLastChatSession": {
+        "virtualMe2.loadLastChatSession": {
           "type": "boolean",
           "default": false,
           "markdownDescription": "%desc.loadLastChatSession%",
           "order": 0
         },
-        "lightAt.continuousChat": {
+        "virtualMe2.continuousChat": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "%desc.continuousChat%",
           "order": 1
         },
-        "lightAt.displayInfoMessage": {
+        "virtualMe2.displayInfoMessage": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "%desc.displayInfoMessage%",
           "order": 2
         },
-        "lightAt.displayTokensUsage": {
+        "virtualMe2.displayTokensUsage": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "%desc.displayTokensUsage%",
           "order": 3
         },
-        "lightAt.maxChatHistory": {
+        "virtualMe2.maxChatHistory": {
           "type": "number",
           "default": 128,
           "minimum": -1,
@@ -139,7 +139,7 @@
           "markdownDescription": "%desc.maxChatHistory%",
           "order": 4
         },
-        "lightAt.sendRequestShortcut": {
+        "virtualMe2.sendRequestShortcut": {
           "type": "string",
           "enum": [
             "Ctrl+Enter",
@@ -149,7 +149,7 @@
           "markdownDescription": "%desc.sendRequestShortcut%",
           "order": 5
         },
-        "lightAt.codeHighlightTheme": {
+        "virtualMe2.codeHighlightTheme": {
           "type": "string",
           "enum": [
             "github",

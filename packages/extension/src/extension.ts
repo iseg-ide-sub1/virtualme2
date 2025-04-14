@@ -16,7 +16,7 @@ let requestModel: RequestModel;
 let sessionManifest: SessionManifest;
 
 export function activate(context: vscode.ExtensionContext) {
-    const storageDir = vscode.Uri.joinPath(vscode.Uri.file(os.homedir()),'/.light-at');
+    const storageDir = vscode.Uri.joinPath(vscode.Uri.file(os.homedir()),'/.virtualme2');
     const configUri = vscode.Uri.joinPath(storageDir, 'config.json');
     const sesseionDir = vscode.Uri.joinPath(storageDir, 'chat');
     const manifestUri = vscode.Uri.joinPath(sesseionDir, 'manifest.json');
@@ -53,22 +53,22 @@ export function activate(context: vscode.ExtensionContext) {
     });
     context.subscriptions.push(addTextEditor);
 
-    const gotoSettings = vscode.commands.registerCommand('light-at.goto.settings', () => {
-        vscode.commands.executeCommand('workbench.action.openSettings', '@ext:himeditator.light-at');
+    const gotoSettings = vscode.commands.registerCommand('virtualme2.goto.settings', () => {
+        vscode.commands.executeCommand('workbench.action.openSettings', '@ext:iseg-ide-sub1.virtualme2');
     });
     context.subscriptions.push(gotoSettings);
 
-    const gotoConfig = vscode.commands.registerCommand('light-at.goto.config', () => {
+    const gotoConfig = vscode.commands.registerCommand('virtualme2.goto.config', () => {
         vscode.commands.executeCommand('vscode.open', configUri);
     });
     context.subscriptions.push(gotoConfig);
 
-    const sessionsLoad = vscode.commands.registerCommand('light-at.load.sessions', () => {
+    const sessionsLoad = vscode.commands.registerCommand('virtualme2.load.sessions', () => {
         loadSession(sessionManifest);
     });
     context.subscriptions.push(sessionsLoad);
 
-    const chatNew = vscode.commands.registerCommand('light-at.chat.new', () => {
+    const chatNew = vscode.commands.registerCommand('virtualme2.chat.new', () => {
         sessionManifest.newChatSession();
     });
     context.subscriptions.push(chatNew);

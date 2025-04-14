@@ -68,10 +68,7 @@ export const useListenerStore = defineStore('listener', () => {
     function languageSet(lang: string){
         if(lang === 'zh-cn') {
             i18n.global.locale.value = 'zh_cn';
-        } else if(lang === 'ja'){
-            i18n.global.locale.value = 'ja';
-        }
-        else {
+        } else {
             i18n.global.locale.value = 'en';
         }
     }

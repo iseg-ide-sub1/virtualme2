@@ -66,7 +66,7 @@ export class RequestHandler {
 
     private static updateConfig(){
         RequestHandler.configModels?.updateModelsFromConfig();
-        vscode.commands.executeCommand('light-at.goto.config');
+        vscode.commands.executeCommand('virtualme2.goto.config');
     }
 
     private static addModel(model: string){
