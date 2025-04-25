@@ -10,7 +10,6 @@ import { RequestHandler } from './utils/RequestHandler';
 import { ConfigModels } from './storage/ConfigModels';
 import { SessionManifest } from './storage/SessionManifest';
 import { ChatViewProvider } from './views/ChatViewProvider';
-import { ControlViewProvider } from './views/ControlViewProvider';
 
 let repoContext: RepoContext;
 let configModels: ConfigModels;
@@ -39,15 +38,6 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.registerWebviewViewProvider(
             ChatViewProvider.viewType,
             chatViewProvider,
-            {webviewOptions: { retainContextWhenHidden: true }}
-        )
-    );
-
-    const controlViewProvider = new ControlViewProvider(context.extensionUri);
-    context.subscriptions.push(
-        vscode.window.registerWebviewViewProvider(
-            ControlViewProvider.viewType,
-            controlViewProvider,
             {webviewOptions: { retainContextWhenHidden: true }}
         )
     );

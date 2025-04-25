@@ -3,6 +3,7 @@ import * as utils from './base/utils'
 import {deleteInnerCmdSeq} from './base/event-process/cmd-process'
 import * as codeDiff from './base/code-diff/code-diff'
 
+import { ControlViewProvider } from './views/ControlViewProvider';
 import {LogControlViewProvider} from './views/log-control'
 import {ActionSummaryViewProvider} from './views/action-summary'
 import {ArtifactPredictionViewProvider} from './views/artifact-prediction'
@@ -53,6 +54,16 @@ function checkVersion() {
 //初始化图形界面，未来看情况是否还需要在这里定义
 function initViews(context: vscode.ExtensionContext) {
     /** 提供图形化界面 */
+
+    const chatViewProvider = new ControlViewProvider(context.extensionUri);
+    context.subscriptions.push(
+        vscode.window.registerWebviewViewProvider(
+            ControlViewProvider.viewType,
+            chatViewProvider,
+            {webviewOptions: { retainContextWhenHidden: true }}
+        )
+    );
+
     // 日志控制页面
     const logControlViewProvider = new LogControlViewProvider(context.extensionUri);
     context.subscriptions.push(

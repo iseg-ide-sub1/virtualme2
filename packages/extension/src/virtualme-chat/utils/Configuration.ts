@@ -10,7 +10,7 @@ interface Settings {
 export class Configuration {
     private constructor() {}
 
-    public static readonly sectionID = 'lightAt';
+    public static readonly sectionID = 'virtualMe.chat';
 
     public static get<T>(key: string): T | undefined {
         const configuration = vscode.workspace.getConfiguration(Configuration.sectionID);
@@ -30,8 +30,8 @@ export class Configuration {
 
     public static changeHandler(event: vscode.ConfigurationChangeEvent) {
         if(
-            event.affectsConfiguration('virtualMe2.displayInfoMessage') ||
-            event.affectsConfiguration('virtualMe2.sendRequestShortcut')
+            event.affectsConfiguration('virtualMe.chat.displayInfoMessage') ||
+            event.affectsConfiguration('virtualMe.chat.sendRequestShortcut')
         ) {
             Configuration.sendSettings(true);
         }

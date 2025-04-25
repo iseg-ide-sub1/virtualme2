@@ -1,6 +1,6 @@
 {
   "name": "virtualme2",
-  "displayName": "VirtualMe2",
+  "displayName": "Virtual Me 2.0",
   "publisher": "iseg-ide-sub1",
   "icon": "assets/icons/icon.png",
   "description": "VirtualMe Project 2.0",
@@ -42,12 +42,12 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "virtualme2-control",
+          "id": "virtualme-control",
           "title": "%plugin.control%",
           "icon": "assets/icons/sidebar1.png"
         },
         {
-          "id": "virtualme2-chat",
+          "id": "virtualme-chat",
           "title": "%plugin.chat%",
           "icon": "assets/icons/sidebar2.png"
         },
@@ -59,18 +59,18 @@
       ]
     },
     "views": {
-      "virtualme2-control": [
+      "virtualme-control": [
         {
           "type": "webview",
-          "id": "virtualme2.control",
+          "id": "virtualme.control",
           "name": "%plugin.control%",
           "icon": "assets/icons/sidebar1.png"
         }
       ],      
-      "virtualme2-chat": [
+      "virtualme-chat": [
         {
           "type": "webview",
-          "id": "virtualme2.chat",
+          "id": "virtualme.chat",
           "name": "%plugin.chat%",
           "icon": "assets/icons/sidebar2.png"
         }
@@ -144,22 +144,22 @@
       "view/title": [
         {
           "command": "virtualme2.goto.settings",
-          "when": "view == virtualme2.chat",
+          "when": "view == virtualme.chat",
           "group": "navigation@4"
         },
         {
           "command": "virtualme2.goto.config",
-          "when": "view == virtualme2.chat",
+          "when": "view == virtualme.chat",
           "group": "navigation@3"
         },
         {
           "command": "virtualme2.load.sessions",
-          "when": "view == virtualme2.chat",
+          "when": "view == virtualme.chat",
           "group": "navigation@2"
         },
         {
           "command": "virtualme2.chat.new",
-          "when": "view == virtualme2.chat",
+          "when": "view == virtualme.chat",
           "group": "navigation@1"
         }
       ]
@@ -167,31 +167,31 @@
     "configuration": {
       "title": "%plugin.name%",
       "properties": {
-        "virtualMe2.loadLastChatSession": {
+        "virtualMe.chat.loadLastChatSession": {
           "type": "boolean",
           "default": false,
           "markdownDescription": "%desc.loadLastChatSession%",
           "order": 0
         },
-        "virtualMe2.continuousChat": {
+        "virtualMe.chat.continuousChat": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "%desc.continuousChat%",
           "order": 1
         },
-        "virtualMe2.displayInfoMessage": {
+        "virtualMe.chat.displayInfoMessage": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "%desc.displayInfoMessage%",
           "order": 2
         },
-        "virtualMe2.displayTokensUsage": {
+        "virtualMe.chat.displayTokensUsage": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "%desc.displayTokensUsage%",
           "order": 3
         },
-        "virtualMe2.maxChatHistory": {
+        "virtualMe.chat.maxChatHistory": {
           "type": "number",
           "default": 128,
           "minimum": -1,
@@ -199,7 +199,7 @@
           "markdownDescription": "%desc.maxChatHistory%",
           "order": 4
         },
-        "virtualMe2.sendRequestShortcut": {
+        "virtualMe.chat.sendRequestShortcut": {
           "type": "string",
           "enum": [
             "Ctrl+Enter",
@@ -209,7 +209,7 @@
           "markdownDescription": "%desc.sendRequestShortcut%",
           "order": 5
         },
-        "virtualMe2.codeHighlightTheme": {
+        "virtualMe.chat.codeHighlightTheme": {
           "type": "string",
           "enum": [
             "github",

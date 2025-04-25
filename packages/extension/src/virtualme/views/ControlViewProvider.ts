@@ -1,11 +1,9 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import { MessageSender} from '../utils/MessageSender';
-import { RequestHandler } from '../utils/RequestHandler';
 
-export class ChatViewProvider implements vscode.WebviewViewProvider {
-    public static readonly viewType = 'virtualme.chat';
+export class ControlViewProvider implements vscode.WebviewViewProvider {
+    public static readonly viewType = 'virtualme.control';
     constructor(
         private readonly _extensionUri: vscode.Uri
     ) { }
@@ -21,16 +19,15 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
         };
         webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
-        MessageSender.view = webviewView;
-        RequestHandler.view = webviewView;
-
         webviewView.webview.onDidReceiveMessage(
-            RequestHandler.handleRequest
+            (message) => {
+                console.log(message);
+            }
         );
     }
 
     private _getHtmlForWebview(webview: vscode.Webview) {
-        const guiSidebarPath = vscode.Uri.joinPath(this._extensionUri, '/out/gui-chat');
+        const guiSidebarPath = vscode.Uri.joinPath(this._extensionUri, '/out/gui-control');
         const indexPath = vscode.Uri.joinPath(guiSidebarPath, '/index.html');
         let indexHtml = fs.readFileSync(indexPath.fsPath, 'utf-8');
         const matchLinks = /(href|src)="([^"]*)"/g;

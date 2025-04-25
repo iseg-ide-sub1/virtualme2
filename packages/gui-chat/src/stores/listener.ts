@@ -14,7 +14,7 @@ export const useListenerStore = defineStore('listener', () => {
 
     window.addEventListener('message', event => {
         const message = event.data;
-        // console.log('Front receive:', JSON.stringify(message));
+        console.log('Front receive:', JSON.stringify(message));
         switch (message.command) {
             case 'language.set':
                 languageSet(message.lang);
