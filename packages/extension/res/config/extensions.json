@@ -1,0 +1,194 @@
+{
+  "categories": [
+    {
+      "name": "Programming Languages",
+      "extensions": [
+        "ms-python.python",
+        "ms-vscode.cpptools",
+        "ms-dotnettools.csharp",
+        "vscode.typescript-language-features",
+        "redhat.java",
+        "golang.go",
+        "rust-lang.rust-analyzer",
+        "rebornix.Ruby",
+        "bmewburn.vscode-intelephense",
+        "sswg.swift-lang",
+        "mathiasfrohlich.Kotlin",
+        "Dart-Code.dart-code",
+        "jakebecker.elixir-ls",
+        "scala-lang.scala",
+        "sumneko.lua"
+      ]
+    },
+    {
+      "name": "Themes",
+      "extensions": [
+        "dracula-theme.theme-dracula",
+        "vscode-icons-team.vscode-icons",
+        "pkief.material-icon-theme",
+        "equinusocio.vsc-material-theme",
+        "zhuangtongfa.material-theme",
+        "monokai.theme-monokai-pro-vscode",
+        "johnpapa.winteriscoming",
+        "teabyii.ayu",
+        "arcticicestudio.nord-visual-studio-code",
+        "liviuschera.noctis"
+      ]
+    },
+    {
+      "name": "Debuggers",
+      "extensions": [
+        "ms-vscode.node-debug2",
+        "ms-vscode.cpptools",
+        "ms-python.python",
+        "firefox-devtools.vscode-firefox-debug",
+        "msjsdiag.debugger-for-chrome",
+        "vscjava.vscode-java-debug",
+        "golang.go",
+        "ruby-debug.ruby-debug-ide"
+      ]
+    },
+    {
+      "name": "Linters",
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "stylelint.vscode-stylelint",
+        "ms-python.pylint",
+        "golang.go",
+        "shopify.rubocop",
+        "ikappas.phpcs",
+        "timonwong.shellcheck",
+        "ms-python.flake8",
+        "ms-vscode.clang-tidy"
+      ]
+    },
+    {
+      "name": "Formatters",
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "ms-python.black-formatter",
+        "rust-lang.rust-analyzer",
+        "hookyqr.beautify",
+        "xaver.clang-format",
+        "junstyle.php-cs-fixer",
+        "foxundermoon.shell-format",
+        "adpyke.vscode-sql-formatter"
+      ]
+    },
+    {
+      "name": "Version Control",
+      "extensions": [
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "github.vscode-pull-request-github",
+        "donjayamanne.githistory",
+        "waderyan.gitblame",
+        "gitlab.gitlab-workflow"
+      ]
+    },
+    {
+      "name": "Project Management",
+      "extensions": [
+        "alefragnani.project-manager",
+        "vscode.npm",
+        "ms-vscode.vscode-typescript-tslint-plugin",
+        "gruntfuggly.todo-tree",
+        "alefragnani.bookmarks",
+        "clockify.clockify"
+      ]
+    },
+    {
+      "name": "Collaboration Tools",
+      "extensions": [
+        "ms-vsliveshare.vsliveshare",
+        "github.codespaces",
+        "lostintangent.vsls-for-github",
+        "codestream.codestream",
+        "ritwickdey.liveserver"
+      ]
+    },
+    {
+      "name": "Testing Tools",
+      "extensions": [
+        "hbenl.vscode-test-explorer",
+        "ms-vscode.test-adapter-converter",
+        "orta.vscode-jest",
+        "matepek.vscode-catch2-test-adapter",
+        "littlefoxteam.vscode-python-test-adapter",
+        "cypress-fixture.cypress-fixture",
+        "swellaby.rust-test-explorer"
+      ]
+    },
+    {
+      "name": "Deployment Tools",
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "amazonwebservices.aws-toolkit-vscode",
+        "serverless.serverless-vscode",
+        "ms-azuretools.vscode-azureappservice",
+        "GoogleCloudTools.cloudcode",
+        "ms-vscode.vscode-node-azure-pack"
+      ]
+    },
+    {
+      "name": "Documentation Tools",
+      "extensions": [
+        "yzhang.markdown-all-in-one",
+        "docsmsft.docs-authoring-pack",
+        "davidanson.vscode-markdownlint",
+        "shd101wyy.markdown-preview-enhanced",
+        "swellaby.commonmark-vscode",
+        "ms-azuretools.vscode-docker",
+        "rangav.vscode-thunder-client"
+      ]
+    },
+    {
+      "name": "Performance Analysis",
+      "extensions": [
+        "ms-vscode.vscode-js-profile-flame",
+        "wallabyjs.quokka-vscode",
+        "ms-vscode.vscode-typescript-next",
+        "mhutchie.git-graph",
+        "ms-vscode.vscode-java-debug",
+        "ms-python.vscode-pylance"
+      ]
+    },
+    {
+      "name": "Security Tools",
+      "extensions": [
+        "snyk.snyk-vulnerability-scanner",
+        "redhat.vscode-xml",
+        "ms-vscode.vscode-linter",
+        "redhat.fabric8-analytics",
+        "github.vscode-github-actions",
+        "mindaro.mindaro"
+      ]
+    },
+    {
+      "name": "AI Assistance",
+      "extensions": [
+        "github.copilot",
+        "tabnine.tabnine-vscode",
+        "kiteco.kite",
+        "Codeium.codeium",
+        "deepseek.deepseek-coder",
+        "GitHub.copilot-labs"
+      ]
+    },
+    {
+      "name": "Other",
+      "extensions": [
+        "vscodevim.vim",
+        "coenraads.bracket-pair-colorizer",
+        "oderwat.indent-rainbow",
+        "usernamehw.errorlens",
+        "ms-vscode-remote.remote-ssh",
+        "mtxr.sqltools",
+        "rangav.vscode-thunder-client",
+        "ms-vscode-remote.remote-wsl",
+        "johnpapa.vscode-peacock"
+      ]
+    }
+  ]
+}

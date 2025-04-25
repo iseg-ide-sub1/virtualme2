@@ -1,0 +1,154 @@
+{
+  "features": [
+    {
+      "name": "Basic Types",
+      "level": "Beginner",
+      "keywords": ["string", "number", "boolean", "array", "tuple", "enum", "any", "void", "null", "undefined", "never"]
+    },
+    {
+      "name": "Interfaces",
+      "level": "Beginner",
+      "keywords": ["interface"]
+    },
+    {
+      "name": "Type Annotations",
+      "level": "Beginner",
+      "keywords": [":"]
+    },
+    {
+      "name": "Enums",
+      "level": "Beginner",
+      "keywords": ["enum"]
+    },
+    {
+      "name": "Functions with Types",
+      "level": "Beginner",
+      "keywords": ["function", "=>"]
+    },
+    {
+      "name": "Generics",
+      "level": "Intermediate",
+      "keywords": ["<T>", "extends", "keyof"]
+    },
+    {
+      "name": "Union Types",
+      "level": "Intermediate",
+      "keywords": ["|"]
+    },
+    {
+      "name": "Intersection Types",
+      "level": "Intermediate",
+      "keywords": ["&"]
+    },
+    {
+      "name": "Type Guards",
+      "level": "Intermediate",
+      "keywords": ["typeof", "instanceof", "in"]
+    },
+    {
+      "name": "Using TypeScript with JavaScript Libraries",
+      "level": "Intermediate",
+      "keywords": ["declare", "@types"]
+    },
+    {
+      "name": "Mapped Types",
+      "level": "Advanced",
+      "keywords": ["{[K in keyof T]: U}"]
+    },
+    {
+      "name": "Conditional Types",
+      "level": "Advanced",
+      "keywords": ["T extends U ? X : Y"]
+    },
+    {
+      "name": "Type Inference",
+      "level": "Advanced",
+      "keywords": ["infer"]
+    },
+    {
+      "name": "Decorators",
+      "level": "Advanced",
+      "keywords": ["@", "experimentalDecorators"]
+    },
+    {
+      "name": "Advanced Compiler Options",
+      "level": "Advanced",
+      "keywords": ["tsconfig.json", "strict", "noImplicitAny"]
+    },
+    {
+      "name": "Understanding the TypeScript Compiler",
+      "level": "Expert",
+      "keywords": ["tsc", "compiler API"]
+    },
+    {
+      "name": "Contributing to TypeScript",
+      "level": "Expert",
+      "keywords": ["GitHub", "pull request", "issue"]
+    },
+    {
+      "name": "Creating Complex Type Definitions",
+      "level": "Expert",
+      "keywords": ["d.ts", "declare module"]
+    },
+    {
+      "name": "Understanding TypeScript's Type System Internals",
+      "level": "Expert",
+      "keywords": ["type checker", "inference"]
+    },
+    {
+      "name": "Advanced Decorators and Metadata",
+      "level": "Expert",
+      "keywords": ["reflect-metadata", "decorator factory"]
+    }
+  ],
+  "commentSpec": {
+    "single": [
+      "//", "#"
+    ],
+    "multiStart": [
+      "/*"
+    ],
+    "multiEnd": [
+      "*/"
+    ]
+  },
+  "packages": [
+    "lodash",
+    "d3.js",
+    "tensorflow.js",
+    "brain.js",
+    "tracking.js",
+    "react",
+    "vue.js",
+    "angular",
+    "chart.js",
+    "highcharts",
+    "puppeteer",
+    "jimp",
+    "webpack",
+    "babel",
+    "compromise",
+    "react",
+    "express",
+    "lodash",
+    "axios",
+    "jest",
+    "typeorm",
+    "@prisma/client",
+    "@nestjs/common",
+    "rxjs",
+    "@apollo/client",
+    "redux",
+    "styled-components",
+    "d3",
+    "@tensorflow/tfjs",
+    "puppeteer",
+    "sharp",
+    "socket.io",
+    "moment",
+    "joi",
+    "webpack",
+    "eslint",
+    "prettier"
+  ]
+}
