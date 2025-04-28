@@ -1,0 +1,140 @@
+{
+  "features": [
+    {
+      "name": "Basic Syntax",
+      "level": "Beginner",
+      "keywords": ["if", "else", "for", "while", "=", "+", "-", "*", "/", "==", "!=", "and", "or", "not"]
+    },
+    {
+      "name": "Data Structures",
+      "level": "Beginner",
+      "keywords": ["list", "tuple", "dict", "set", "[", "]", "{", "}", "(", ")", "append", "pop", "keys", "values"]
+    },
+    {
+      "name": "Functions",
+      "level": "Beginner",
+      "keywords": ["def", "return", "lambda", "*args", "**kwargs"]
+    },
+    {
+      "name": "Modules and Packages",
+      "level": "Beginner",
+      "keywords": ["import", "from", "__name__", "__init__.py"]
+    },
+    {
+      "name": "Object-Oriented Programming (OOP)",
+      "level": "Intermediate",
+      "keywords": ["class", "self", "super", "__init__", "__str__", "@classmethod", "@staticmethod"]
+    },
+    {
+      "name": "Exception Handling",
+      "level": "Intermediate",
+      "keywords": ["try", "except", "finally", "raise", "assert"]
+    },
+    {
+      "name": "File Operations",
+      "level": "Intermediate",
+      "keywords": ["open", "read", "write", "with", "as"]
+    },
+    {
+      "name": "Advanced Data Structures",
+      "level": "Intermediate",
+      "keywords": ["yield", "next", "__iter__", "__next__", "@decorator"]
+    },
+    {
+      "name": "Concurrent Programming",
+      "level": "Advanced",
+      "keywords": ["threading", "multiprocessing", "asyncio", "await", "async"]
+    },
+    {
+      "name": "Network Programming",
+      "level": "Advanced",
+      "keywords": ["socket", "requests", "http", "flask", "django"]
+    },
+    {
+      "name": "Database Interaction",
+      "level": "Advanced",
+      "keywords": ["sqlite3", "SQLAlchemy", "connect", "cursor", "execute"]
+    },
+    {
+      "name": "Testing and Debugging",
+      "level": "Advanced",
+      "keywords": ["unittest", "assertEqual", "pdb", "breakpoint"]
+    },
+    {
+      "name": "Performance Optimization",
+      "level": "Expert",
+      "keywords": ["cProfile", "timeit", "memory_profiler", "Cython", "Numba"]
+    },
+    {
+      "name": "Metaprogramming",
+      "level": "Expert",
+      "keywords": ["getattr", "setattr", "eval", "exec", "metaclass"]
+    },
+    {
+      "name": "Security and Encryption",
+      "level": "Expert",
+      "keywords": ["cryptography", "hashlib", "ssl", "secrets"]
+    },
+    {
+      "name": "Deployment and Operations",
+      "level": "Expert",
+      "keywords": ["venv", "virtualenv", "Docker", "docker-compose", "CI/CD"]
+    },
+    {
+      "name": "Ecosystem",
+      "level": "Master",
+      "keywords": ["pip", "setup.py", "requirements.txt", "GitHub", "PR"]
+    },
+    {
+      "name": "Language Internals",
+      "level": "Master",
+      "keywords": ["GIL", "gc", "sys", "dis", "inspect"]
+    },
+    {
+      "name": "Source Code Analysis and Extension",
+      "level": "Master",
+      "keywords": ["CPython", "C API", "PyObject", "Py_INCREF", "Py_DECREF"]
+    },
+    {
+      "name": "Contribution and Maintenance",
+      "level": "Master",
+      "keywords": ["PEP", "GitHub Issues", "PR", "Python-dev"]
+    }
+  ],
+  "commentSpec": {
+    "single": [
+      "#"
+    ],
+    "multiStart": [
+      "'''"
+    ],
+    "multiEnd": [
+      "\"\"\""
+    ]
+  },
+  "packages": [
+    "numpy",
+    "torch",
+    "tensorflow",
+    "opencv",
+    "mmcv",
+    "scikit-learn",
+    "keras",
+    "scipy",
+    "django",
+    "flask",
+    "pandas",
+    "matplotlib",
+    "seaborn",
+    "scrapy",
+    "selenium",
+    "beautifulsoup",
+    "requests",
+    "pillow",
+    "jupyter",
+    "sqlalchemy",
+    "pygame",
+    "huggingface",
+    "gradio"
+  ]
+}

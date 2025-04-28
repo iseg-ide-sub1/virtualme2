@@ -22,12 +22,12 @@ export default {
         cancel: "取消"
     },
     dialog: {
-        pluginName: "VirtualMe2",
+        pluginName: "Virtualme Chat",
         reasoning: "推理内容",
         copy: "复制",
         delete: "删除",
         prompt_tokens: "输入消耗的 Tokens 数量",
         completion_tokens: "输出消耗的 Tokens 数量",
-        welcomeMessage: "{think}\n\n部分模型（比如 DeepSeek）可能会在回答问题之前生成推理过程内容。生成的推理内容可以点击右上角的“推理内容”选项查看或隐藏。\n\n{_think}\n\n欢迎使用 VirtualMe2，一个面向 VS Code 的智能助手插件。作为一个个人开发的 IDE 智能助手，VirtualMe2 旨在为您提供简洁、个性化的开发辅助体验。\n\n- 自由配置模型\n- 聊天记录管理\n- 数学公式渲染\n- 聊天上下文选择\n\n---\n\n更多信息请参考[用户手册]({manual})或访问[GitHub页面]({github})。\n"
+        welcomeMessage: "{think}\n\n部分模型（比如 DeepSeek）可能会在回答问题之前生成推理过程内容。生成的推理内容可以点击右上角的“推理内容”选项查看或隐藏。\n\n{_think}\n\n欢迎使用 Virtualme Chat，一个面向 VS Code 的智能聊天助手。基于收集的数据，Virtualme Chat 将为您提供简洁、个性化的聊天和开发辅助体验。\n\n- 基于开发者行为的个性化聊天\n- 自由的配置模型\n- 聊天记录管理\n- 数学公式渲染\n- 聊天上下文选择\n\n---\n\n更多信息请参考[用户手册]({manual})或访问[GitHub页面]({github})。\n"
     }
 }

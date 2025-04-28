@@ -1,0 +1,125 @@
+{
+  "features": [
+    {
+      "name": "Basic Syntax",
+      "level": "Beginner",
+      "keywords": ["<?php", "?>", "echo", "print"]
+    },
+    {
+      "name": "Variables and Data Types",
+      "level": "Beginner",
+      "keywords": ["$", "int", "float", "string", "bool"]
+    },
+    {
+      "name": "Operators",
+      "level": "Beginner",
+      "keywords": ["+", "-", "*", "/", "%", "==", "===", "!=", "!=="]
+    },
+    {
+      "name": "Control Structures",
+      "level": "Beginner",
+      "keywords": ["if", "else", "elseif", "switch", "for", "while", "do-while", "foreach"]
+    },
+    {
+      "name": "Functions",
+      "level": "Beginner",
+      "keywords": ["function", "return", "global", "static"]
+    },
+    {
+      "name": "Arrays",
+      "level": "Beginner",
+      "keywords": ["array()", "[]", "count()", "array_merge()", "array_push()"]
+    },
+    {
+      "name": "Object-Oriented Programming",
+      "level": "Intermediate",
+      "keywords": ["class", "new", "extends", "implements", "public", "private", "protected", "static", "abstract", "interface", "trait"]
+    },
+    {
+      "name": "Error Handling",
+      "level": "Intermediate",
+      "keywords": ["try", "catch", "finally", "throw", "Exception"]
+    },
+    {
+      "name": "Database Interaction",
+      "level": "Intermediate",
+      "keywords": ["mysqli", "PDO", "connect", "query", "prepare", "execute"]
+    },
+    {
+      "name": "File Handling",
+      "level": "Intermediate",
+      "keywords": ["fopen", "fread", "fwrite", "fclose", "file_get_contents", "file_put_contents"]
+    },
+    {
+      "name": "Sessions and Cookies",
+      "level": "Intermediate",
+      "keywords": ["session_start()", " $_SESSION", "setcookie()", " $_COOKIE"]
+    },
+    {
+      "name": "Design Patterns",
+      "level": "Advanced",
+      "keywords": ["singleton", "factory", "observer", "strategy", "decorator"]
+    },
+    {
+      "name": "Security",
+      "level": "Advanced",
+      "keywords": ["htmlspecialchars", "filter_var", "password_hash", "password_verify", "CSRF", "XSS", "SQL Injection"]
+    },
+    {
+      "name": "Performance Optimization",
+      "level": "Advanced",
+      "keywords": ["caching", "opcode", "profiling", "benchmarking"]
+    },
+    {
+      "name": "Frameworks",
+      "level": "Advanced",
+      "keywords": ["Laravel", "Symfony", "CodeIgniter", "composer", "autoload"]
+    },
+    {
+      "name": "API Development",
+      "level": "Advanced",
+      "keywords": ["REST", "SOAP", "JSON", "XML", "curl"]
+    },
+    {
+      "name": "PHP Internals",
+      "level": "Master",
+      "keywords": ["zend", "opcode", "extension", "C", "PHP-CPP"]
+    },
+    {
+      "name": "Extension Development",
+      "level": "Master",
+      "keywords": ["phpize", "config.m4", "dl()", "zend_module_entry"]
+    },
+    {
+      "name": "Contributing to PHP",
+      "level": "Master",
+      "keywords": ["github", "pull request", "bug report", "RFC", "php-src"]
+    }
+  ],
+  "commentSpec": ["//", "/*", "#"],
+  "packages": [
+    "laravel/framework",
+    "symfony/symfony",
+    "guzzlehttp/guzzle",
+    "monolog/monolog",
+    "phpunit/phpunit",
+    "doctrine/orm",
+    "twig/twig",
+    "psr/log",
+    "swiftmailer/swiftmailer",
+    "phpoffice/phpspreadsheet",
+    "intervention/image",
+    "vlucas/phpdotenv",
+    "predis/predis",
+    "ramsey/uuid",
+    "fakerphp/faker",
+    "league/flysystem",
+    "carbon/carbon",
+    "phpmailer/phpmailer",
+    "barryvdh/laravel-debugbar",
+    "spatie/laravel-permission",
+    "laravel/passport",
+    "opis/closure",
+    "sentry/sentry"
+  ]
+}

@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm run -F gui-chat dev",
-    "build": "pnpm run -F gui-chat build",
+    "dev:0": "pnpm run -F gui-control dev",
+    "dev:1": "pnpm run -F gui-chat dev",
+    "build:0": "pnpm run -F gui-control build",
+    "build:1": "pnpm run -F gui-chat build",
+    "build": "pnpm build:0 && pnpm build:1",
     "watch": "pnpm run -F virtualme2 watch",
     "package": "pnpm run -F virtualme2 vsce:package"
   },
   "keywords": [],
-  "author": "himeditator",
+  "author": "iseg-ide-sub1",
   "license": "MIT",
   "packageManager": "pnpm@10.7.0"
 }

@@ -1,5 +1,5 @@
 <div align="center" >
-    <img src="./assets/media/banner.png" />
+    <!-- <img src="./assets/media/banner.png" /> -->
     <h1 align="center">
         <img src="./assets/icons/sidebar1.png" width="36px" height="36px"/>
         <span>virtualme2</span>
@@ -22,9 +22,12 @@
 
 - [用户手册](docs/user-manual_zh-cn.md)
 
-## ✨ 特性
+## ✨ 功能
 
-待添加。
+- 开发者行为记录
+- 开发者行为分析
+- 记录开发者建模的聊天
+- （待完善和补充）
 
 ## 🚀 项目运行
 
@@ -45,7 +48,10 @@ pnpm install
 通过此命令运行的前端没有接入 VS Code，无法进行交互。
 
 ```bash
-pnpm dev
+# 运行 gui-control 前端界面
+pnpm dev:0
+# 运行 gui-chat 前端界面
+pnpm dev:1
 ```
 
 ### 打包前端内容到插件
@@ -53,6 +59,11 @@ pnpm dev
 每次修改完前端部分需要执行该命令才能将内容更新到插件中。
 
 ```bash
+# 打包 gui-control 前端界面
+pnpm build:0
+# 打包 gui-chat 前端界面
+pnpm build:1
+# 打包 gui-control 和 gui-chat 前端界面
 pnpm build
 ```
 

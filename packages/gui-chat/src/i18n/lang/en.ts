@@ -22,12 +22,12 @@ export default {
         cancel: "Cancel"
     },
     dialog: {
-        pluginName: "VirtualMe2",
+        pluginName: "Virtualme Chat",
         reasoning: "reasoning content",
         copy: "copy",
         delete: "delete",
         prompt_tokens: "Number of Tokens consumed by the input",
         completion_tokens: "Number of Tokens consumed by the output",
-        welcomeMessage: "{think}\n\nSome models (such as DeepSeek) may generate reasoning content before answering questions. The generated reasoning content can be viewed or hidden by clicking the \"reasoning content\" option in the upper right corner.\n\n{_think}\n\nWelcome to VirtualMe2, an intelligent assistant plugin for VS Code. As a personally developed IDE assistant, VirtualMe2 aims to provide you with a simple and personalized development assistance experience.\n\n- Flexible Model Configuration\n- Chat History Management\n- Mathematical Formula Rendering\n- Chat context selection\n\n---\n\nFor more information, please refer to [User Manual]({manual}) or visit the [GitHub page]({github}).\n"
+        welcomeMessage: "{think}\n\nSome models (like DeepSeek) may generate reasoning content before answering a question. The generated reasoning content can be viewed or hidden by clicking the 'Reasoning Content' option in the upper right corner.\n\n{_think}\n\nWelcome to Virtualme Chat, an intelligent chat assistant for VS Code. Based on collected data, Virtualme Chat will provide you with a concise and personalized chat and development assistance experience.\n\n- Personalized chat based on developer behavior\n- Free model configuration\n- Chat history management\n- Mathematical formula rendering\n- Chat context selection\n\n---\n\nFor more information, please refer to the [User Manual]({manual}) or visit the [GitHub page]({github}).\n"
     }
 }

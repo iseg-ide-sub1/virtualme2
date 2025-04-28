@@ -1,0 +1,271 @@
+{
+  "features": [
+    {
+      "name": "Basic Syntax",
+      "level": "Beginner",
+      "keywords": [
+        "var",
+        "let",
+        "const",
+        "if",
+        "else",
+        "for",
+        "while",
+        "+",
+        "-",
+        "*",
+        "/",
+        "==",
+        "===",
+        "&&",
+        "||"
+      ]
+    },
+    {
+      "name": "Functions",
+      "level": "Beginner",
+      "keywords": [
+        "function",
+        "return",
+        "=>",
+        "arguments",
+        "this"
+      ]
+    },
+    {
+      "name": "Arrays",
+      "level": "Beginner",
+      "keywords": [
+        "[]",
+        "push",
+        "pop",
+        "shift",
+        "unshift",
+        "slice",
+        "splice"
+      ]
+    },
+    {
+      "name": "Objects",
+      "level": "Beginner",
+      "keywords": [
+        "{}",
+        ".",
+        "[]",
+        "this",
+        "Object"
+      ]
+    },
+    {
+      "name": "DOM Manipulation",
+      "level": "Intermediate",
+      "keywords": [
+        "getElementById",
+        "querySelector",
+        "innerHTML",
+        "addEventListener"
+      ]
+    },
+    {
+      "name": "Asynchronous JavaScript",
+      "level": "Intermediate",
+      "keywords": [
+        "callback",
+        "Promise",
+        "async",
+        "await",
+        "then",
+        "catch"
+      ]
+    },
+    {
+      "name": "Error Handling",
+      "level": "Intermediate",
+      "keywords": [
+        "try",
+        "catch",
+        "throw",
+        "finally"
+      ]
+    },
+    {
+      "name": "Modules",
+      "level": "Intermediate",
+      "keywords": [
+        "import",
+        "export",
+        "default"
+      ]
+    },
+    {
+      "name": "Closures",
+      "level": "Advanced",
+      "keywords": [
+        "closure",
+        "inner function",
+        "private"
+      ]
+    },
+    {
+      "name": "Prototypes and Inheritance",
+      "level": "Advanced",
+      "keywords": [
+        "prototype",
+        "__proto__",
+        "constructor",
+        "class",
+        "extends"
+      ]
+    },
+    {
+      "name": "Event Loop and Concurrency",
+      "level": "Advanced",
+      "keywords": [
+        "event loop",
+        "macrotask",
+        "microtask",
+        "setTimeout",
+        "setInterval"
+      ]
+    },
+    {
+      "name": "Regular Expressions",
+      "level": "Advanced",
+      "keywords": [
+        "/regex/",
+        "test",
+        "match",
+        "replace"
+      ]
+    },
+    {
+      "name": "Functional Programming",
+      "level": "Expert",
+      "keywords": [
+        "map",
+        "filter",
+        "reduce",
+        "pure function",
+        "immutability"
+      ]
+    },
+    {
+      "name": "Metaprogramming",
+      "level": "Expert",
+      "keywords": [
+        "Proxy",
+        "Reflect",
+        "Symbol"
+      ]
+    },
+    {
+      "name": "Web APIs",
+      "level": "Expert",
+      "keywords": [
+        "fetch",
+        "localStorage",
+        "sessionStorage",
+        "Worker"
+      ]
+    },
+    {
+      "name": "Performance Optimization",
+      "level": "Expert",
+      "keywords": [
+        "debounce",
+        "throttle",
+        "lazy load",
+        "virtual DOM"
+      ]
+    },
+    {
+      "name": "JavaScript Engines and V8",
+      "level": "Master",
+      "keywords": [
+        "V8",
+        "JIT",
+        "garbage collection",
+        "memory management"
+      ]
+    },
+    {
+      "name": "Browser Internals",
+      "level": "Master",
+      "keywords": [
+        "rendering engine",
+        "network request",
+        "same-origin policy",
+        "CORS"
+      ]
+    },
+    {
+      "name": "Node.js Internals",
+      "level": "Master",
+      "keywords": [
+        "libuv",
+        "event loop",
+        "C++ addon"
+      ]
+    },
+    {
+      "name": "ECMAScript Standards",
+      "level": "Master",
+      "keywords": [
+        "TC39",
+        "proposal",
+        "stage",
+        "implementation"
+      ]
+    }
+  ],
+  "commentSpec": {
+    "single": [
+      "//"
+    ],
+    "multiStart": [
+      "/*"
+    ],
+    "multiEnd": [
+      "*/"
+    ]
+  },
+  "packages": [
+    "lodash",
+    "d3.js",
+    "tensorflow.js",
+    "brain.js",
+    "tracking.js",
+    "react",
+    "vue",
+    "angular",
+    "chart.js",
+    "highcharts",
+    "puppeteer",
+    "jimp",
+    "webpack",
+    "babel",
+    "compromise",
+    "react",
+    "express",
+    "lodash",
+    "axios",
+    "jest",
+    "typeorm",
+    "@prisma/client",
+    "@nestjs/common",
+    "rxjs",
+    "@apollo/client",
+    "redux",
+    "styled-components",
+    "d3",
+    "@tensorflow/tfjs",
+    "puppeteer",
+    "sharp",
+    "socket.io",
+    "moment",
+    "joi",
+    "webpack",
+    "eslint",
+    "prettier"
+  ]
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "name": "NodeJS",
+    "config": ["package.json", "tsconfig.json", ".eslintrc", "nodemon.json"],
+    "tag": ["node_modules", "package-lock.json"]
+  },
+  {
+    "name": "Python",
+    "config": ["requirements.txt", "pyproject.toml", "setup.py", "Pipfile"],
+    "tag": []
+  },
+  {
+    "name": "Java",
+    "config": ["pom.xml", "build.gradle", "application.properties", "MANIFEST.MF"],
+    "tag": []
+  },
+  {
+    "name": "PHP",
+    "config": ["composer.json", "php.ini", ".htaccess", "laravel: config/app.php"],
+    "tag": ["vendor/", "composer.lock"]
+  },
+  {
+    "name": "Ruby",
+    "config": ["Gemfile", "Gemfile.lock", "config.ru", ".ruby-version"],
+    "tag": ["Rakefile", "app/", "db/", "config/"]
+  },
+  {
+    "name": "Go",
+    "config": ["go.mod", "go.sum", "main.go"],
+    "tag": ["vendor/", "Gopkg.lock", "cmd/"]
+  },
+  {
+    "name": "Rust",
+    "config": ["Cargo.toml", "Cargo.lock"],
+    "tag": ["target/", "src/main.rs", "src/lib.rs"]
+  },
+  {
+    "name": "C++",
+    "config": ["CMakeLists.txt", "Makefile"],
+    "tag": []
+  },
+  {
+    "name": "C#",
+    "config": ["csproj", "appsettings.json", "web.config"],
+    "tag": ["bin/", "obj/", "Program.cs", "AssemblyInfo.cs"]
+  },
+  {
+    "name": "Dart",
+    "config": ["pubspec.yaml"],
+    "tag": ["lib/", "pubspec.lock", "build/"]
+  },
+  {
+    "name": "Kotlin",
+    "config": ["build.gradle.kts", "AndroidManifest.xml"],
+    "tag": ["app/", ".kt", "settings.gradle.kts"]
+  },
+  {
+    "name": "Swift",
+    "config": ["Package.swift", "Info.plist"],
+    "tag": [".xcodeproj", ".xcworkspace", "Sources/"]
+  },
+  {
+    "name": "Docker",
+    "config": ["Dockerfile", "docker-compose.yml"],
+    "tag": [".dockerignore", "docker-compose.override.yml"]
+  },
+  {
+    "name": "Terraform",
+    "config": ["main.tf", "variables.tf", "terraform.tfvars"],
+    "tag": [".terraform/", "outputs.tf", "provider.tf"]
+  },
+  {
+    "name": "React",
+    "config": ["package.json", "webpack.config.js", "vite.config.js"],
+    "tag": ["src/App.jsx", "public/index.html", "src/index.js"]
+  },
+  {
+    "name": "Vue",
+    "config": ["package.json", "vue.config.js"],
+    "tag": ["vue.config.js"]
+  },
+  {
+    "name": "Angular",
+    "config": ["angular.json", "tsconfig.app.json"],
+    "tag": ["src/app/", "src/main.ts", "src/index.html"]
+  },
+  {
+    "name": "ArkTS",
+    "config": ["build-profile.json5", "hvigorfile.ts"],
+    "tag": ["entry/", "src/main/ets/"]
+  }
+]
