@@ -4,22 +4,22 @@
       <div class="form-radio">
         <div @click="recording = !recording" :class="{ checked: recording }">
           <FontAwesomeIcon :icon="faPlay" />
-          <span>正在记录</span>
+          <span>{{ $t('control.recording') }}</span>
         </div>
         <div @click="recording = !recording" :class="{ checked: !recording }">
           <FontAwesomeIcon :icon="faPause" />
-          <span>暂停记录</span>
+          <span>{{ $t('control.pause') }}</span>
         </div>
       </div>
     </div>
-    <p>插件会在 VS Code 关闭时自动保存缓存的记录，也可以通过下面的按钮手动保存记录。每次保存记录后将清空缓存的记录。</p>
-    <button>保存记录</button>
+    <p>{{ $t('control.saveNote') }}</p>
+    <button>{{ $t('control.saveLogs') }}</button>
     <div class="data-div">
-      <span>已收集数据：</span>
+      <span>{{ $t('control.logsNum') }}</span>
       <b class="data-log-num">{{ logNumber }}</b>
     </div>
     <div class="data-div">
-      <span>上一个动作：</span>
+      <span>{{ $t('control.logsPrev') }}</span>
       <b class="data-prev-log">{{ prevLog }}</b>
     </div>
   </div>
@@ -29,6 +29,9 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 import { ref } from 'vue'
+import { useListenerStore } from '../stores/listener'
+const listenerStore = useListenerStore()
+
 const recording = ref<boolean>(true)
 const logNumber = ref<number>(0)
 const prevLog = ref<string>('null')

@@ -5,7 +5,6 @@ import * as codeDiff from './base/code-diff/code-diff';
 
 import { ControlViewProvider } from './views/ControlViewProvider';
 import {LogControlViewProvider} from './views/log-control';
-import {ArtifactPredictionViewProvider} from './views/artifact-prediction';
 
 import {RepoMap} from "../repomap/RepoMap";
 import {
@@ -72,20 +71,9 @@ function initViews(context: vscode.ExtensionContext) {
         )
     );
 
-    // 工件预测页面
-    const artifactPredictionViewProvider = new ArtifactPredictionViewProvider();
-    context.subscriptions.push(
-        vscode.window.registerWebviewViewProvider(
-            ArtifactPredictionViewProvider.viewType,
-            artifactPredictionViewProvider,
-            {webviewOptions: {retainContextWhenHidden: true}}
-        )
-    );
-
 
     return {
-        logControlViewProvider,
-        artifactPredictionViewProvider,
+        logControlViewProvider
     };
 }
 

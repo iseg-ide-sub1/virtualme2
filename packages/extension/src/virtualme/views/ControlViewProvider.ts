@@ -1,6 +1,8 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+import { MessageSender } from './utils/MessageSender';
+import { RequestHandler } from './utils/RequestHandler';
 
 export class ControlViewProvider implements vscode.WebviewViewProvider {
     public static readonly viewType = 'virtualme.control';
@@ -19,10 +21,11 @@ export class ControlViewProvider implements vscode.WebviewViewProvider {
         };
         webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
+        MessageSender.view = webviewView;
+        RequestHandler.view = webviewView;
+        
         webviewView.webview.onDidReceiveMessage(
-            (message) => {
-                console.log(message);
-            }
+            RequestHandler.handleRequest
         );
     }
 
