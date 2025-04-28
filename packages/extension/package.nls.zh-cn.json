@@ -3,6 +3,9 @@
     "plugin.chat": "VirtualMe2 Chat",
     "plugin.control": "VirtualMe2 Control",
     
+    "cmd.record.start": "开始记录",
+    "cmd.record.stop": "停止记录",
+    "cmd.logs.save": "保存记录",
     "cmd.goto.settings": "设置",
     "cmd.goto.config": "配置文件",
     "cmd.load.sessions": "对话历史",

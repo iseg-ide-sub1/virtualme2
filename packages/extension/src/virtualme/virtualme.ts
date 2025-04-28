@@ -3,8 +3,9 @@ import * as utils from './base/utils';
 import {deleteInnerCmdSeq} from './base/event-process/cmd-process';
 import * as codeDiff from './base/code-diff/code-diff';
 
+import { MessageSender } from './views/utils/MessageSender';
 import { ControlViewProvider } from './views/ControlViewProvider';
-import {LogControlViewProvider} from './views/log-control';
+// import {LogControlViewProvider} from './views/log-control';
 
 import {RepoMap} from "../repomap/RepoMap";
 import {
@@ -18,7 +19,7 @@ import {
     snapshotInterval
 } from "./core/global";
 
-import {disposable, saveLogCommand, startCommand, stopCommand} from './core/commands';
+import {saveLogCommand, startCommand, stopCommand} from './core/commands';
 import {
     changeActiveTextDocumentWatcher,
     closeTextDocumentWatcher,
@@ -50,7 +51,6 @@ function checkVersion() {
 
 //初始化图形界面，未来看情况是否还需要在这里定义
 function initViews(context: vscode.ExtensionContext) {
-    /** 提供图形化界面 */
 
     const chatViewProvider = new ControlViewProvider(context.extensionUri);
     context.subscriptions.push(
@@ -62,19 +62,14 @@ function initViews(context: vscode.ExtensionContext) {
     );
 
     // 日志控制页面
-    const logControlViewProvider = new LogControlViewProvider(context.extensionUri);
-    context.subscriptions.push(
-        vscode.window.registerWebviewViewProvider(
-            LogControlViewProvider.viewType,
-            logControlViewProvider,
-            {webviewOptions: {retainContextWhenHidden: true}}
-        )
-    );
-
-
-    return {
-        logControlViewProvider
-    };
+    // const logControlViewProvider = new LogControlViewProvider(context.extensionUri);
+    // context.subscriptions.push(
+    //     vscode.window.registerWebviewViewProvider(
+    //         LogControlViewProvider.viewType,
+    //         logControlViewProvider,
+    //         {webviewOptions: {retainContextWhenHidden: true}}
+    //     )
+    // );
 }
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -86,14 +81,13 @@ export async function activate(context: vscode.ExtensionContext) {
     setExtensionPath(context.extensionPath);
 
     // 初始化调试界面
-    const {logControlViewProvider, ...rest} = initViews(context);
+    initViews(context);
 
     //注册命令
     context.subscriptions.push(
         startCommand,
         stopCommand,
-        saveLogCommand,
-        disposable
+        saveLogCommand
     );
 
     //注册文件监听器
@@ -159,10 +153,14 @@ export async function activate(context: vscode.ExtensionContext) {
                 console.error(e);
             });
         }
-        logControlViewProvider.displayInfo = {
-            'logs-num': logs.length,
-            'logs-prev': logs.length === 0 ? "no logs" : logs[logs.length - 1].eventType.toString()
-        };
+        MessageSender.logsNumber(logs.length);
+        MessageSender.logsPrev(
+            logs.length === 0 ? "null" : logs[logs.length - 1].eventType.toString()
+        );
+        // logControlViewProvider.displayInfo = {
+        //     'logs-num': logs.length,
+        //     'logs-prev': logs.length === 0 ? "no logs" : logs[logs.length - 1].eventType.toString()
+        // };
     }, logCheckInterval);
 
     /** 每隔 snapshotInterval ms 保存一次快照 */
@@ -182,7 +180,6 @@ export async function activate(context: vscode.ExtensionContext) {
             console.log('Interval cleared.');
         },
     });
-
 }
 
 

@@ -50,11 +50,6 @@
           "id": "virtualme-chat",
           "title": "%plugin.chat%",
           "icon": "assets/icons/sidebar2.png"
-        },
-        {
-          "id": "virtualme",
-          "title": "VirtualMe",
-          "icon": "./res/img/sidebar-new.png"
         }
       ]
     },
@@ -74,21 +69,24 @@
           "name": "%plugin.chat%",
           "icon": "assets/icons/sidebar2.png"
         }
-      ],
-      "virtualme": [
-        {
-          "type": "webview",
-          "id": "virtualme.LogControlView",
-          "name": "记录控制"
-        },
-        {
-          "type": "webview",
-          "id": "virtualme.ArtifactPredictionView",
-          "name": "工件预测"
-        }
       ]
     },
     "commands": [
+      {
+        "command": "virtualme.start",
+        "title": "%cmd.record.start%",
+        "icon": "$(run)"
+      },
+      {
+        "command": "virtualme.stop",
+        "title": "%cmd.record.stop%",
+        "icon": "$(stop-circle)"
+      },
+      {
+        "command": "virtualme.savelog",
+        "title": "$cmd.logs.save%",
+        "icon": "$(save)"
+      },
       {
         "command": "virtualme2.goto.settings",
         "title": "%cmd.goto.settings%",
@@ -108,26 +106,6 @@
         "command": "virtualme2.chat.new",
         "title": "%cmd.chat.new%",
         "icon": "$(plus)"
-      },
-      {
-        "command": "virtualme.activate",
-        "title": "VirtualMe Activate",
-        "icon": "$(sync)"
-      },
-      {
-        "command": "virtualme.start",
-        "title": "VirtualMe Start Recording",
-        "icon": "$(run)"
-      },
-      {
-        "command": "virtualme.stop",
-        "title": "VirtualMe Stop Recording",
-        "icon": "$(stop-circle)"
-      },
-      {
-        "command": "virtualme.savelog",
-        "title": "VirtualMe Save Log",
-        "icon": "$(save)"
       }
     ],
     "menus": {

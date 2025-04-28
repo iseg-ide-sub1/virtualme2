@@ -3,6 +3,9 @@
     "plugin.chat": "Virtualme Chat",
     "plugin.control": "Virtualme Control",
 
+    "cmd.record.start": "Start Recording",
+    "cmd.record.stop": "Stop Recording",
+    "cmd.logs.save": "Save Logs",
     "cmd.goto.settings": "Open Settings",
     "cmd.goto.config": "Open Config",
     "cmd.load.sessions": "Chat History",

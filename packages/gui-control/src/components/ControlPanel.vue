@@ -1,19 +1,23 @@
 <template>
   <div class="control-panel">
+
     <div class="control-div">
       <div class="form-radio">
-        <div @click="recording = !recording" :class="{ checked: recording }">
+        <div @click="setRecordStatus(true)" :class="{ checked: recording }">
           <FontAwesomeIcon :icon="faPlay" />
           <span>{{ $t('control.recording') }}</span>
         </div>
-        <div @click="recording = !recording" :class="{ checked: !recording }">
+        <div @click="setRecordStatus(false)" :class="{ checked: !recording }">
           <FontAwesomeIcon :icon="faPause" />
           <span>{{ $t('control.pause') }}</span>
         </div>
       </div>
     </div>
+    
     <p>{{ $t('control.saveNote') }}</p>
-    <button>{{ $t('control.saveLogs') }}</button>
+    <button @click="useSenderStore().saveLogs">
+      {{ $t('control.saveLogs') }}
+    </button>
     <div class="data-div">
       <span>{{ $t('control.logsNum') }}</span>
       <b class="data-log-num">{{ logNumber }}</b>
@@ -22,19 +26,24 @@
       <span>{{ $t('control.logsPrev') }}</span>
       <b class="data-prev-log">{{ prevLog }}</b>
     </div>
+  
   </div>
 </template>
 
 <script setup lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
-import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
 import { useListenerStore } from '../stores/listener'
+import { useSenderStore } from '@/stores/sender'
 const listenerStore = useListenerStore()
+const { recording, logNumber, prevLog } = storeToRefs(listenerStore)
 
-const recording = ref<boolean>(true)
-const logNumber = ref<number>(0)
-const prevLog = ref<string>('null')
+function setRecordStatus(status: boolean) {
+  if(status !== recording.value) {
+    useSenderStore().setStatus(status)
+  }
+}
 </script>
 
 <style scoped>
