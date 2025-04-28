@@ -5,7 +5,7 @@ import { SessionManifest } from '../storage/SessionManifest';
 
 export function loadSession(sessionManifest: SessionManifest) {
     const quickPick = vscode.window.createQuickPick();
-    let sessionItems = [];
+    let sessionItems: any = [];
     for (let i = sessionManifest.manifest.length - 1; i >= 0; i--){
         const session = sessionManifest.manifest[i];
         sessionItems.push({
