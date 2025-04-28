@@ -4,10 +4,10 @@ import * as logItem from "../base/types/log-item";
 //*****************************************************************
 // 需要人工配置的内容，每次发布新版本前都要检查一下
 export const saveDir = {value: '.virtualme'} // 数据的保存位置
-export const plugin_version = 'v0.3.0' // 插件版本
-export const maxLogItemsNum = 1000 // 允许缓存的最大命令数量，超过后自动进行保存
-export const logCheckInterval = 1000 // 自动保存的间隔时间，单位：毫秒
-export const snapshotInterval = 1000 * 60 * 5 // 快照的间隔时间，单位：毫秒, 默认5分钟
+export const plugin_version = 'v1.0.0'; // 插件版本
+export const maxLogItemsNum = 1000; // 允许缓存的最大命令数量，超过后自动进行保存
+export const logCheckInterval = 1000; // 自动保存的间隔时间，单位：毫秒
+export const snapshotInterval = 1000 * 60 * 5; // 快照的间隔时间，单位：毫秒, 默认5分钟
 
 //*****************************************************************
 

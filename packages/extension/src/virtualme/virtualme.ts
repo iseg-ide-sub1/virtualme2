@@ -5,7 +5,6 @@ import * as codeDiff from './base/code-diff/code-diff';
 
 import { MessageSender } from './views/utils/MessageSender';
 import { ControlViewProvider } from './views/ControlViewProvider';
-// import {LogControlViewProvider} from './views/log-control';
 
 import {RepoMap} from "../repomap/RepoMap";
 import {
@@ -49,27 +48,16 @@ function checkVersion() {
     return true;
 }
 
-//初始化图形界面，未来看情况是否还需要在这里定义
+// 初始化图形界面
 function initViews(context: vscode.ExtensionContext) {
-
-    const chatViewProvider = new ControlViewProvider(context.extensionUri);
+    const controlViewProvider = new ControlViewProvider(context.extensionUri);
     context.subscriptions.push(
         vscode.window.registerWebviewViewProvider(
             ControlViewProvider.viewType,
-            chatViewProvider,
+            controlViewProvider,
             {webviewOptions: { retainContextWhenHidden: true }}
         )
     );
-
-    // 日志控制页面
-    // const logControlViewProvider = new LogControlViewProvider(context.extensionUri);
-    // context.subscriptions.push(
-    //     vscode.window.registerWebviewViewProvider(
-    //         LogControlViewProvider.viewType,
-    //         logControlViewProvider,
-    //         {webviewOptions: {retainContextWhenHidden: true}}
-    //     )
-    // );
 }
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -157,10 +145,6 @@ export async function activate(context: vscode.ExtensionContext) {
         MessageSender.logsPrev(
             logs.length === 0 ? "null" : logs[logs.length - 1].eventType.toString()
         );
-        // logControlViewProvider.displayInfo = {
-        //     'logs-num': logs.length,
-        //     'logs-prev': logs.length === 0 ? "no logs" : logs[logs.length - 1].eventType.toString()
-        // };
     }, logCheckInterval);
 
     /** 每隔 snapshotInterval ms 保存一次快照 */

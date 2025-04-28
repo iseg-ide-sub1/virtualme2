@@ -35,7 +35,9 @@
     "chat",
     "LLM"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension/extension.js",
   "l10n": "./l10n",
   "contributes": {

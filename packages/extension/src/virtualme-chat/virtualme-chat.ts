@@ -18,8 +18,8 @@ let sessionManifest: SessionManifest;
 
 export function activate(context: vscode.ExtensionContext) {
     init_l10n(context.extensionUri);
-    const storageDir = vscode.Uri.joinPath(vscode.Uri.file(os.homedir()),'/.virtualme2');
-    const configUri = vscode.Uri.joinPath(storageDir, 'config.json');
+    const storageDir = vscode.Uri.joinPath(vscode.Uri.file(os.homedir()), '/.virtual-me');
+    const configUri = vscode.Uri.joinPath(storageDir, 'chat-config.json');
     const sesseionDir = vscode.Uri.joinPath(storageDir, 'chat');
     const manifestUri = vscode.Uri.joinPath(sesseionDir, 'manifest.json');
 

@@ -1,5 +1,5 @@
 <div align="center" >
-    <img src="./assets/media/banner.png" />
+    <!-- <img src="./assets/media/banner.png" /> -->
     <h1 align="center">
         <img src="./assets/icons/sidebar1.png" width="36px" height="36px"/>
         <span>virtualme2</span>
@@ -15,10 +15,13 @@
 
 <hr>
 
-## 📚 User Manual
+## 📚 用户手册
 
 - [用户手册](https://github.com/iseg-ide-sub1/virtualme2/blob/main/docs/user-manual_zh-cn.md)
 
-## ✨ Features
+## ✨ 功能
 
-待添加。
+- 开发者行为记录
+- 开发者行为分析
+- 记录开发者建模的聊天
+- （待完善和补充）
